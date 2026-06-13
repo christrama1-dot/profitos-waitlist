@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+*.log
+logs/
+tmp/
+*.pdf
+.DS_Store
+coverage/
