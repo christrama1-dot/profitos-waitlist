@@ -138,6 +138,14 @@ npm test               # unit tests (parsing, scoring, normalization, assembly)
 npm run smoke          # offline end-to-end pipeline test (uses pdfkit fallback)
 ```
 
+### Deployment
+
+See **[DEPLOY.md](./DEPLOY.md)** for a step-by-step guide. In short: deploy to an
+always-on Node host (Render blueprint included via [`render.yaml`](../render.yaml)
+and [`Dockerfile`](./Dockerfile)), set the secret env vars in the host dashboard,
+and point WF-06's handoff at `https://<your-host>/api/audit`. Not Vercel — the
+pipeline keeps running after the 202 response, so it needs a persistent server.
+
 ### PDF rendering
 
 Puppeteer is preferred (renders the branded HTML template). In constrained
