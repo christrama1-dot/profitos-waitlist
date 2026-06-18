@@ -1,14 +1,14 @@
 /**
  * api/subscribe.js
- * Vercel serverless function — MailerLite waitlist subscription proxy
+ * Vercel serverless function — Kit (ConvertKit) waitlist subscription proxy
  *
  * Required Vercel environment variables (set in Vercel dashboard):
- *   MAILERLITE_API_KEY   — API token from MailerLite account 2372433
- *   MAILERLITE_GROUP_ID  — Group/list ID for the waitlist subscribers
+ *   KIT_API_KEY  — API key from Kit account (Settings > Advanced > API Key)
+ *   KIT_FORM_ID  — Kit form ID for the waitlist form
  *
  * Endpoint: POST /api/subscribe
  * Body:     { "email": "user@example.com" }
- * Returns:  { "success": true } on 200/201/422 (duplicate = success)
+ * Returns:  { "success": true } on success
  */
 
 module.exports = async function handler(req, res) {
@@ -34,37 +34,35 @@ module.exports = async function handler(req, res) {
   }
 
   // ── Environment check ─────────────────────────────────────────
-  const apiKey  = process.env.MAILERLITE_API_KEY;
-  const groupId = process.env.MAILERLITE_GROUP_ID;
+  const apiKey = process.env.KIT_API_KEY;
+  const formId = process.env.KIT_FORM_ID;
 
-  if (!apiKey) {
-    console.error('[subscribe] Missing MAILERLITE_API_KEY env var');
+  if (!apiKey || !formId) {
+    console.error('[subscribe] Missing KIT_API_KEY or KIT_FORM_ID env var');
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  // ── MailerLite API v3 call ────────────────────────────────────
+  // ── Kit (ConvertKit) API call ─────────────────────────────────
+  // Docs: https://developers.kit.com/v3#subscribe-to-a-form
+  // Note: Kit API key goes in the request body, not the Authorization header
   try {
-    const payload = { email };
-    if (groupId) payload.groups = [groupId];
+    const kitRes = await fetch(
+      'https://api.convertkit.com/v3/forms/' + formId + '/subscribe',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ api_key: apiKey, email: email })
+      }
+    );
 
-    const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
-      method: 'POST',
-      headers: {
-        'Content-Type':  'application/json',
-        'Accept':        'application/json',
-        'Authorization': 'Bearer ' + apiKey
-      },
-      body: JSON.stringify(payload)
-    });
-
-    // 200 / 201 = subscribed, 422 = already subscribed — all treated as success
-    if (mlRes.status === 200 || mlRes.status === 201 || mlRes.status === 422) {
+    // Kit returns 200 for new subscribers and existing subscribers alike
+    if (kitRes.ok) {
       return res.status(200).json({ success: true });
     }
 
-    // Log unexpected errors server-side only — never leak to client
-    const errBody = await mlRes.text();
-    console.error('[subscribe] MailerLite error', mlRes.status, errBody);
+    // Log server-side only — never expose API details to client
+    const errBody = await kitRes.text();
+    console.error('[subscribe] Kit API error', kitRes.status, errBody);
     return res.status(502).json({ error: 'Subscription service error' });
 
   } catch (err) {
