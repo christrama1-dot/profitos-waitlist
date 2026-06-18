@@ -66,7 +66,8 @@
     .widget-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:blink-dot 1.6s ease-in-out infinite;}
     .widget-title{font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
     .widget-live{margin-left:auto;font-family:var(--mono);font-size:0.62rem;color:var(--green);background:rgba(0,255,136,0.07);border:1px solid rgba(0,255,136,0.15);padding:3px 8px;border-radius:4px;}
-    .widget-body{padding:18px;min-height:300px;display:flex;flex-direction:column;gap:10px;}
+    /* Fixed height prevents layout shift when messages rotate — overflow clips cleanly */
+    .widget-body{padding:18px;height:300px;overflow:hidden;display:flex;flex-direction:column;gap:10px;}
     .wmsg{background:rgba(255,255,255,0.045);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:14px 16px;}
     .wmsg.in{animation:msg-in 0.38s ease forwards;}
     .wmsg.out{animation:msg-out 0.38s ease forwards;}
