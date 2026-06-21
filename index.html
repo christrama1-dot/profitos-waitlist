@@ -3,488 +3,544 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProfitOS Engine — Give Yourself a Raise</title>
-  <meta name="description" content="56 profit watchdogs scanning your business for hidden money. Tax deductions, government grants, forgotten subscriptions, unpaid invoices, underpriced services. Waitlist opens June 29, 2026." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>ProfitOS Engine — Stop the Profit Leaks. Give Yourself a Raise.</title>
+  <meta name="description" content="57 watchdog specialists scan your business in 60 seconds. Free. No credit card. ProfitOS Profit Surveillance finds the money your accountant missed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:#0D0F1A; --bg2:#111325; --green:#00FF88; --purple:#9F8FEF;
-      --pink:#F472B6; --cyan:#00FFFF; --white:#FFFFFF;
-      --text:rgba(255,255,255,0.87); --muted:rgba(255,255,255,0.55);
-      --faint:rgba(255,255,255,0.25); --border:rgba(255,255,255,0.10);
-      --card:rgba(255,255,255,0.04);
-      --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-      --mono:'JetBrains Mono','Courier New',monospace;
+      --bg:     #0D0F1A;
+      --bg2:    #12141F;
+      --bg3:    #1A1D2E;
+      --green:  #00FF88;
+      --purple: #9F8FEF;
+      --pink:   #F472B6;
+      --cyan:   #00FFFF;
+      --white:  #E8E9F0;
+      --grey:   rgba(232,233,240,0.5);
+      --border: rgba(232,233,240,0.08);
+      --font:   'Inter', sans-serif;
+      --mono:   'JetBrains Mono', monospace;
+      --grad:   linear-gradient(135deg,#00FFFF 0%,#9F8FEF 50%,#F472B6 100%);
     }
-    html{scroll-behavior:smooth;}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
-    .container{max-width:1100px;margin:0 auto;padding:0 24px;}
-    .container-sm{max-width:720px;margin:0 auto;padding:0 24px;}
-    .mono{font-family:var(--mono);}
-    .tc{text-align:center;}
-    .green{color:var(--green);}  .purple{color:var(--purple);}
-    .pink{color:var(--pink);}    .cyan{color:var(--cyan);}
-    .muted{color:var(--muted);}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-    /* HEADER */
-    .site-header{position:sticky;top:0;z-index:100;background:rgba(13,15,26,0.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
-    .header-inner{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
-    .logo{font-family:var(--font);font-size:1.15rem;font-weight:900;letter-spacing:-0.01em;color:var(--white);}
-    .logo .os{color:var(--green);}
-    .header-badge{font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);background:rgba(0,255,136,0.07);border:1px solid rgba(0,255,136,0.18);padding:6px 14px;border-radius:20px;}
+    .gradient-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ANNOUNCE */
+    .announce {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--grey);
+    }
+    .announce strong { color: var(--green); }
+
+    /* NAV */
+    nav {
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .logo em { font-style: normal; color: var(--green); }
+    .nav-pill {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .2s;
+      display: inline-block;
+    }
+    .nav-pill:hover { opacity: .85; }
 
     /* HERO */
-    .hero{padding:80px 24px 72px;position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(159,143,239,0.10) 0%,transparent 70%);pointer-events:none;}
-    .hero::after{content:'';position:absolute;top:-80px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(0,255,136,0.06) 0%,transparent 70%);pointer-events:none;}
-    .hero-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);background:rgba(0,255,136,0.05);border:1px solid rgba(0,255,136,0.15);padding:6px 14px;border-radius:20px;margin-bottom:28px;}
-    .hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink-dot 2s ease-in-out infinite;}
-    @keyframes blink-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.3;transform:scale(0.7);}}
-    .hero-identity{font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-    .hero h1{font-size:clamp(2.8rem,5.5vw,4.4rem);font-weight:900;line-height:1.04;letter-spacing:-0.03em;color:var(--white);margin-bottom:16px;}
-    .hero-tagline{font-size:1.2rem;font-weight:700;color:var(--purple);margin-bottom:8px;}
-    .hero-hook{font-size:1rem;font-weight:600;color:var(--green);margin-bottom:20px;}
-    .hero-sub{font-size:1rem;color:var(--muted);line-height:1.75;max-width:500px;margin-bottom:36px;}
+    .hero { padding: 96px 24px 72px; text-align: center; }
+    .eyebrow-pill {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid rgba(0,255,136,.25);
+      border-radius: 999px;
+      padding: 6px 16px;
+      margin-bottom: 36px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 5.8rem);
+      font-weight: 900;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+    }
+    .hero h1 .line2 { display: block; color: var(--white); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      color: var(--grey);
+      max-width: 520px;
+      margin: 0 auto 52px;
+      line-height: 1.75;
+    }
 
-    /* FORMS */
-    .form-group{display:flex;flex-direction:column;gap:12px;}
-    .form-row{display:flex;gap:10px;flex-wrap:wrap;}
-    .form-input{flex:1 1 200px;padding:15px 18px;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:10px;font-size:0.95rem;font-family:var(--font);color:var(--white);outline:none;transition:border-color 0.2s;}
-    .form-input::placeholder{color:var(--faint);}
-    .form-input:focus{border-color:var(--green);}
-    .form-input.err{border-color:var(--pink);}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 28px;background:var(--purple);color:var(--white);border:none;border-radius:9999px;font-size:0.92rem;font-weight:700;font-family:var(--font);cursor:pointer;white-space:nowrap;transition:background 0.18s,transform 0.1s,opacity 0.2s;flex-shrink:0;}
-    .btn:hover{background:#8b79e0;}  .btn:active{transform:scale(0.98);}  .btn:disabled{opacity:0.6;cursor:not-allowed;}
-    .form-note{font-size:0.76rem;color:var(--faint);}
-    .success-msg{display:none;background:rgba(0,255,136,0.07);border:1px solid rgba(0,255,136,0.18);border-radius:10px;padding:16px 20px;font-size:0.9rem;font-weight:600;color:var(--green);text-align:center;}
+    /* FORM */
+    .form-wrap { max-width: 480px; margin: 0 auto; }
+    .form-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .form-row input[type="email"] {
+      flex: 1 1 220px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: .95rem;
+      padding: 16px 20px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-row input[type="email"]:focus { border-color: var(--purple); }
+    .form-row input[type="email"]::placeholder { color: rgba(232,233,240,.28); }
+    .btn-main {
+      flex: 1 1 auto;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 16px 28px;
+      font-family: var(--font);
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity .2s, transform .1s;
+    }
+    .btn-main:hover { opacity: .88; }
+    .btn-main:active { transform: scale(.98); }
+    .btn-main:disabled { opacity: .55; cursor: not-allowed; }
+    .form-note { margin-top: 12px; font-size: .72rem; color: rgba(232,233,240,.3); font-family: var(--mono); }
+    .form-ok {
+      display: none;
+      background: rgba(0,255,136,.08);
+      border: 1px solid rgba(0,255,136,.3);
+      border-radius: 12px;
+      padding: 18px 24px;
+      color: var(--green);
+      font-weight: 700;
+      text-align: center;
+      margin-top: 12px;
+    }
 
-    /* WIDGET */
-    .widget{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.10);border-radius:16px;overflow:hidden;max-width:460px;}
-    .widget-hdr{padding:15px 20px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
-    .widget-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:blink-dot 1.6s ease-in-out infinite;}
-    .widget-title{font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
-    .widget-live{margin-left:auto;font-family:var(--mono);font-size:0.62rem;color:var(--green);background:rgba(0,255,136,0.07);border:1px solid rgba(0,255,136,0.15);padding:3px 8px;border-radius:4px;}
-    .widget-body{padding:18px;height:300px;overflow:hidden;display:flex;flex-direction:column;gap:10px;}
-    .wmsg{background:rgba(255,255,255,0.045);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:14px 16px;}
-    .wmsg.in{animation:msg-in 0.38s ease forwards;}
-    .wmsg.out{animation:msg-out 0.38s ease forwards;}
-    @keyframes msg-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes msg-out{from{opacity:1;transform:translateY(0);}to{opacity:0;transform:translateY(-10px);}}
-    .wmsg-agent{font-family:var(--mono);font-size:0.68rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px;}
-    .wmsg-text{font-size:0.87rem;color:var(--text);line-height:1.5;margin-bottom:5px;}
-    .wmsg-sub{font-family:var(--mono);font-size:0.65rem;color:var(--muted);}
-    .widget-ftr{padding:13px 20px;border-top:1px solid var(--border);background:rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:space-between;}
-    .widget-placeholder{font-size:0.82rem;color:var(--faint);}
-    .scanning{font-family:var(--mono);font-size:0.62rem;color:var(--green);display:flex;align-items:center;gap:5px;}
-    .dots span{animation:dot 1.2s ease-in-out infinite;}
-    .dots span:nth-child(2){animation-delay:0.2s;}  .dots span:nth-child(3){animation-delay:0.4s;}
-    @keyframes dot{0%,100%{opacity:0.15;}50%{opacity:1;}}
+    /* STATS */
+    .stats {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 36px 24px;
+    }
+    .stats-row {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 48px;
+    }
+    .stat { text-align: center; }
+    .stat-n {
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--green);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-l { font-size: .72rem; color: var(--grey); text-transform: uppercase; letter-spacing: .1em; }
 
-    /* PROOF STRIP */
-    .proof-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);}
-    .proof-inner{max-width:1100px;margin:0 auto;padding:28px 24px;display:flex;justify-content:center;flex-wrap:wrap;gap:48px;}
-    .proof-item{display:flex;flex-direction:column;align-items:center;gap:4px;}
-    .proof-num{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--green);line-height:1;}
-    .proof-label{font-size:0.76rem;color:var(--muted);text-align:center;}
+    /* TICKER */
+    .ticker-wrap { padding: 44px 0; overflow: hidden; }
+    .ticker-label {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 22px;
+    }
+    .ticker-rail { overflow: hidden; position: relative; }
+    .ticker-rail::before,
+    .ticker-rail::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 2;
+    }
+    .ticker-rail::before { left: 0; background: linear-gradient(90deg,var(--bg),transparent); }
+    .ticker-rail::after  { right: 0; background: linear-gradient(-90deg,var(--bg),transparent); }
+    .ticker-track {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+      animation: roll 45s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes roll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 18px;
+      white-space: nowrap;
+      transition: border-color .2s, background .2s;
+      cursor: default;
+    }
+    .chip:hover { border-color: var(--purple); background: rgba(159,143,239,.08); }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-g { background: var(--green);  box-shadow: 0 0 7px var(--green); }
+    .dot-p { background: var(--purple); box-shadow: 0 0 7px var(--purple); }
+    .dot-c { background: var(--cyan);   box-shadow: 0 0 7px var(--cyan); }
+    .dot-k { background: var(--pink);   box-shadow: 0 0 7px var(--pink); }
+    .chip-name { font-family: var(--mono); font-size: .78rem; color: var(--white); }
 
     /* SECTIONS */
-    .sec{padding:96px 24px;}
-    .sec-alt{padding:96px 24px;background:var(--bg2);}
-    .sec-lbl{font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
-    .sec-h{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.18;letter-spacing:-0.02em;color:var(--white);margin-bottom:16px;}
-    .sec-sub{font-size:1rem;color:var(--muted);max-width:540px;margin-bottom:52px;}
+    .sec { padding: 80px 24px; }
+    .sec-alt { background: var(--bg2); }
+    .sec-center { text-align: center; }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 18px;
+    }
+    h2 {
+      font-size: clamp(1.8rem,4.5vw,2.8rem);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      margin-bottom: 20px;
+    }
+    .lead {
+      font-size: 1rem;
+      color: var(--grey);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+    .lead-c { margin: 0 auto; }
+    .big-leak {
+      font-family: var(--mono);
+      font-size: clamp(2.8rem,8vw,5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .big-sub { font-size: .8rem; color: var(--grey); font-family: var(--mono); margin-bottom: 36px; }
 
-    /* RESULT CARDS */
-    .ftc{font-family:var(--mono);font-size:0.65rem;color:var(--faint);margin-bottom:28px;}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;}
-    .rcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;position:relative;overflow:hidden;}
-    .rcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--cyan));}
-    .rcard-type{font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
-    .rcard-list{list-style:none;margin-bottom:20px;}
-    .rcard-list li{padding:8px 0 8px 20px;font-size:0.87rem;color:var(--text);border-bottom:1px solid var(--border);position:relative;}
-    .rcard-list li:last-child{border-bottom:none;}
-    .rcard-list li::before{content:'→';position:absolute;left:0;color:var(--green);font-weight:700;}
-    .rcard-total{font-size:0.84rem;color:var(--muted);padding-top:12px;}
-    .rcard-total strong{color:var(--green);font-size:0.98rem;font-weight:700;}
+    /* STEPS */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; margin-top: 48px; }
+    .step-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+    }
+    .step-n { font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--grey); margin-bottom: 16px; }
+    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .step-card p { font-size: .87rem; color: var(--grey); line-height: 1.65; }
 
-    /* AGENT CARDS */
-    .agents{display:grid;grid-template-columns:repeat(auto-fill,minmax(256px,1fr));gap:18px;margin-top:48px;}
-    .acard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:border-color 0.2s,transform 0.2s;}
-    .acard:hover{border-color:rgba(255,255,255,0.2);transform:translateY(-2px);}
-    .acard-tier{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);background:rgba(159,143,239,0.07);border:1px solid rgba(159,143,239,0.18);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:14px;}
-    .acard-name{font-family:var(--mono);font-size:1rem;font-weight:700;margin-bottom:3px;}
-    .acard-role{font-size:0.76rem;color:var(--muted);font-style:italic;margin-bottom:14px;}
-    .acard-spec{font-size:0.84rem;color:var(--text);line-height:1.55;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-    .acard-quirk{font-size:0.78rem;color:var(--muted);font-style:italic;line-height:1.5;}
-
-    /* SHEEPDOG */
-    .sheep-sec{padding:88px 24px;background:#070e08;position:relative;overflow:hidden;}
-    .sheep-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-    .sheep-lbl{color:var(--cyan);}
-    .sheep-stats{display:flex;gap:40px;margin-top:36px;}
-    .sheep-stat-n{font-family:var(--mono);font-size:2.2rem;font-weight:700;color:var(--cyan);line-height:1;}
-    .sheep-stat-l{font-size:0.76rem;color:var(--muted);}
-    .sheep-svg{width:100%;height:auto;max-width:480px;}
-    @keyframes graze{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
-    @keyframes escape{0%,75%,100%{transform:translateX(0)}80%{transform:translateX(14px)}88%{transform:translateX(6px)}}
-    @keyframes patrol{0%,100%{transform:translateX(0)translateY(0)}25%{transform:translateX(-6px)translateY(-1px)}75%{transform:translateX(6px)translateY(2px)}}
-    @keyframes tailwag{0%,100%{transform:rotate(0deg)}50%{transform:rotate(18deg)}}
-
-    /* HOW IT WORKS */
-    .steps{display:flex;flex-direction:column;gap:0;max-width:660px;}
-    .step{display:flex;gap:28px;align-items:flex-start;padding-bottom:40px;position:relative;}
-    .step:not(:last-child)::after{content:'';position:absolute;left:19px;top:46px;width:2px;height:calc(100% - 46px);background:var(--border);}
-    .step-n{width:40px;height:40px;min-width:40px;border-radius:50%;background:rgba(159,143,239,0.12);border:1px solid rgba(159,143,239,0.28);color:var(--purple);font-family:var(--mono);font-weight:700;font-size:0.9rem;display:flex;align-items:center;justify-content:center;}
-    .step-body h3{font-size:1.02rem;font-weight:700;color:var(--white);margin-bottom:8px;}
-    .step-body p{font-size:0.88rem;color:var(--muted);line-height:1.7;}
-
-    /* OFFER CARDS */
-    .offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-bottom:48px;}
-    .ocard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;}
-    .ocard-icon{font-size:1.4rem;margin-bottom:12px;}
-    .ocard h3{font-size:0.93rem;font-weight:700;color:var(--white);margin-bottom:7px;}
-    .ocard p{font-size:0.83rem;color:var(--muted);line-height:1.6;}
-
-    /* FAQ */
-    .faqs{display:flex;flex-direction:column;max-width:660px;margin-top:40px;}
-    .faq{border-bottom:1px solid var(--border);padding:22px 0;}
-    .faq-q{font-size:0.96rem;font-weight:700;color:var(--white);margin-bottom:10px;}
-    .faq-a{font-size:0.87rem;color:var(--muted);line-height:1.7;}
-    .faq-cta{margin-top:40px;text-align:center;}
+    /* PRICING */
+    .price-card {
+      background: var(--bg3);
+      border: 1px solid rgba(159,143,239,.3);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 500px;
+      margin: 48px auto 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+    }
+    .price-num { font-family: var(--mono); font-size: 3.8rem; font-weight: 700; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .price-tag { font-size: .8rem; color: var(--grey); margin-bottom: 28px; }
+    .price-body { font-size: .9rem; color: var(--grey); line-height: 1.75; margin-bottom: 32px; }
 
     /* FINAL CTA */
-    .cta-sec{padding:96px 24px;text-align:center;background:linear-gradient(135deg,rgba(159,143,239,0.05) 0%,rgba(0,255,136,0.03) 100%);border-top:1px solid var(--border);}
+    .cta-sec { background: var(--bg2); border-top: 1px solid var(--border); text-align: center; }
+    .cta-sec .lead { margin: 0 auto; }
 
     /* FOOTER */
-    footer{background:rgba(0,0,0,0.38);border-top:1px solid var(--border);padding:32px 24px;text-align:center;}
-    .footer-logo{font-weight:900;font-size:1rem;color:var(--white);margin-bottom:12px;}
-    .footer-logo .os{color:var(--green);}
-    .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:14px;flex-wrap:wrap;}
-    .footer-links a{font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-    .footer-links a:hover{color:var(--white);}
-    .footer-copy{font-size:0.73rem;color:var(--faint);}
-    .footer-tag{font-family:var(--mono);font-size:0.65rem;color:rgba(0,255,136,0.35);margin-top:8px;}
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .foot-links { display: flex; gap: 24px; }
+    .foot-links a { font-size: .78rem; color: var(--grey); text-decoration: none; }
+    .foot-links a:hover { color: var(--white); }
+    .foot-copy { font-size: .7rem; color: rgba(232,233,240,.28); font-family: var(--mono); }
 
-    /* RESPONSIVE */
-    @media(max-width:900px){.hero-grid,.sheep-grid{grid-template-columns:1fr;gap:48px;}.sheep-scene{order:-1;}}
-    @media(max-width:640px){.hero{padding:60px 20px 52px;}.sec,.sec-alt{padding:72px 20px;}.hero h1{font-size:2.4rem;}.form-row{flex-direction:column;}.btn{width:100%;}.proof-inner{gap:28px;}.sheep-stats{flex-direction:column;gap:16px;}}
+    @media (max-width:600px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 56px 20px 56px; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+    }
   </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">Profit<span class="os">OS</span> Engine</div>
-    <div class="header-badge">Waitlist Opens June 29</div>
-  </div>
-</header>
+<!-- ANNOUNCE -->
+<div class="announce">
+  Waitlist closes <strong>June 29, 2026</strong> &mdash; Founding rate locked for life &mdash; Free to join
+</div>
 
-<section class="hero" id="top">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <div class="hero-eyebrow">Waitlist Opens June 29, 2026</div>
-      <p class="hero-identity">Owners. Principals. Investors.</p>
-      <h1>Give yourself<br>a <span class="green">raise.</span></h1>
-      <p class="hero-tagline">Your profit is escaping. We stop it.</p>
-      <p class="hero-hook">You sign the checks. We help you keep what's left over.</p>
-      <p class="hero-sub">Our team of watchdogs scans your business for hidden money — tax deductions, government grants, forgotten subscriptions, unpaid invoices, underpriced services, and dozens more categories. Each one built to find more than your membership costs on first use.</p>
-      <div class="form-group" id="fg-hero">
-        <div class="form-row">
-          <input type="email" class="form-input" id="ei-hero" placeholder="your@email.com" autocomplete="email" />
-          <button class="btn" onclick="sub('hero')">Join the Waitlist — Free</button>
-        </div>
-        <p class="form-note">No credit card. No obligation. Unsubscribe anytime.</p>
-        <div class="success-msg" id="ok-hero">You are on the list. Confirmation on the way.</div>
-      </div>
+<!-- NAV -->
+<nav>
+  <div class="logo">Profit<em>OS</em> Engine</div>
+  <a href="#join" class="nav-pill">Join Waitlist &mdash; Free</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow-pill">PROFIT SURVEILLANCE</div>
+  <h1>
+    <span class="gradient-text">Your profit is leaking.</span>
+    <span class="line2">We stop it.</span>
+  </h1>
+  <p class="hero-sub">
+    57 watchdog specialists scan your business in 60 seconds.
+    Find the money your accountant missed, your software ignored,
+    and your business is bleeding every month.
+  </p>
+  <div class="form-wrap" id="join">
+    <div class="form-row">
+      <input type="email" id="email-a" placeholder="your@email.com" autocomplete="email" />
+      <button class="btn-main" id="btn-a" onclick="go('a')">Join the Waitlist &mdash; Free</button>
     </div>
-    <div>
-      <div class="widget">
-        <div class="widget-hdr">
-          <div class="widget-dot"></div>
-          <span class="widget-title">ProfitOS Command Center</span>
-          <span class="widget-live">LIVE</span>
-        </div>
-        <div class="widget-body" id="wb"></div>
-        <div class="widget-ftr">
-          <span class="widget-placeholder">Scanning your business...</span>
-          <div class="scanning">ACTIVE <div class="dots"><span>.</span><span>.</span><span>.</span></div></div>
-        </div>
-      </div>
-    </div>
+    <p class="form-note">No credit card &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
+    <div class="form-ok" id="ok-a">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
   </div>
 </section>
 
-<div class="proof-strip">
-  <div class="proof-inner">
-    <div class="proof-item"><span class="proof-num">56</span><span class="proof-label">Specialized Watchdogs</span></div>
-    <div class="proof-item"><span class="proof-num">8</span><span class="proof-label">Deploy on Day 1</span></div>
-    <div class="proof-item"><span class="proof-num">$0</span><span class="proof-label">To Join the Waitlist</span></div>
-    <div class="proof-item"><span class="proof-num">~1 min</span><span class="proof-label">First Business Scan</span></div>
-    <div class="proof-item"><span class="proof-num">June 29</span><span class="proof-label">Launch Date</span></div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-row">
+    <div class="stat"><span class="stat-n">57</span><span class="stat-l">Watchdog Specialists</span></div>
+    <div class="stat"><span class="stat-n">60s</span><span class="stat-l">First Scan</span></div>
+    <div class="stat"><span class="stat-n">$0</span><span class="stat-l">To Start</span></div>
+    <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Always Watching</span></div>
   </div>
 </div>
 
-<section class="sec-alt" id="results">
-  <div class="container-sm">
-    <p class="sec-lbl">What We Find</p>
-    <h2 class="sec-h">Built to find what everyone else missed.</h2>
-    <p class="sec-sub">The watchdogs adapt to your industry, location, and business profile. Here is the type of value they are designed to surface.</p>
-    <p class="ftc">ILLUSTRATIVE EXAMPLES — For educational reference only. Individual business results will vary. No specific outcome is promised or guaranteed.</p>
-    <div class="cards">
-      <div class="rcard">
-        <p class="rcard-type">Illustrative — Roofing Contractor</p>
-        <ul class="rcard-list">
-          <li>TaxHound surfaced $8,400 in missed annual deductions</li>
-          <li>GrantHound matched $31,000 in qualifying programs</li>
-          <li>SubscriptionGuard found $340/month in unused software</li>
-        </ul>
-        <p class="rcard-total">Type of value identified: <strong>$39,740 in a single session</strong></p>
-      </div>
-      <div class="rcard">
-        <p class="rcard-type">Illustrative — Marketing Agency</p>
-        <ul class="rcard-list">
-          <li>MarginScout identified a 22% market pricing gap</li>
-          <li>Revenue trajectory at correction: $84,000 annually</li>
-          <li>InvoiceChaser recovered $14,200 in outstanding receivables</li>
-        </ul>
-        <p class="rcard-total">Type of value identified: <strong>$98,200 in the first week</strong></p>
-      </div>
-      <div class="rcard">
-        <p class="rcard-type">Illustrative — Medical Practice</p>
-        <ul class="rcard-list">
-          <li>ClaimBack surfaced $22,000 in denied reimbursements</li>
-          <li>InsuranceGapFinder found $500,000 in uninsured exposure</li>
-          <li>DataPrivacyShield identified 4 compliance gaps and generated a full privacy policy</li>
-        </ul>
-        <p class="rcard-total">Type of value: <strong>Risk prevented + $22,000 recovered</strong></p>
-      </div>
-    </div>
+<!-- AGENT TICKER -->
+<div class="ticker-wrap">
+  <p class="ticker-label">The Watchdogs &mdash; 57 Specialists On Duty</p>
+  <div class="ticker-rail">
+    <div class="ticker-track" id="ticker"></div>
   </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="sec sec-center">
+  <div class="eyebrow">The Problem</div>
+  <p class="big-leak gradient-text">$20,000 &ndash; $80,000</p>
+  <p class="big-sub">illustrative range — the money small businesses leave on the table every year*</p>
+  <h2 style="max-width:560px;margin:0 auto 20px;">Not because you&rsquo;re bad at business.<br>Because nobody was watching.</h2>
+  <p class="lead lead-c">
+    Your accountant files what happened. Your software tracks what you told it.
+    Nobody is actively hunting the money that&rsquo;s escaping &mdash; missed tax deductions,
+    grants you qualify for, subscriptions billing you twice, invoices going uncollected.
+    <br><br>
+    We built 57 watchdogs to do exactly that.
+  </p>
+  <p style="font-family:var(--mono);font-size:0.62rem;color:rgba(232,233,240,0.25);margin-top:28px;max-width:480px;margin-left:auto;margin-right:auto;">*Illustrative range based on industry research. Individual results vary. No specific outcome is guaranteed.</p>
 </section>
 
-<section class="sec" id="team">
-  <div class="container">
-    <p class="sec-lbl tc">The Team</p>
-    <h2 class="sec-h tc">Meet your Tier 1 watchdogs.</h2>
-    <p class="sec-sub tc" style="margin:0 auto 12px;">If you sign the checks, this team works for you.</p>
-    <p class="sec-sub tc" style="margin:0 auto 0;font-size:1.1rem;font-weight:700;color:var(--purple);">They are a bit quirky. But they always win.</p>
-    <div class="agents">
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name green">SubscriptionGuard</p>
-        <p class="acard-role">Chief Subscription Officer</p>
-        <p class="acard-spec">Every recurring charge attached to your business. Every unused seat, dormant tool, and forgotten trial. Found and flagged.</p>
-        <p class="acard-quirk">Maintains a running list of every subscription it has ever cancelled. Currently 847 items long. Updated nightly. Non-negotiable.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name purple">TaxHound</p>
-        <p class="acard-role">Senior Deduction Specialist (Self-Appointed)</p>
-        <p class="acard-spec">Tax deductions your accountant missed. Write-offs abandoned on the table. Filing gaps that cost you money every April.</p>
-        <p class="acard-quirk">Has strong opinions about Section 179 elections. Will share them. Has always shared them. Considers silence on this topic unprofessional.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name cyan">GrantHound</p>
-        <p class="acard-role">Grant Intelligence Specialist</p>
-        <p class="acard-spec">Federal, state, and private grant programs matched to your exact business profile, location, and current qualification window.</p>
-        <p class="acard-quirk">Gets genuinely emotional about application deadlines. Has never let one close unfiled. Considers this a personal record. It is.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name pink">MarginScout</p>
-        <p class="acard-role">Pricing Intelligence Analyst</p>
-        <p class="acard-spec">The gap between your current prices and what your market actually pays. Then closes it.</p>
-        <p class="acard-quirk">Physically uncomfortable when your pricing is below market rate. Will say something. Has always said something. No plans to stop.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name green">InvoiceChaser</p>
-        <p class="acard-role">Receivables Recovery Specialist</p>
-        <p class="acard-spec">Every dollar owed to your business. Every invoice past 30, 60, 90 days. Located, flagged, and recovered.</p>
-        <p class="acard-quirk">Has never lost an invoice. Not once. Not ever. Considers this a personal record worth protecting at all costs.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name purple">WasteWatcher</p>
-        <p class="acard-role">Operational Efficiency Analyst</p>
-        <p class="acard-spec">Money leaving through vendor contracts, operational overspend, and overlooked cost centers. Found and stopped.</p>
-        <p class="acard-quirk">Once renegotiated a coffee supply contract on principle. No budget mandate. Pure instinct. Zero regrets. Has the receipts.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name cyan">CashFlowGuard</p>
-        <p class="acard-role">Cash Flow Intelligence Officer</p>
-        <p class="acard-spec">Three months of visibility into your cash position before the problem arrives uninvited.</p>
-        <p class="acard-quirk">Unnervingly calm in every financial crisis. Every single one. The calm is deliberate. The calm has a spreadsheet. The spreadsheet works.</p>
-      </div>
-      <div class="acard">
-        <span class="acard-tier">Tier 1 — Day 1</span>
-        <p class="acard-name pink">PayrollGuard</p>
-        <p class="acard-role">Payroll Compliance Specialist</p>
-        <p class="acard-spec">Payroll accuracy, compliance gaps, and protection for every cent your team has earned. Always.</p>
-        <p class="acard-quirk">Very strong feelings about timesheet rounding practices. Very. Has documentation. Has always had documentation. Always will.</p>
-      </div>
-    </div>
-    <p class="tc muted" style="margin-top:44px;font-size:0.84rem;">These 8 are your Day 1 team. 48 more deploy as your membership matures.<br><span style="font-family:var(--mono);font-size:0.72rem;color:var(--purple);">56 specialists. One audit. Zero guesswork.</span></p>
-  </div>
-</section>
-
-<section class="sheep-sec" id="story">
-  <div class="sheep-grid">
-    <div class="sheep-copy">
-      <p class="sec-lbl sheep-lbl">The Real Problem</p>
-      <h2 class="sec-h">Your profit does not run.<br>It escapes slowly.</h2>
-      <p class="sec-sub" style="margin-bottom:0;">Most businesses do not lose money in one big leak. They lose it in dozens of small ones. Subscriptions creeping up $40 at a time. Invoices sitting 90 days unpaid. Deductions disappearing into April. Grants expiring with no application. Nobody was watching.</p>
-      <div class="sheep-stats">
-        <div><p class="sheep-stat-n">47</p><p class="sheep-stat-l">Average active profit leaks<br>in a small business*</p></div>
-        <div><p class="sheep-stat-n">3</p><p class="sheep-stat-l">Leaks most owners<br>ever find alone*</p></div>
-      </div>
-      <p style="font-family:var(--mono);font-size:0.62rem;color:var(--faint);margin-top:16px;">*Illustrative benchmarks — sources being verified. Final data cited on launch.</p>
-    </div>
-    <div class="sheep-scene">
-      <svg class="sheep-svg" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#060d07"/><stop offset="100%" stop-color="#0b1a0c"/></linearGradient>
-          <linearGradient id="h1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c3010"/><stop offset="100%" stop-color="#061508"/></linearGradient>
-          <linearGradient id="h2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#144c18"/><stop offset="100%" stop-color="#0a2c0c"/></linearGradient>
-          <linearGradient id="h3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c6420"/><stop offset="100%" stop-color="#0e3a10"/></linearGradient>
-          <radialGradient id="moon-g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00FFFF" stop-opacity="0.14"/><stop offset="100%" stop-color="#00FFFF" stop-opacity="0"/></radialGradient>
-        </defs>
-        <rect width="480" height="320" fill="url(#sky)"/>
-        <circle cx="45" cy="28" r="1" fill="rgba(255,255,255,0.5)"/><circle cx="125" cy="14" r="1.2" fill="rgba(255,255,255,0.7)"/><circle cx="210" cy="38" r="0.8" fill="rgba(255,255,255,0.4)"/><circle cx="310" cy="18" r="1.1" fill="rgba(255,255,255,0.6)"/><circle cx="405" cy="32" r="1" fill="rgba(255,255,255,0.5)"/><circle cx="265" cy="22" r="1" fill="rgba(255,255,255,0.55)"/>
-        <ellipse cx="395" cy="48" rx="38" ry="38" fill="url(#moon-g)"/><circle cx="395" cy="48" r="13" fill="#d4ffe8" opacity="0.88"/>
-        <path d="M0 185 Q55 148 110 165 Q175 185 240 148 Q305 112 365 150 Q420 185 480 158 L480 320 L0 320Z" fill="url(#h1)"/>
-        <path d="M0 225 Q75 195 155 210 Q235 225 315 194 Q378 178 480 205 L480 320 L0 320Z" fill="url(#h2)"/>
-        <path d="M0 262 Q58 244 115 256 Q178 268 242 250 Q298 234 358 254 Q418 272 480 258 L480 320 L0 320Z" fill="url(#h3)"/>
-        <rect x="0" y="287" width="480" height="33" fill="#1c6420"/>
-        <g style="animation:graze 2.6s ease-in-out infinite"><ellipse cx="102" cy="248" rx="19" ry="13" fill="rgba(248,248,255,0.92)"/><ellipse cx="117" cy="240" rx="12" ry="9" fill="rgba(248,248,255,0.92)"/><rect x="92" y="259" width="4" height="10" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="101" y="259" width="4" height="10" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="111" y="259" width="4" height="10" rx="2" fill="rgba(190,190,210,0.7)"/><text x="101" y="252" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="700" fill="#00FF88">$</text></g>
-        <g style="animation:graze 3.1s ease-in-out infinite;animation-delay:0.6s"><ellipse cx="200" cy="252" rx="17" ry="12" fill="rgba(248,248,255,0.88)"/><ellipse cx="214" cy="244" rx="11" ry="8" fill="rgba(248,248,255,0.88)"/><rect x="192" y="262" width="4" height="9" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="200" y="262" width="4" height="9" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="208" y="262" width="4" height="9" rx="2" fill="rgba(190,190,210,0.7)"/><text x="200" y="255" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" font-weight="700" fill="#00FF88">$</text></g>
-        <g style="animation:graze 2.9s ease-in-out infinite;animation-delay:1.1s"><ellipse cx="292" cy="237" rx="18" ry="12" fill="rgba(248,248,255,0.90)"/><ellipse cx="307" cy="230" rx="11" ry="8" fill="rgba(248,248,255,0.90)"/><rect x="283" y="247" width="4" height="9" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="292" y="247" width="4" height="9" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="301" y="247" width="4" height="9" rx="2" fill="rgba(190,190,210,0.7)"/><text x="292" y="240" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" font-weight="700" fill="#00FF88">$</text></g>
-        <g style="animation:escape 5.5s ease-in-out infinite;animation-delay:1.8s"><ellipse cx="32" cy="272" rx="14" ry="10" fill="rgba(248,248,255,0.86)"/><ellipse cx="21" cy="265" rx="9" ry="7" fill="rgba(248,248,255,0.86)"/><rect x="24" y="280" width="3" height="8" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="31" y="280" width="3" height="8" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="38" y="280" width="3" height="8" rx="2" fill="rgba(190,190,210,0.7)"/><text x="30" y="275" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#F472B6">$</text></g>
-        <g style="animation:graze 3.4s ease-in-out infinite;animation-delay:0.9s"><ellipse cx="382" cy="242" rx="16" ry="11" fill="rgba(248,248,255,0.84)"/><ellipse cx="396" cy="235" rx="10" ry="7" fill="rgba(248,248,255,0.84)"/><rect x="374" y="251" width="3" height="8" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="382" y="251" width="3" height="8" rx="2" fill="rgba(190,190,210,0.7)"/><rect x="390" y="251" width="3" height="8" rx="2" fill="rgba(190,190,210,0.7)"/><text x="382" y="245" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#00FF88">$</text></g>
-        <g style="animation:patrol 3.2s ease-in-out infinite" transform="translate(405,260)"><ellipse cx="0" cy="0" rx="29" ry="15" fill="rgba(248,250,255,0.96)"/><ellipse cx="26" cy="-13" rx="14" ry="12" fill="rgba(248,250,255,0.96)"/><ellipse cx="19" cy="-23" rx="5" ry="7" fill="rgba(215,220,240,0.82)"/><ellipse cx="33" cy="-23" rx="5" ry="7" fill="rgba(215,220,240,0.82)"/><circle cx="31" cy="-15" r="2.2" fill="#1a1a2e"/><circle cx="32" cy="-16" r="0.8" fill="rgba(255,255,255,0.85)"/><ellipse cx="38" cy="-10" rx="3.2" ry="2.2" fill="#2a1a3a"/><g style="transform-origin:-27px 0;animation:tailwag 0.52s ease-in-out infinite"><path d="M-27,0 Q-42,-16 -35,-28 Q-30,-33 -23,-24 Q-28,-13 -27,0" fill="rgba(248,250,255,0.92)"/></g><rect x="-20" y="12" width="7" height="14" rx="3" fill="rgba(238,242,255,0.9)"/><rect x="-8" y="14" width="7" height="12" rx="3" fill="rgba(238,242,255,0.9)"/><rect x="6" y="14" width="7" height="12" rx="3" fill="rgba(238,242,255,0.9)"/><rect x="18" y="12" width="7" height="14" rx="3" fill="rgba(238,242,255,0.9)"/></g>
-        <rect x="8" y="8" width="126" height="26" rx="5" fill="rgba(0,255,136,0.06)" stroke="rgba(0,255,136,0.18)" stroke-width="1"/><text x="71" y="25" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" font-weight="600" fill="#00FF88">56 WATCHDOGS ON DUTY</text>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<section class="sec-alt" id="how">
-  <div class="container-sm">
-    <p class="sec-lbl">How It Works</p>
-    <h2 class="sec-h">3 steps. About a minute. Real numbers.</h2>
-    <p class="sec-sub">No questionnaire. No accountant required. No credit card to start.</p>
+<!-- HOW IT WORKS -->
+<section class="sec sec-alt">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="eyebrow" style="text-align:center;">How It Works</div>
+    <h2 style="text-align:center;max-width:440px;margin:0 auto 48px;">Three steps.<br>Sixty seconds. Real results.</h2>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><div class="step-body"><h3>Drop in your business URL</h3><p>The platform reads your business in about a minute — identifying your industry, revenue signals, profit bleed risk areas, and your top watchdog recommendations. Nothing to fill out. Just your URL.</p></div></div>
-      <div class="step"><div class="step-n">02</div><div class="step-body"><h3>See your Profit Health Score</h3><p>Your score — 0 to 100 — indicates the probability of profit leaks in your business and which areas need attention first. See how your business rates against current industry benchmarks.</p></div></div>
-      <div class="step"><div class="step-n">03</div><div class="step-body"><h3>Run your first watchdog — free</h3><p>Run your first watchdog free. No credit card. Results in about a minute. Your ProfitOS Leak Report is generated automatically — yours to keep and share.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="join">
-  <div class="container-sm tc">
-    <p class="sec-lbl">Priority Waitlist</p>
-    <h2 class="sec-h">Join before June 29.<br>Lock in your Charter rate. Forever.</h2>
-    <p class="sec-sub" style="margin:0 auto 48px;">The waitlist is free. Charter Members get first access and a locked rate — no matter what we do publicly after launch.</p>
-    <div class="offers" style="text-align:left;">
-      <div class="ocard"><div class="ocard-icon">&#128274;</div><h3>Charter Membership</h3><p>$297/month locked in from Day 1. Your Charter rate never changes regardless of future public pricing.</p></div>
-      <div class="ocard"><div class="ocard-icon">&#9889;</div><h3>First Access</h3><p>You get in before the public. Not at launch. Before it. Doors open for waitlist members first.</p></div>
-      <div class="ocard"><div class="ocard-icon">&#128236;</div><h3>Launch Updates</h3><p>Direct updates as we build. What is coming, what Charter Members are finding, and when you are in.</p></div>
-    </div>
-    <div class="form-group" id="fg-mid" style="max-width:500px;margin:0 auto;">
-      <div class="form-row">
-        <input type="email" class="form-input" id="ei-mid" placeholder="your@email.com" autocomplete="email" />
-        <button class="btn" onclick="sub('mid')">Get Priority Access</button>
+      <div class="step-card">
+        <div class="step-n">STEP 01</div>
+        <h3>Drop in your business URL</h3>
+        <p>ProfitOS reads your business in 60 seconds &mdash; industry, revenue signals, risk areas, and your top watchdog recommendations.</p>
       </div>
-      <p class="form-note">Your information is never shared. Unsubscribe anytime.</p>
-      <div class="success-msg" id="ok-mid">You are on the list. Confirmation coming your way.</div>
-    </div>
-  </div>
-</section>
-
-<section class="sec-alt" id="faq">
-  <div class="container-sm">
-    <p class="sec-lbl tc">Questions</p>
-    <h2 class="sec-h tc">The ones everyone asks.</h2>
-    <div class="faqs">
-      <div class="faq"><p class="faq-q">Is the waitlist actually free?</p><p class="faq-a">Yes. No credit card. No obligation. You are reserving your spot. That is all that happens when you sign up.</p></div>
-      <div class="faq"><p class="faq-q">When does the platform launch?</p><p class="faq-a">June 29, 2026. Waitlist members are notified first and receive access before any public announcement goes out.</p></div>
-      <div class="faq"><p class="faq-q">What industries does ProfitOS Engine cover?</p><p class="faq-a">All small and mid-size businesses across 8 verticals: Trades and Contractors, Restaurant and Hospitality, Medical and Wellness, Retail and E-Commerce, Professional Services, Real Estate, Auto and Transportation, and Home Services.</p></div>
-      <div class="faq"><p class="faq-q">How is this different from QuickBooks or my accountant?</p><p class="faq-a">QuickBooks manages what happened. Your accountant reviews what happened. ProfitOS Engine finds what everyone missed — grants nobody applied for, subscriptions nobody cancelled, invoices nobody collected. We do not replace your accountant. We find what they overlooked.</p></div>
-      <div class="faq"><p class="faq-q">What does $297/month include?</p><p class="faq-a">Your full Charter Membership includes 8 Tier 1 watchdogs active from Day 1, progressive access to additional specialists as your membership matures, and ongoing profit monitoring across your entire business.</p></div>
-      <div class="faq"><p class="faq-q">Is my business data protected?</p><p class="faq-a">Bank-level 256-bit encryption on all data. Your information is never sold to third parties. Not now. Not ever.</p></div>
-      <div class="faq"><p class="faq-q">What if I want beta access now?</p><p class="faq-a">That is exactly what we are looking for. Beta members do not just get early access — they help shape what ProfitOS becomes. You will experience new watchdog releases before anyone else, and your feedback goes directly into our product roadmap. Not many businesses get to say they helped build something this good from the ground up. Get on the waitlist now.</p></div>
-    </div>
-    <div class="faq-cta">
-      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px;">Ready to stop the leak?</p>
-      <a href="#top"><button class="btn">Join the Waitlist — It's Free &#8594;</button></a>
-    </div>
-  </div>
-</section>
-
-<section class="cta-sec" id="cta">
-  <div class="container-sm">
-    <p class="sec-lbl tc">56 Watchdogs Standing By</p>
-    <h2 class="sec-h tc">Your money is waiting.</h2>
-    <p class="muted tc" style="margin-bottom:12px;font-size:1rem;">The Charter rate is limited — and the door will close without announcement.</p>
-    <p class="muted tc" style="margin-bottom:40px;font-size:1rem;">Sign up before your competitors do.</p>
-    <div class="form-group" id="fg-bottom" style="max-width:500px;margin:0 auto;">
-      <div class="form-row">
-        <input type="email" class="form-input" id="ei-bottom" placeholder="your@email.com" autocomplete="email" />
-        <button class="btn" onclick="sub('bottom')">Join the Waitlist — Free</button>
+      <div class="step-card">
+        <div class="step-n">STEP 02</div>
+        <h3>See your Profit Health Score</h3>
+        <p>A score from 0&ndash;100 showing exactly where your business is bleeding and which watchdog to deploy first.</p>
       </div>
-      <p class="form-note tc">No credit card. No obligation. Unsubscribe anytime.</p>
-      <div class="success-msg" id="ok-bottom">You are on the list. Check your inbox — confirmation on the way.</div>
+      <div class="step-card">
+        <div class="step-n">STEP 03</div>
+        <h3>Run your top watchdog &mdash; free</h3>
+        <p>Your first specialist runs at zero cost. Results in 90 seconds. A Profit Recovery Certificate generated automatically.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- PRICING -->
+<section class="sec sec-center">
+  <div class="eyebrow">Founding Rate &mdash; Waitlist Only</div>
+  <h2>The subscription that pays for itself<br>before you decide to keep it.</h2>
+  <p class="lead lead-c">Lock in the founding rate now. It never changes after you join &mdash; no matter what we charge publicly.</p>
+  <div class="price-card">
+    <div class="price-num">$297</div>
+    <div class="price-tag">per month &mdash; founding rate, locked for life</div>
+    <p class="price-body">
+      57 watchdog specialists. Unlimited scans.<br>
+      Profit Recovery Certificate on every run.<br>
+      Cancel anytime. Find money first, then decide.
+    </p>
+    <button class="btn-main" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Lock In the Founding Rate</button>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec cta-sec">
+  <div class="eyebrow">Priority Waitlist &mdash; Closes June 29</div>
+  <h2 class="gradient-text" style="margin-bottom:16px;">Your money is waiting.</h2>
+  <p class="lead lead-c" style="margin-bottom:40px;">
+    The easiest way to give yourself a raise is to stop the profit leaks in your business.<br>
+    Join free. Lock in founding pricing. Your competitors aren&rsquo;t on the list yet.
+  </p>
+  <div class="form-wrap">
+    <div class="form-row">
+      <input type="email" id="email-b" placeholder="your@email.com" autocomplete="email" />
+      <button class="btn-main" id="btn-b" onclick="go('b')">Join the Waitlist &mdash; Free</button>
+    </div>
+    <p class="form-note">No credit card &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
+    <div class="form-ok" id="ok-b">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Profit<span class="os">OS</span> Engine</div>
-  <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a><a href="mailto:hello@profitosengine.com">Contact</a></div>
-  <p class="footer-copy">&copy; 2026 ProfitOS Engine LLC. All rights reserved.</p>
-  <p class="footer-tag">56 watchdogs. Standing by.</p>
+  <div class="logo">Profit<em>OS</em> Engine</div>
+  <div class="foot-links">
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="mailto:support@profitosengine.com">Support</a>
+  </div>
+  <div class="foot-copy">&copy; 2026 ProfitOS Engine LLC</div>
 </footer>
 
 <script>
-var MSGS=[
-  {agent:'SubscriptionGuard',color:'#00FF88',text:'Found $847/month escaping through 3 unused subscriptions. Zero active users. Cancellations are ready.',sub:'Recurring Charge Analysis — Complete'},
-  {agent:'TaxHound',color:'#9F8FEF',text:'23 missed deductions identified. Estimated recovery: $12,400. CPA brief generated and attached.',sub:'Tax Deduction Scan — Complete'},
-  {agent:'GrantHound',color:'#00FFFF',text:'4 federal programs matched to your business profile. Combined value: up to $47,000. Applications open.',sub:'Grant Intelligence Scan — Complete'},
-  {agent:'MarginScout',color:'#F472B6',text:'Pricing is 18% below market average. Annual revenue delta at full correction: +$67,200.',sub:'Pricing Analysis — Complete'},
-  {agent:'InvoiceChaser',color:'#00FF88',text:'$8,400 in outstanding receivables. 6 invoices past 60 days. Recovery in progress.',sub:'Receivables Recovery — In Progress'},
-  {agent:'WasteWatcher',color:'#9F8FEF',text:'$2,100/month in operational waste flagged across 3 vendor contracts. Rebid recommended.',sub:'Operational Efficiency Analysis — Complete'},
-  {agent:'CashFlowGuard',color:'#00FFFF',text:'Cash runway: 87 days at current burn. Q3 shortfall flagged. Intervention window: 34 days.',sub:'Cash Flow Forecast — Active'},
-  {agent:'PayrollGuard',color:'#F472B6',text:'4 timesheet discrepancies found. Compliance gap in contractor classification. Review recommended.',sub:'Payroll Compliance Scan — Complete'}
+// ── AGENT TICKER ──────────────────────────────────────────────────────────
+const agents = [
+  { name:'MarginScout',         d:'g' },
+  { name:'GrantHound',          d:'c' },
+  { name:'SubscriptionGuard',   d:'p' },
+  { name:'TaxHound',            d:'g' },
+  { name:'EquipmentLeaseGuard', d:'c' },
+  { name:'PriceMax',            d:'k' },
+  { name:'InvoiceChaser',       d:'p' },
+  { name:'ClaimBack',           d:'g' },
+  { name:'InsuranceGapFinder',  d:'c' },
+  { name:'DataPrivacyShield',   d:'p' },
+  { name:'CashFlowGuard',       d:'g' },
+  { name:'LoanScout',           d:'k' },
+  { name:'+ 45 More Watchdogs', d:'g' },
 ];
-var qi=0,queue=[],MAX=3;
-function buildMsg(d){var el=document.createElement('div');el.className='wmsg in';el.innerHTML='<p class="wmsg-agent" style="color:'+d.color+'">'+d.agent+'</p><p class="wmsg-text">'+d.text+'</p><p class="wmsg-sub">'+d.sub+'</p>';return el;}
-function rotate(){var body=document.getElementById('wb');if(!body)return;if(queue.length>=MAX){var old=queue.shift();old.className='wmsg out';setTimeout(function(){if(old.parentNode)old.parentNode.removeChild(old);},380);}var msg=buildMsg(MSGS[qi%MSGS.length]);qi++;body.appendChild(msg);queue.push(msg);setTimeout(function(){msg.classList.remove('in');},380);}
-setTimeout(function(){rotate();},400);setTimeout(function(){rotate();},1100);setTimeout(function(){rotate();},1800);setInterval(rotate,3800);
+const dotClass = { g:'dot-g', p:'dot-p', c:'dot-c', k:'dot-k' };
 
-var LABELS={hero:'Join the Waitlist \u2014 Free',mid:'Get Priority Access',bottom:'Join the Waitlist \u2014 Free'};
-function sub(loc){
-  var input=document.getElementById('ei-'+loc);
-  var ok=document.getElementById('ok-'+loc);
-  var grp=document.getElementById('fg-'+loc);
-  var btn=grp.querySelector('.btn');
-  var email=input.value.trim();
-  if(!email||email.indexOf('@')<1||email.lastIndexOf('.')<email.indexOf('@')+2){input.classList.add('err');input.focus();return;}
-  btn.disabled=true;btn.textContent='Joining...';input.disabled=true;
-  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email})})
-  .then(function(r){return r.json();})
-  .then(function(d){if(d.success){input.style.display='none';btn.style.display='none';ok.style.display='block';}else{throw new Error();}})
-  .catch(function(){btn.disabled=false;btn.textContent=LABELS[loc]||'Join the Waitlist';input.disabled=false;input.classList.add('err');});
+(function buildTicker() {
+  const track = document.getElementById('ticker');
+  const full = [...agents,...agents,...agents,...agents];
+  track.innerHTML = full.map(a =>
+    '<div class="chip"><div class="dot '+dotClass[a.d]+'"></div><span class="chip-name">'+a.name+'</span></div>'
+  ).join('');
+})();
+
+// ── KIT FORM ──────────────────────────────────────────────────────────────
+var LABELS = { a:'Join the Waitlist \u2014 Free', b:'Join the Waitlist \u2014 Free' };
+
+function go(id) {
+  var inp = document.getElementById('email-'+id);
+  var btn = document.getElementById('btn-'+id);
+  var ok  = document.getElementById('ok-'+id);
+  var em  = inp.value.trim();
+  if (!em || !em.includes('@') || !em.includes('.')) {
+    inp.style.borderColor = '#F472B6';
+    inp.focus();
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Joining\u2026';
+  inp.disabled = true;
+  fetch('https://app.convertkit.com/forms/36f1370aed/subscriptions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'email_address=' + encodeURIComponent(em)
+  })
+  .then(function(r){ return r.ok ? ok : Promise.reject(r.status); })
+  .then(function(){
+    inp.style.display = 'none';
+    btn.style.display = 'none';
+    ok.style.display  = 'block';
+  })
+  .catch(function(){
+    btn.disabled = false;
+    btn.textContent = LABELS[id];
+    inp.disabled = false;
+    inp.style.borderColor = '#F472B6';
+  });
 }
-document.querySelectorAll('.form-input').forEach(function(el){
-  el.addEventListener('input',function(){this.classList.remove('err');});
-  el.addEventListener('keydown',function(e){if(e.key==='Enter'){var l=this.id.replace('ei-','');sub(l);}});
+
+['a','b'].forEach(function(id){
+  var el = document.getElementById('email-'+id);
+  el.addEventListener('keydown', function(e){ if(e.key==='Enter') go(id); });
+  el.addEventListener('input',   function(){ this.style.borderColor=''; });
 });
 </script>
 </body>
