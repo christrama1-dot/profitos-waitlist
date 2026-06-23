@@ -195,16 +195,7 @@
     }
     .stat-l { font-size: .72rem; color: var(--grey); text-transform: uppercase; letter-spacing: .1em; }
 
-    .ticker-wrap { padding: 44px 0; overflow: hidden; }
-    .ticker-label {
-      text-align: center;
-      font-family: var(--mono);
-      font-size: .62rem;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-bottom: 22px;
-    }
+    .ticker-wrap { padding: 14px 0; overflow: hidden; border-bottom: 1px solid var(--border); }
     .ticker-rail { overflow: hidden; position: relative; }
     .ticker-rail::before,
     .ticker-rail::after {
@@ -594,6 +585,13 @@
   <a href="#join" class="nav-pill">Join Waitlist &mdash; Free</a>
 </nav>
 
+<!-- AGENT TICKER — above the fold, above hero -->
+<div class="ticker-wrap">
+  <div class="ticker-rail">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+</div>
+
 <section class="hero">
   <div class="hero-grid">
 
@@ -650,13 +648,6 @@
     <div class="stat"><span class="stat-n">~1 min</span><span class="stat-l">First Scan</span></div>
     <div class="stat"><span class="stat-n">$0</span><span class="stat-l">To Start</span></div>
     <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Always Watching</span></div>
-  </div>
-</div>
-
-<div class="ticker-wrap">
-  <p class="ticker-label">The Watchdogs &mdash; 56 Specialists On Duty</p>
-  <div class="ticker-rail">
-    <div class="ticker-track" id="ticker"></div>
   </div>
 </div>
 
