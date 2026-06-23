@@ -279,6 +279,41 @@
       margin-bottom: 28px;
     }
 
+    .prob-block { max-width: 660px; margin: 0 auto 36px; }
+    .prob-pct {
+      font-family: var(--mono);
+      font-size: clamp(2.8rem,8vw,4.8rem);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .prob-lead {
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .prob-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 14px; }
+    .prob-chip {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--grey);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 15px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+    .prob-chip-hl {
+      color: var(--green);
+      background: rgba(0,255,136,.06);
+      border-color: rgba(0,255,136,.22);
+    }
+
     .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; margin-top: 48px; }
     .step-card {
       background: var(--bg3);
@@ -652,10 +687,23 @@
 </div>
 
 <section class="sec sec-center">
-  <div class="eyebrow">The Problem</div>
+  <div class="eyebrow" style="font-size:1.4rem;letter-spacing:.16em;margin-bottom:28px;">The Problem</div>
   <p class="big-leak gradient-text">$20,000 &ndash; $80,000</p>
   <p class="big-sub">composite estimate &mdash; unpaid invoices,<sup class="src">1</sup> unused software,<sup class="src">2</sup> and overlooked tax opportunities<sup class="src">3</sup></p>
-  <p class="stat-cite">56% of small businesses are currently owed unpaid invoices &mdash; averaging $17,500 each<sup class="src">1</sup></p>
+  <div class="prob-block">
+    <span class="prob-pct">56%</span>
+    <p class="prob-lead">of small to medium-sized businesses are currently losing profit on:</p>
+    <div class="prob-chips">
+      <span class="prob-chip">Tax break opportunities</span>
+      <span class="prob-chip">Unused leased equipment &amp; software</span>
+      <span class="prob-chip">Margins &amp; money left on the table</span>
+      <span class="prob-chip">Unused paid software</span>
+      <span class="prob-chip">Overpaying for insurance</span>
+      <span class="prob-chip">Unpaid invoices</span>
+      <span class="prob-chip prob-chip-hl">+ 49 other metrics you haven&rsquo;t considered</span>
+    </div>
+    <p style="font-family:var(--mono);font-size:0.58rem;color:rgba(232,233,240,0.2);">Based on industry research. See full sources below.</p>
+  </div>
   <h2 style="max-width:560px;margin:0 auto 20px;">Not because you&rsquo;re bad at business.<br>Because nobody was watching.</h2>
   <p class="lead lead-c">
     Your accountant files what happened. Your software tracks what you told it.
