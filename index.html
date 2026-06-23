@@ -496,8 +496,7 @@
       height: 24px;
     }
     .typing-dots span {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: rgba(232,233,240,0.32);
       animation: typingBounce 1.2s infinite ease-in-out;
@@ -577,11 +576,7 @@
     .foot-copy { font-size: .7rem; color: rgba(232,233,240,.28); font-family: var(--mono); }
 
     @media (max-width: 960px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 44px;
-        padding: 48px 24px 56px;
-      }
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; padding: 48px 24px 56px; }
       .hero-left { text-align: center; }
       .audience-label { text-align: center; }
       .hero-left h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
@@ -679,6 +674,7 @@
   </div>
 </div>
 
+<!-- PROBLEM -->
 <section class="sec sec-center">
   <div class="eyebrow" style="font-size:1.4rem;letter-spacing:.16em;margin-bottom:28px;">The Problem</div>
   <p class="big-leak gradient-text">$20,000 &ndash; $80,000</p>
@@ -711,6 +707,7 @@
   </p>
 </section>
 
+<!-- HOW IT WORKS -->
 <section class="sec sec-alt">
   <div style="max-width:900px;margin:0 auto;">
     <div class="eyebrow" style="text-align:center;">How It Works</div>
@@ -723,8 +720,8 @@
       </div>
       <div class="step-card">
         <div class="step-n">STEP 02</div>
-        <h3>See your Profit Health Score</h3>
-        <p>A score from 0&ndash;100 indicating the probability of profit leaks in your business and which watchdog to deploy first.</p>
+        <h3>Your first specialist is pre-selected</h3>
+        <p>Based on your industry and business profile, ProfitOS recommends the watchdog most likely to find money in your type of business.</p>
       </div>
       <div class="step-card">
         <div class="step-n">STEP 03</div>
@@ -735,6 +732,7 @@
   </div>
 </section>
 
+<!-- PRICING -->
 <section class="sec sec-center">
   <div class="eyebrow">Charter Rate &mdash; Waitlist Only</div>
   <h2>The subscription that pays for itself<br>before you decide to keep it.</h2>
@@ -751,6 +749,7 @@
   </div>
 </section>
 
+<!-- FINAL CTA -->
 <section class="sec cta-sec">
   <div class="eyebrow">Priority Waitlist &mdash; Closes June 29</div>
   <h2 class="gradient-text" style="margin-bottom:16px;">Your money is waiting.</h2>
@@ -768,6 +767,7 @@
   </div>
 </section>
 
+<!-- DATA SOURCES -->
 <section class="sources-sec">
   <div class="sources-inner">
     <p class="sources-head">Research Sources</p>
@@ -780,6 +780,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="logo">Profit<em>OS</em> Engine</div>
   <div class="foot-links">
@@ -819,7 +820,7 @@ var CC = [
   { lbl:'Text Message \u2014 7:18 PM', dis:null, msgs:[
     { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Remember that trip to Cabo we\u2019ve been \u201cplanning\u201d for three years?' },
     { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'\u2026what did you do' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Nothing bad. ProfitOS ran an audit on the business. First scan came back with things I didn\u2019t know were there.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Nothing bad. ProfitOS did a full scan on the business. First run came back with things I didn\u2019t know were there.' },
     { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'How many things' },
     { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Enough for Cabo. I already checked flights.' },
     { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'I\u2019m not joking around with you.' },
@@ -865,7 +866,7 @@ var CC = [
     { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Make it a plan. Not a report.' },
   ]},
   { lbl:'Notes \u2014 11:52 PM', dis:null, msgs:[
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'ProfitOS first full run complete.' },
+    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'ProfitOS first full scan complete.' },
     { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Seven findings. I expected maybe two.' },
     { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'The subscription list alone \u2014 I genuinely did not know those were still running.' },
     { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Called the card company. Canceled four charges on the spot.' },
@@ -884,7 +885,7 @@ var CC = [
     { n:'Amy', r:'', i:'A', c:'#F472B6', t:'Always. What\u2019s wrong?' },
     { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Nothing\u2019s wrong. That\u2019s kind of the thing.' },
     { n:'Amy', r:'', i:'A', c:'#F472B6', t:'???' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS ran an audit. Found a grant we qualify for. Tax stuff I\u2019d missed. Software we\u2019ve been paying for two years that nobody\u2019s opened.' },
+    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS ran its first scan. Found a grant we qualify for. Tax stuff I\u2019d missed. Software we\u2019ve been paying for two years that nobody\u2019s opened.' },
     { n:'Amy', r:'', i:'A', c:'#F472B6', t:'Are you okay?' },
     { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Really good, actually.' },
   ]},
@@ -928,7 +929,7 @@ var CC = [
     { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'Send. Everything.' },
   ]},
   { lbl:'#accounting \u2014 9:41 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
-    { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Monthly subscription audit is back. 23 active subscriptions. 6 show no usage in the last 90 days.' },
+    { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Monthly subscription review is back. 23 active subscriptions. 6 show no usage in the last 90 days.' },
     { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Send me the list.' },
     { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Already in your inbox. Highlighted the ones I\u2019d cut immediately.' },
     { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'I\u2019ll review tonight. Good work.' },
@@ -1037,7 +1038,6 @@ function ccRunChat(chatIdx) {
   ccChannel.textContent = chat.lbl;
   ccCounter.textContent = (chatIdx + 1) + ' / ' + CC_TOTAL;
   ccBody.innerHTML = '';
-
   var queue   = chat.msgs.slice();
   var idx     = 0;
   var prevSnd = '';
@@ -1105,7 +1105,6 @@ ccWin.addEventListener('touchstart', function() {
   CC_PAUSED = true;
   setTimeout(function() { CC_PAUSED = false; }, 4000);
 }, { passive: true });
-
 document.getElementById('cc-prev').addEventListener('click', function() { ccTransitionTo(CC_IDX - 1); });
 document.getElementById('cc-next').addEventListener('click', function() { ccTransitionTo(CC_IDX + 1); });
 
