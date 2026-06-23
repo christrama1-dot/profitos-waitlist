@@ -35,7 +35,6 @@
       background-clip: text;
     }
 
-    /* ANNOUNCE */
     .announce {
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
@@ -48,7 +47,6 @@
     }
     .announce strong { color: var(--green); }
 
-    /* NAV */
     nav {
       padding: 20px 40px;
       display: flex;
@@ -73,11 +71,6 @@
     }
     .nav-pill:hover { opacity: .85; }
 
-    /* ══════════════════════════════════════════
-       HERO — TWO COLUMN ABOVE THE FOLD
-       Left: audience label + hook + form
-       Right: Slack chat widget (real-time typing)
-       ══════════════════════════════════════════ */
     .hero { padding: 0; }
     .hero-grid {
       display: grid;
@@ -90,7 +83,6 @@
     }
     .hero-left { text-align: left; }
 
-    /* AUDIENCE LABEL */
     .audience-label {
       font-family: var(--mono);
       font-size: 0.58rem;
@@ -130,7 +122,6 @@
       line-height: 1.75;
     }
 
-    /* FORM */
     .form-wrap { max-width: 480px; margin: 0 auto; }
     .hero-left .form-wrap { margin: 0; max-width: 440px; }
     .form-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -178,7 +169,6 @@
       margin-top: 12px;
     }
 
-    /* STATS */
     .stats {
       background: var(--bg2);
       border-top: 1px solid var(--border);
@@ -205,7 +195,6 @@
     }
     .stat-l { font-size: .72rem; color: var(--grey); text-transform: uppercase; letter-spacing: .1em; }
 
-    /* TICKER */
     .ticker-wrap { padding: 44px 0; overflow: hidden; }
     .ticker-label {
       text-align: center;
@@ -258,7 +247,6 @@
     .dot-k { background: var(--pink);   box-shadow: 0 0 7px var(--pink); }
     .chip-name { font-family: var(--mono); font-size: .78rem; color: var(--white); }
 
-    /* SECTIONS */
     .sec { padding: 80px 24px; }
     .sec-alt { background: var(--bg2); }
     .sec-center { text-align: center; }
@@ -300,7 +288,6 @@
       margin-bottom: 28px;
     }
 
-    /* STEPS */
     .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; margin-top: 48px; }
     .step-card {
       background: var(--bg3);
@@ -312,7 +299,6 @@
     .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
     .step-card p { font-size: .87rem; color: var(--grey); line-height: 1.65; }
 
-    /* CITATION SUPERSCRIPT */
     .src {
       font-family: var(--mono);
       font-size: 0.52rem;
@@ -323,10 +309,6 @@
       margin-left: 1px;
     }
 
-    /* ══════════════════════════════════════════
-       COMMAND CENTER — SLACK-STYLE CHAT WIDGET
-       Lives in hero-right column
-       ══════════════════════════════════════════ */
     .slack-window {
       background: var(--bg3);
       border: 1px solid rgba(232,233,240,0.1);
@@ -486,7 +468,6 @@
       flex-shrink: 0;
     }
 
-    /* REAL-TIME TYPING DOTS */
     .typing-dots {
       display: flex;
       gap: 4px;
@@ -509,7 +490,6 @@
       30%            { transform: translateY(-5px); opacity: 1; }
     }
 
-    /* PRICING */
     .price-card {
       background: var(--bg3);
       border: 1px solid rgba(159,143,239,.3);
@@ -532,11 +512,9 @@
     .price-tag { font-size: .8rem; color: var(--grey); margin-bottom: 28px; }
     .price-body { font-size: .9rem; color: var(--grey); line-height: 1.75; margin-bottom: 32px; }
 
-    /* FINAL CTA */
     .cta-sec { background: var(--bg2); border-top: 1px solid var(--border); text-align: center; }
     .cta-sec .lead { margin: 0 auto; }
 
-    /* DATA SOURCES */
     .sources-sec {
       background: var(--bg);
       border-top: 1px solid var(--border);
@@ -563,7 +541,6 @@
     .sources-body a { color: rgba(159,143,239,0.5); text-decoration: none; }
     .sources-body a:hover { color: var(--purple); }
 
-    /* FOOTER */
     footer {
       background: var(--bg);
       border-top: 1px solid var(--border);
@@ -579,7 +556,6 @@
     .foot-links a:hover { color: var(--white); }
     .foot-copy { font-size: .7rem; color: rgba(232,233,240,.28); font-family: var(--mono); }
 
-    /* RESPONSIVE */
     @media (max-width: 960px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -609,26 +585,18 @@
 </head>
 <body>
 
-<!-- ANNOUNCE -->
 <div class="announce">
   Waitlist closes <strong>June 29, 2026</strong> &mdash; Charter rate locked for life &mdash; Free to join
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Profit<em>OS</em> Engine</div>
   <a href="#join" class="nav-pill">Join Waitlist &mdash; Free</a>
 </nav>
 
-<!-- ════════════════════════════════════════════════════════════
-     HERO — TWO COLUMN ABOVE THE FOLD
-     Left col: audience label + eyebrow + h1 + sub + form
-     Right col: Slack command center (real-time typing)
-     ════════════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-grid">
 
-    <!-- LEFT: HOOK + FORM -->
     <div class="hero-left">
       <div class="audience-label">OWNERS &nbsp;&middot;&nbsp; INVESTORS &nbsp;&middot;&nbsp; PRINCIPALS &nbsp;&middot;&nbsp; SENIOR MANAGEMENT</div>
       <div class="eyebrow-pill">PROFIT SURVEILLANCE</div>
@@ -651,7 +619,6 @@
       </div>
     </div>
 
-    <!-- RIGHT: COMMAND CENTER CHAT (real-time typing) -->
     <div class="hero-right">
       <div class="slack-window" id="cc-window">
         <div class="slack-header">
@@ -677,7 +644,6 @@
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats">
   <div class="stats-row">
     <div class="stat"><span class="stat-n">56</span><span class="stat-l">Watchdog Specialists</span></div>
@@ -687,7 +653,6 @@
   </div>
 </div>
 
-<!-- AGENT TICKER -->
 <div class="ticker-wrap">
   <p class="ticker-label">The Watchdogs &mdash; 56 Specialists On Duty</p>
   <div class="ticker-rail">
@@ -695,7 +660,6 @@
   </div>
 </div>
 
-<!-- PROBLEM -->
 <section class="sec sec-center">
   <div class="eyebrow">The Problem</div>
   <p class="big-leak gradient-text">$20,000 &ndash; $80,000</p>
@@ -715,7 +679,6 @@
   </p>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="sec sec-alt">
   <div style="max-width:900px;margin:0 auto;">
     <div class="eyebrow" style="text-align:center;">How It Works</div>
@@ -740,7 +703,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="sec sec-center">
   <div class="eyebrow">Charter Rate &mdash; Waitlist Only</div>
   <h2>The subscription that pays for itself<br>before you decide to keep it.</h2>
@@ -757,7 +719,6 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section class="sec cta-sec">
   <div class="eyebrow">Priority Waitlist &mdash; Closes June 29</div>
   <h2 class="gradient-text" style="margin-bottom:16px;">Your money is waiting.</h2>
@@ -775,7 +736,6 @@
   </div>
 </section>
 
-<!-- DATA SOURCES -->
 <section class="sources-sec">
   <div class="sources-inner">
     <p class="sources-head">Research Sources</p>
@@ -788,7 +748,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="logo">Profit<em>OS</em> Engine</div>
   <div class="foot-links">
@@ -800,7 +759,6 @@
 </footer>
 
 <script>
-// ── AGENT TICKER ───────────────────────────────────────────────────────────
 var agents = [
   { name:'MarginScout',         d:'g' },
   { name:'GrantHound',          d:'c' },
@@ -825,7 +783,6 @@ var dotClass = { g:'dot-g', p:'dot-p', c:'dot-c', k:'dot-k' };
   }).join('');
 })();
 
-// ── COMMAND CENTER DATA ────────────────────────────────────────────────────
 var CC = [
   { lbl:'Text Message \u2014 7:18 PM', dis:null, msgs:[
     { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Remember that trip to Cabo we\u2019ve been \u201cplanning\u201d for three years?' },
@@ -859,7 +816,7 @@ var CC = [
     { n:'Jen', r:'', i:'J', c:'#F472B6', t:'Good news?' },
     { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS found billing gaps we\u2019d been missing for months. Already fixed. Money\u2019s back on the table.' },
     { n:'Jen', r:'', i:'J', c:'#F472B6', t:'How much?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Enough for dinner. I\u2019ll tell you Saturday.' },
+    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Enough for dinner. I already took care of something else with the rest too. Ask me Saturday.' },
   ]},
   { lbl:'Text Message \u2014 8:15 PM', dis:null, msgs:[
     { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS finished its first full scan.' },
@@ -984,7 +941,6 @@ var CC = [
   ]},
 ];
 
-// ── COMMAND CENTER — REAL-TIME TYPING ENGINE ───────────────────────────────
 var CC_IDX    = 0;
 var CC_TOTAL  = CC.length;
 var CC_TIMER  = null;
@@ -996,7 +952,6 @@ var ccBody    = document.getElementById('cc-body');
 var ccChannel = document.getElementById('cc-channel');
 var ccCounter = document.getElementById('cc-counter');
 
-// URL param override: ?cc=N forces a specific chat (for Founder testing)
 (function() {
   var p = new URLSearchParams(window.location.search);
   var f = parseInt(p.get('cc'), 10);
@@ -1004,8 +959,8 @@ var ccCounter = document.getElementById('cc-counter');
 })();
 
 function ccTypingDelay(text) {
-  // ~28ms per character, min 600ms, max 2200ms
-  return Math.min(Math.max(text.length * 28, 600), 2200);
+  // ~45ms per character — slower, more human. min 900ms, max 3500ms
+  return Math.min(Math.max(text.length * 45, 900), 3500);
 }
 
 function ccShowTyping(msg) {
@@ -1057,7 +1012,7 @@ function ccRunChat(chatIdx) {
   var prevSnd = '';
 
   function scheduleAdvance() {
-    // After all messages: wait, respecting pause, then move to next chat
+    // Hold for 13.6 seconds after last message so visitors can read fully
     function attempt() {
       if (CC_STOP) return;
       if (CC_PAUSED) { CC_TIMER = setTimeout(attempt, 500); return; }
@@ -1065,7 +1020,7 @@ function ccRunChat(chatIdx) {
         if (!CC_STOP) ccTransitionTo(CC_IDX + 1);
       }, 1400);
     }
-    CC_TIMER = setTimeout(attempt, 3600);
+    CC_TIMER = setTimeout(attempt, 13600);
   }
 
   function typeNext() {
@@ -1082,8 +1037,8 @@ function ccRunChat(chatIdx) {
       scheduleAdvance();
       return;
     }
-    var msg        = queue[idx];
-    var isCont     = (msg.n === prevSnd);
+    var msg    = queue[idx];
+    var isCont = (msg.n === prevSnd);
     ccShowTyping(msg);
     CC_TOUT = setTimeout(function() {
       if (CC_STOP) return;
@@ -1095,7 +1050,6 @@ function ccRunChat(chatIdx) {
     }, ccTypingDelay(msg.t));
   }
 
-  // Brief pause before first message appears (chat just loaded)
   CC_TOUT = setTimeout(typeNext, 480);
 }
 
@@ -1112,10 +1066,8 @@ function ccTransitionTo(idx) {
   }, 320);
 }
 
-// Boot
 ccRunChat(CC_IDX);
 
-// Pause on hover / touch
 var ccWin = document.getElementById('cc-window');
 ccWin.addEventListener('mouseenter',  function() { CC_PAUSED = true; });
 ccWin.addEventListener('mouseleave',  function() { CC_PAUSED = false; });
@@ -1127,7 +1079,6 @@ ccWin.addEventListener('touchstart',  function() {
 document.getElementById('cc-prev').addEventListener('click', function() { ccTransitionTo(CC_IDX - 1); });
 document.getElementById('cc-next').addEventListener('click', function() { ccTransitionTo(CC_IDX + 1); });
 
-// ── KIT FORM ───────────────────────────────────────────────────────────────
 var LABELS = { a:'Join the Waitlist \u2014 Free', b:'Join the Waitlist \u2014 Free' };
 
 function go(id) {
