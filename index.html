@@ -73,8 +73,34 @@
     }
     .nav-pill:hover { opacity: .85; }
 
-    /* HERO */
-    .hero { padding: 96px 24px 72px; text-align: center; }
+    /* ══════════════════════════════════════════
+       HERO — TWO COLUMN ABOVE THE FOLD
+       Left: audience label + hook + form
+       Right: Slack chat widget (real-time typing)
+       ══════════════════════════════════════════ */
+    .hero { padding: 0; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 48px 72px;
+    }
+    .hero-left { text-align: left; }
+
+    /* AUDIENCE LABEL */
+    .audience-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(232,233,240,0.38);
+      margin-bottom: 14px;
+    }
+
     .eyebrow-pill {
       display: inline-block;
       font-family: var(--mono);
@@ -86,29 +112,30 @@
       border: 1px solid rgba(0,255,136,.25);
       border-radius: 999px;
       padding: 6px 16px;
-      margin-bottom: 36px;
+      margin-bottom: 24px;
     }
-    .hero h1 {
-      font-size: clamp(3rem, 9vw, 5.8rem);
+    .hero-left h1 {
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
       font-weight: 900;
-      line-height: 1.04;
+      line-height: 1.06;
       letter-spacing: -0.03em;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
-    .hero h1 .line2 { display: block; color: var(--white); }
+    .hero-left h1 .line2 { display: block; color: var(--white); }
     .hero-sub {
-      font-size: clamp(1rem, 2.4vw, 1.15rem);
+      font-size: clamp(0.9rem, 1.6vw, 1.02rem);
       color: var(--grey);
-      max-width: 520px;
-      margin: 0 auto 52px;
+      max-width: 420px;
+      margin: 0 0 40px;
       line-height: 1.75;
     }
 
     /* FORM */
     .form-wrap { max-width: 480px; margin: 0 auto; }
+    .hero-left .form-wrap { margin: 0; max-width: 440px; }
     .form-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .form-row input[type="email"] {
-      flex: 1 1 220px;
+      flex: 1 1 200px;
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -298,17 +325,14 @@
 
     /* ══════════════════════════════════════════
        COMMAND CENTER — SLACK-STYLE CHAT WIDGET
+       Lives in hero-right column
        ══════════════════════════════════════════ */
-    .cc-section { background: var(--bg); padding: 80px 24px; }
-    .cc-inner { max-width: 640px; margin: 0 auto; }
-    .cc-intro { text-align: center; margin-bottom: 40px; }
-
     .slack-window {
       background: var(--bg3);
       border: 1px solid rgba(232,233,240,0.1);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(159,143,239,0.08);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(159,143,239,0.1);
     }
     .slack-header {
       background: var(--bg4);
@@ -362,17 +386,22 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 180px;
-      transition: opacity 0.3s;
     }
     .slack-body {
-      padding: 20px 18px 16px;
-      min-height: 300px;
+      padding: 16px 16px 12px;
+      height: 320px;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      transition: opacity 0.35s ease;
-      position: relative;
+      transition: opacity 0.32s ease;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(159,143,239,0.2) transparent;
     }
+    .slack-body::-webkit-scrollbar { width: 3px; }
+    .slack-body::-webkit-scrollbar-track { background: transparent; }
+    .slack-body::-webkit-scrollbar-thumb { background: rgba(159,143,239,0.2); border-radius: 2px; }
     .slack-body.fading { opacity: 0; }
     .slack-msg { display: flex; gap: 11px; align-items: flex-start; }
     .slack-avatar {
@@ -409,7 +438,7 @@
     .slack-msg.continued .slack-avatar { visibility: hidden; }
     .slack-msg.continued .slack-meta { display: none; }
     .slack-disclaimer {
-      margin-top: 6px;
+      margin-top: 4px;
       padding-top: 10px;
       border-top: 1px solid var(--border);
       font-size: 0.62rem;
@@ -456,18 +485,28 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-    .cc-progress-track {
-      height: 3px;
-      background: rgba(232,233,240,0.05);
-      border-radius: 0 0 16px 16px;
-      overflow: hidden;
+
+    /* REAL-TIME TYPING DOTS */
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 5px 0;
+      height: 24px;
     }
-    .cc-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--purple);
-      transition: width 0.12s linear;
-      border-radius: 0 0 16px 16px;
+    .typing-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(232,233,240,0.32);
+      animation: typingBounce 1.2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.32; }
+      30%            { transform: translateY(-5px); opacity: 1; }
     }
 
     /* PRICING */
@@ -519,18 +558,9 @@
       color: rgba(232,233,240,0.22);
       line-height: 1.9;
     }
-    .sources-body sup {
-      font-size: 0.52rem;
-      color: rgba(159,143,239,0.6);
-      vertical-align: super;
-      line-height: 0;
-      margin-right: 2px;
-    }
+    .sources-body sup { font-size: 0.52rem; color: rgba(159,143,239,0.6); vertical-align: super; line-height: 0; margin-right: 2px; }
     .sources-body em { font-style: italic; }
-    .sources-body a {
-      color: rgba(159,143,239,0.5);
-      text-decoration: none;
-    }
+    .sources-body a { color: rgba(159,143,239,0.5); text-decoration: none; }
     .sources-body a:hover { color: var(--purple); }
 
     /* FOOTER */
@@ -549,10 +579,23 @@
     .foot-links a:hover { color: var(--white); }
     .foot-copy { font-size: .7rem; color: rgba(232,233,240,.28); font-family: var(--mono); }
 
-    @media (max-width:600px) {
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding: 48px 24px 56px;
+      }
+      .hero-left { text-align: center; }
+      .audience-label { text-align: center; }
+      .hero-left h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+      .hero-left .hero-sub { text-align: center; max-width: 100%; margin: 0 auto 36px; }
+      .hero-left .form-wrap { margin: 0 auto; max-width: 480px; }
+      .slack-body { height: 270px; }
+      .slack-channel-badge { max-width: 140px; }
+    }
+    @media (max-width: 600px) {
       nav { padding: 16px 20px; }
-      .hero { padding: 56px 20px 56px; }
-      .slack-channel-badge { max-width: 120px; }
       .cc-pause-hint { display: none; }
       .sources-sec { padding: 24px 20px; }
       footer { flex-direction: column; align-items: center; text-align: center; }
@@ -560,7 +603,7 @@
     @media (prefers-reduced-motion: reduce) {
       .ticker-track { animation: none; }
       .slack-body { transition: none; }
-      .cc-progress-fill { transition: none; }
+      .typing-dots span { animation: none; opacity: 0.45; }
     }
   </style>
 </head>
@@ -577,25 +620,60 @@
   <a href="#join" class="nav-pill">Join Waitlist &mdash; Free</a>
 </nav>
 
-<!-- HERO -->
+<!-- ════════════════════════════════════════════════════════════
+     HERO — TWO COLUMN ABOVE THE FOLD
+     Left col: audience label + eyebrow + h1 + sub + form
+     Right col: Slack command center (real-time typing)
+     ════════════════════════════════════════════════════════════ -->
 <section class="hero">
-  <div class="eyebrow-pill">PROFIT SURVEILLANCE</div>
-  <h1>
-    <span class="gradient-text">Your profit is leaking.</span>
-    <span class="line2">We stop it.</span>
-  </h1>
-  <p class="hero-sub">
-    56 watchdog specialists scan your business.
-    Results in about a minute. Find the money your accountant missed,
-    your software ignored, and your business is bleeding every month.
-  </p>
-  <div class="form-wrap" id="join">
-    <div class="form-row">
-      <input type="email" id="email-a" placeholder="your@email.com" autocomplete="email" />
-      <button class="btn-main" id="btn-a" onclick="go('a')">Join the Waitlist &mdash; Free</button>
+  <div class="hero-grid">
+
+    <!-- LEFT: HOOK + FORM -->
+    <div class="hero-left">
+      <div class="audience-label">OWNERS &nbsp;&middot;&nbsp; INVESTORS &nbsp;&middot;&nbsp; PRINCIPALS &nbsp;&middot;&nbsp; SENIOR MANAGEMENT</div>
+      <div class="eyebrow-pill">PROFIT SURVEILLANCE</div>
+      <h1>
+        <span class="gradient-text">Your Profit Is Leaking.</span>
+        <span class="line2">Let Us Help Stop It.</span>
+      </h1>
+      <p class="hero-sub">
+        56 watchdog specialists scan your business.
+        Results in about a minute. Find the money your accountant missed,
+        your software ignored, and your business is bleeding every month.
+      </p>
+      <div class="form-wrap" id="join">
+        <div class="form-row">
+          <input type="email" id="email-a" placeholder="your@email.com" autocomplete="email" />
+          <button class="btn-main" id="btn-a" onclick="go('a')">Join the Waitlist &mdash; Free</button>
+        </div>
+        <p class="form-note">No credit card &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
+        <div class="form-ok" id="ok-a">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
+      </div>
     </div>
-    <p class="form-note">No credit card &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
-    <div class="form-ok" id="ok-a">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
+
+    <!-- RIGHT: COMMAND CENTER CHAT (real-time typing) -->
+    <div class="hero-right">
+      <div class="slack-window" id="cc-window">
+        <div class="slack-header">
+          <div class="slack-ws">
+            <div class="slack-ws-icon">P</div>
+            <div class="slack-ws-info">
+              <div class="slack-ws-name">ProfitOS Engine</div>
+              <div class="slack-ws-status"><span class="slack-online"></span> 56 watchdogs active</div>
+            </div>
+          </div>
+          <div class="slack-channel-badge" id="cc-channel">loading&hellip;</div>
+        </div>
+        <div class="slack-body" id="cc-body"></div>
+        <div class="slack-footer">
+          <button class="cc-nav-btn" id="cc-prev" aria-label="Previous chat">&larr;</button>
+          <div class="cc-counter" id="cc-counter">1 / 22</div>
+          <button class="cc-nav-btn" id="cc-next" aria-label="Next chat">&rarr;</button>
+          <span class="cc-pause-hint">hover to pause</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -662,40 +740,6 @@
   </div>
 </section>
 
-<!-- COMMAND CENTER -->
-<section class="cc-section">
-  <div class="cc-inner">
-    <div class="cc-intro">
-      <div class="eyebrow">In Action</div>
-      <h2>This is what a business looks like<br>when 56 watchdogs are on the job.</h2>
-      <p class="lead lead-c" style="margin-top:12px;">Real conversations. Different businesses. One result &mdash; the money was always there.</p>
-    </div>
-
-    <div class="slack-window" id="cc-window">
-      <div class="slack-header">
-        <div class="slack-ws">
-          <div class="slack-ws-icon">P</div>
-          <div class="slack-ws-info">
-            <div class="slack-ws-name">ProfitOS Engine</div>
-            <div class="slack-ws-status"><span class="slack-online"></span> 56 watchdogs active</div>
-          </div>
-        </div>
-        <div class="slack-channel-badge" id="cc-channel">loading&hellip;</div>
-      </div>
-      <div class="slack-body" id="cc-body"></div>
-      <div class="slack-footer">
-        <button class="cc-nav-btn" id="cc-prev" aria-label="Previous chat">&larr;</button>
-        <div class="cc-counter" id="cc-counter">1 / 22</div>
-        <button class="cc-nav-btn" id="cc-next" aria-label="Next chat">&rarr;</button>
-        <span class="cc-pause-hint">hover to pause</span>
-      </div>
-    </div>
-    <div class="cc-progress-track">
-      <div class="cc-progress-fill" id="cc-progress"></div>
-    </div>
-  </div>
-</section>
-
 <!-- PRICING -->
 <section class="sec sec-center">
   <div class="eyebrow">Charter Rate &mdash; Waitlist Only</div>
@@ -757,7 +801,7 @@
 
 <script>
 // ── AGENT TICKER ───────────────────────────────────────────────────────────
-const agents = [
+var agents = [
   { name:'MarginScout',         d:'g' },
   { name:'GrantHound',          d:'c' },
   { name:'SubscriptionGuard',   d:'p' },
@@ -772,41 +816,41 @@ const agents = [
   { name:'LoanScout',           d:'k' },
   { name:'+ 44 More Watchdogs', d:'g' },
 ];
-const dotClass = { g:'dot-g', p:'dot-p', c:'dot-c', k:'dot-k' };
+var dotClass = { g:'dot-g', p:'dot-p', c:'dot-c', k:'dot-k' };
 (function buildTicker() {
   var track = document.getElementById('ticker');
-  var full = agents.concat(agents,agents,agents);
+  var full = agents.concat(agents, agents, agents);
   track.innerHTML = full.map(function(a) {
-    return '<div class="chip"><div class="dot '+dotClass[a.d]+'"></div><span class="chip-name">'+a.name+'</span></div>';
+    return '<div class="chip"><div class="dot ' + dotClass[a.d] + '"></div><span class="chip-name">' + a.name + '</span></div>';
   }).join('');
 })();
 
-// ── COMMAND CENTER ─────────────────────────────────────────────────────────
+// ── COMMAND CENTER DATA ────────────────────────────────────────────────────
 var CC = [
   { lbl:'Text Message \u2014 7:18 PM', dis:null, msgs:[
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Remember that trip to Cabo we\u2019ve been \u201cplanning\u201d for three years?' },
-    { n:'Jen', r:'', i:'J', c:'#F472B6', t:'\u2026what did you do' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Nothing bad. ProfitOS ran an audit on the business. First scan came back with things I didn\u2019t know were there.' },
-    { n:'Jen', r:'', i:'J', c:'#F472B6', t:'How many things' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Enough for Cabo. I already checked flights.' },
-    { n:'Jen', r:'', i:'J', c:'#F472B6', t:'I\u2019m not joking around with you.' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Neither am I. Check your email.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Remember that trip to Cabo we\u2019ve been \u201cplanning\u201d for three years?' },
+    { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'\u2026what did you do' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Nothing bad. ProfitOS ran an audit on the business. First scan came back with things I didn\u2019t know were there.' },
+    { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'How many things' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Enough for Cabo. I already checked flights.' },
+    { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'I\u2019m not joking around with you.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Neither am I. Check your email.' },
   ]},
   { lbl:'#team-updates \u2014 4:53 PM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'@team \u2014 Year-end position update.' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'After Q4 adjustments, we\u2019re finishing stronger than the October projection.' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'Holiday party is confirmed. December 19th. Details coming Thursday.' },
-    { n:'Sarah', r:'', i:'S', c:'#00FF88', t:'Wait \u2014 I thought we were cutting it this year.' },
+    { n:'Sarah',  r:'', i:'S', c:'#00FF88', t:'Wait \u2014 I thought we were cutting it this year.' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'We were. Turns out we had more budget than the books were showing.' },
-    { n:'Jamie', r:'', i:'J', c:'#00FFFF', t:'What changed?' },
+    { n:'Jamie',  r:'', i:'J', c:'#00FFFF', t:'What changed?' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'We stopped paying for things we weren\u2019t using.' },
   ]},
   { lbl:'Text Message \u2014 8:30 PM', dis:null, msgs:[
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Did you run yours yet?' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Did you run yours yet?' },
     { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'Not yet. You?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'This morning. You need to see what came back.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'This morning. You need to see what came back.' },
     { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'Good or bad?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Depends on how you feel about finding out how long this was going on.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Depends on how you feel about finding out how long this was going on.' },
     { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'Running it now.' },
     { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'I think I need to call you.' },
   ]},
@@ -818,18 +862,18 @@ var CC = [
     { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Enough for dinner. I\u2019ll tell you Saturday.' },
   ]},
   { lbl:'Text Message \u2014 8:15 PM', dis:null, msgs:[
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS finished its first full scan.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS finished its first full scan.' },
     { n:'Mike', r:'Partner', i:'M', c:'#F472B6', t:'And?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'We need to talk. Found some things we\u2019ve been missing.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'We need to talk. Found some things we\u2019ve been missing.' },
     { n:'Mike', r:'Partner', i:'M', c:'#F472B6', t:'Good things or bad things?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Good things we can fix. Call me when you\u2019re free.' },
+    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Good things we can fix. Call me when you\u2019re free.' },
   ]},
   { lbl:'#finance \u2014 10:48 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'InvoiceChaser flagged $47,000 sitting uncollected. Some of it is 90 days out.' },
-    { n:'CFO', r:'', i:'C', c:'#00FFFF', t:'I knew receivables were soft. I didn\u2019t think it was that number.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Three clients account for most of it. Two of them we\u2019re still actively working with.' },
-    { n:'CFO', r:'', i:'C', c:'#00FFFF', t:'I\u2019ll have a report on your desk by end of day.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Make it a plan. Not a report.' },
+    { n:'Owner', r:'',    i:'O', c:'#9F8FEF', t:'InvoiceChaser flagged $47,000 sitting uncollected. Some of it is 90 days out.' },
+    { n:'CFO',   r:'',    i:'C', c:'#00FFFF', t:'I knew receivables were soft. I didn\u2019t think it was that number.' },
+    { n:'Owner', r:'',    i:'O', c:'#9F8FEF', t:'Three clients account for most of it. Two of them we\u2019re still actively working with.' },
+    { n:'CFO',   r:'',    i:'C', c:'#00FFFF', t:'I\u2019ll have a report on your desk by end of day.' },
+    { n:'Owner', r:'',    i:'O', c:'#9F8FEF', t:'Make it a plan. Not a report.' },
   ]},
   { lbl:'Notes \u2014 11:52 PM', dis:null, msgs:[
     { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'ProfitOS first full run complete.' },
@@ -840,11 +884,11 @@ var CC = [
   ]},
   { lbl:'#finance \u2014 2:44 PM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Maria', r:'Controller', i:'M', c:'#00FF88', t:'Heads up before Thursday. I\u2019m revising the Q4 board deck.' },
-    { n:'CEO', r:'', i:'C', c:'#00FFFF', t:'Good news or bad?' },
+    { n:'CEO',   r:'',           i:'C', c:'#00FFFF', t:'Good news or bad?' },
     { n:'Maria', r:'Controller', i:'M', c:'#00FF88', t:'Better than last month\u2019s numbers. ProfitOS surfaced a vendor credit that was never applied and a refund we were owed from Q2.' },
-    { n:'CEO', r:'', i:'C', c:'#00FFFF', t:'How much better?' },
+    { n:'CEO',   r:'',           i:'C', c:'#00FFFF', t:'How much better?' },
     { n:'Maria', r:'Controller', i:'M', c:'#00FF88', t:'$22,000 better than what we reported.' },
-    { n:'CEO', r:'', i:'C', c:'#00FFFF', t:'Put it in the deck.' },
+    { n:'CEO',   r:'',           i:'C', c:'#00FFFF', t:'Put it in the deck.' },
   ]},
   { lbl:'Text Message \u2014 9:12 PM', dis:null, msgs:[
     { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Business stuff \u2014 you have a minute?' },
@@ -857,48 +901,48 @@ var CC = [
   ]},
   { lbl:'#finance \u2014 2:15 PM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'Quick heads up. Year-end bonus picture looks stronger than last quarter.' },
-    { n:'VP', r:'', i:'V', c:'#00FFFF', t:'What changed?' },
+    { n:'VP',     r:'',           i:'V', c:'#00FFFF', t:'What changed?' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'ProfitOS flagged a vendor overcharge we\u2019d been paying for over a year. Refund is in process.' },
-    { n:'VP', r:'', i:'V', c:'#00FFFF', t:'How much are we getting back?' },
+    { n:'VP',     r:'',           i:'V', c:'#00FFFF', t:'How much are we getting back?' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'Still finalizing but enough to notice. I\u2019ll send the summary this afternoon.' },
   ]},
   { lbl:'#accounting \u2014 10:22 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Sarah', r:'Accounting', i:'S', c:'#00FF88', t:'Hey \u2014 ProfitOS flagged three subscriptions we haven\u2019t touched since Q1. Combined they\u2019re running us around $800 a month.' },
     { n:'Sarah', r:'Accounting', i:'S', c:'#00FF88', t:'Do you want me to cancel them or review first?' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Cancel all three. Good catch.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Cancel all three. Good catch.' },
     { n:'Sarah', r:'Accounting', i:'S', c:'#00FF88', t:'Done. I\u2019ll note it in the books.' },
   ]},
   { lbl:'#finance \u2014 11:02 AM', dis:null, msgs:[
     { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Quick question \u2014 ProfitOS is showing billing gaps from February. Did those service invoices ever get reconciled?' },
-    { n:'CFO', r:'', i:'C', c:'#00FFFF', t:'Checking now. I\u2019ll have an answer within the hour.' },
+    { n:'CFO',   r:'', i:'C', c:'#00FFFF', t:'Checking now. I\u2019ll have an answer within the hour.' },
     { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Appreciate it.' },
-    { n:'CFO', r:'', i:'C', c:'#00FFFF', t:'Found it. Three invoices marked sent but no payment recorded. I\u2019m on it.' },
+    { n:'CFO',   r:'', i:'C', c:'#00FFFF', t:'Found it. Three invoices marked sent but no payment recorded. I\u2019m on it.' },
   ]},
   { lbl:'#accounting \u2014 9:04 AM', dis:'GrantHound identifies potential programs. Amounts vary by eligibility and application.', msgs:[
-    { n:'Lisa', r:'Bookkeeper', i:'L', c:'#00FF88', t:'ProfitOS ran GrantHound last night. Found two programs we qualify for. Applications look pretty straightforward.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'What\u2019s the process?' },
-    { n:'Lisa', r:'Bookkeeper', i:'L', c:'#00FF88', t:'I pull the requirements, you review and sign. I can have everything ready by end of week.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Do it. Keep me posted.' },
+    { n:'Lisa',  r:'Bookkeeper', i:'L', c:'#00FF88', t:'ProfitOS ran GrantHound last night. Found two programs we qualify for. Applications look pretty straightforward.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'What\u2019s the process?' },
+    { n:'Lisa',  r:'Bookkeeper', i:'L', c:'#00FF88', t:'I pull the requirements, you review and sign. I can have everything ready by end of week.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Do it. Keep me posted.' },
   ]},
   { lbl:'#accounting \u2014 3:28 PM', dis:'ProfitOS surfaces potential opportunities. Your CPA confirms and files. See sources below.', msgs:[
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'ProfitOS flagged a tax credit category we haven\u2019t been claiming. Goes back two quarters.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Is it real?' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Is it real?' },
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'Solid. I\u2019m looping in the CPA to confirm and process. Should have an answer by next week.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Good. Let me know what they say.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Good. Let me know what they say.' },
   ]},
   { lbl:'Text Message \u2014 1:22 PM', dis:'ProfitOS surfaces potential opportunities. Your CPA confirms and files. See sources below.', msgs:[
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'ProfitOS flagged a deduction category we haven\u2019t been claiming. Home office plus a vehicle percentage we\u2019ve been running wrong.' },
-    { n:'CPA', r:'External', i:'C', c:'#00FFFF', t:'How solid is the flag?' },
+    { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'How solid is the flag?' },
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'Solid enough that I\u2019m sending it to you before I touch anything.' },
-    { n:'CPA', r:'External', i:'C', c:'#00FFFF', t:'Send me everything. I\u2019ll review before Thursday.' },
+    { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'Send me everything. I\u2019ll review before Thursday.' },
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'There\u2019s also a Section 179 item on the March equipment purchase that may not have been captured correctly.' },
-    { n:'CPA', r:'External', i:'C', c:'#00FFFF', t:'Send. Everything.' },
+    { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'Send. Everything.' },
   ]},
   { lbl:'#accounting \u2014 9:41 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
-    { n:'Ray', r:'Controller', i:'R', c:'#00FF88', t:'Monthly subscription audit is back. 23 active subscriptions. 6 show no usage in the last 90 days.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Send me the list.' },
-    { n:'Ray', r:'Controller', i:'R', c:'#00FF88', t:'Already in your inbox. Highlighted the ones I\u2019d cut immediately.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'I\u2019ll review tonight. Good work.' },
+    { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Monthly subscription audit is back. 23 active subscriptions. 6 show no usage in the last 90 days.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Send me the list.' },
+    { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Already in your inbox. Highlighted the ones I\u2019d cut immediately.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'I\u2019ll review tonight. Good work.' },
   ]},
   { lbl:'Note to Self \u2014 7:33 PM', dis:'Industry benchmarks based on publicly available market data. See sources below.', msgs:[
     { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Most popular service. Priced below industry average for over a year.' },
@@ -907,25 +951,25 @@ var CC = [
   ]},
   { lbl:'#general \u2014 11:30 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Priya', r:'Office Mgr', i:'P', c:'#00FF88', t:'You know that project tool the team has been asking about for six months?' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'The one we kept saying wasn\u2019t in the budget.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'The one we kept saying wasn\u2019t in the budget.' },
     { n:'Priya', r:'Office Mgr', i:'P', c:'#00FF88', t:'ProfitOS found overlap in what we\u2019re already paying for. Three redundant tools. If we cancel them, the new one is covered plus about $400 back per month.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Show me the list.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Show me the list.' },
     { n:'Priya', r:'Office Mgr', i:'P', c:'#00FF88', t:'Already in your inbox. Want me to handle the cancellations?' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Do it today.' },
+    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Do it today.' },
   ]},
   { lbl:'#hr \u2014 10:16 AM', dis:'ProfitOS identifies potential issues. Always consult a qualified employment attorney.', msgs:[
-    { n:'Jordan', r:'HR', i:'J', c:'#00FFFF', t:'PayrollGuard flagged three worker classification situations that need a second look before year-end.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'What kind of situations?' },
-    { n:'Jordan', r:'HR', i:'J', c:'#00FFFF', t:'Two contractors based on hours and integration that may not qualify. One salary situation that looks like an overtime exposure.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'How exposed are we?' },
-    { n:'Jordan', r:'HR', i:'J', c:'#00FFFF', t:'Enough that I\u2019d rather we fix it before someone else flags it.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Get the employment attorney on the calendar. This week.' },
+    { n:'Jordan', r:'HR',  i:'J', c:'#00FFFF', t:'PayrollGuard flagged three worker classification situations that need a second look before year-end.' },
+    { n:'Owner',  r:'',    i:'O', c:'#9F8FEF', t:'What kind of situations?' },
+    { n:'Jordan', r:'HR',  i:'J', c:'#00FFFF', t:'Two contractors based on hours and integration that may not qualify. One salary situation that looks like an overtime exposure.' },
+    { n:'Owner',  r:'',    i:'O', c:'#9F8FEF', t:'How exposed are we?' },
+    { n:'Jordan', r:'HR',  i:'J', c:'#00FFFF', t:'Enough that I\u2019d rather we fix it before someone else flags it.' },
+    { n:'Owner',  r:'',    i:'O', c:'#9F8FEF', t:'Get the employment attorney on the calendar. This week.' },
   ]},
   { lbl:'#accounting \u2014 4:37 PM', dis:'Illustrative \u2014 duplicate billing is documented across B2B research. See sources below.', msgs:[
-    { n:'Jamie', r:'', i:'J', c:'#00FF88', t:'Hey \u2014 ProfitOS flagged something on the vendor invoices. Looks like we\u2019ve been billed twice for the same service three times this quarter.' },
-    { n:'Manager', r:'', i:'M', c:'#00FFFF', t:'Are you sure?' },
-    { n:'Jamie', r:'', i:'J', c:'#00FF88', t:'Cross-referenced with the originals. Pretty clear. Wanted to flag it before month close.' },
-    { n:'Manager', r:'', i:'M', c:'#00FFFF', t:'Send it to accounting now. Good catch.' },
+    { n:'Jamie',   r:'',     i:'J', c:'#00FF88', t:'Hey \u2014 ProfitOS flagged something on the vendor invoices. Looks like we\u2019ve been billed twice for the same service three times this quarter.' },
+    { n:'Manager', r:'',     i:'M', c:'#00FFFF', t:'Are you sure?' },
+    { n:'Jamie',   r:'',     i:'J', c:'#00FF88', t:'Cross-referenced with the originals. Pretty clear. Wanted to flag it before month close.' },
+    { n:'Manager', r:'',     i:'M', c:'#00FFFF', t:'Send it to accounting now. Good catch.' },
   ]},
   { lbl:'Note to Self \u2014 11:19 AM', dis:null, msgs:[
     { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Vendor service contract. Signed it years ago. Still paying.' },
@@ -934,91 +978,154 @@ var CC = [
   ]},
   { lbl:'#accounting \u2014 2:07 PM', dis:'ProfitOS surfaces potential opportunities. Your CPA confirms and files. See sources below.', msgs:[
     { n:'Kara', r:'Bookkeeper', i:'K', c:'#00FF88', t:'TaxHound flagged a deduction category we\u2019ve been completely missing. Routing to the CPA now.' },
-    { n:'CFO', r:'', i:'C', c:'#00FFFF', t:'How significant?' },
+    { n:'CFO',  r:'',           i:'C', c:'#00FFFF', t:'How significant?' },
     { n:'Kara', r:'Bookkeeper', i:'K', c:'#00FF88', t:'Still verifying the full amount but it could change the year-end picture. CPA will have the answer by Thursday.' },
-    { n:'CFO', r:'', i:'C', c:'#00FFFF', t:'Good. Get it in writing before year-end close.' },
+    { n:'CFO',  r:'',           i:'C', c:'#00FFFF', t:'Good. Get it in writing before year-end close.' },
   ]},
 ];
 
-// ── COMMAND CENTER ROTATION ENGINE ─────────────────────────────────────────
-var ccIdx    = 0;
-var ccTotal  = CC.length;
-var ccProg   = null;
-var ccPct    = 0;
-var ccPaused = false;
+// ── COMMAND CENTER — REAL-TIME TYPING ENGINE ───────────────────────────────
+var CC_IDX    = 0;
+var CC_TOTAL  = CC.length;
+var CC_TIMER  = null;
+var CC_TOUT   = null;
+var CC_PAUSED = false;
+var CC_STOP   = false;
 
-var ccBody     = document.getElementById('cc-body');
-var ccChannel  = document.getElementById('cc-channel');
-var ccCounter  = document.getElementById('cc-counter');
-var ccProgress = document.getElementById('cc-progress');
+var ccBody    = document.getElementById('cc-body');
+var ccChannel = document.getElementById('cc-channel');
+var ccCounter = document.getElementById('cc-counter');
 
-// URL param override: ?cc=N forces a specific chat
+// URL param override: ?cc=N forces a specific chat (for Founder testing)
 (function() {
-  var params = new URLSearchParams(window.location.search);
-  var forced = parseInt(params.get('cc'), 10);
-  if (!isNaN(forced) && forced >= 0 && forced < CC.length) { ccIdx = forced; }
+  var p = new URLSearchParams(window.location.search);
+  var f = parseInt(p.get('cc'), 10);
+  if (!isNaN(f) && f >= 0 && f < CC_TOTAL) CC_IDX = f;
 })();
 
-function ccRender(idx) {
-  var chat = CC[idx];
+function ccTypingDelay(text) {
+  // ~28ms per character, min 600ms, max 2200ms
+  return Math.min(Math.max(text.length * 28, 600), 2200);
+}
+
+function ccShowTyping(msg) {
+  var old = document.getElementById('cc-typing');
+  if (old) old.remove();
+  var el = document.createElement('div');
+  el.id = 'cc-typing';
+  el.className = 'slack-msg';
+  el.innerHTML =
+    '<div class="slack-avatar" style="background:' + msg.c + '">' + msg.i + '</div>' +
+    '<div class="slack-content">' +
+    '<div class="slack-meta"><span class="slack-sender">' + msg.n + '</span></div>' +
+    '<div class="typing-dots"><span></span><span></span><span></span></div>' +
+    '</div>';
+  ccBody.appendChild(el);
+  ccBody.scrollTop = ccBody.scrollHeight;
+}
+
+function ccRemoveTyping() {
+  var el = document.getElementById('cc-typing');
+  if (el) el.remove();
+}
+
+function ccAddMessage(msg, isContinued) {
+  var el = document.createElement('div');
+  el.className = 'slack-msg' + (isContinued ? ' continued' : '');
+  var roleHtml = msg.r ? '<span class="slack-role">' + msg.r + '</span>' : '';
+  var metaHtml = !isContinued
+    ? '<div class="slack-meta"><span class="slack-sender">' + msg.n + '</span>' + roleHtml + '</div>'
+    : '';
+  el.innerHTML =
+    '<div class="slack-avatar" style="background:' + msg.c + '">' + msg.i + '</div>' +
+    '<div class="slack-content">' + metaHtml +
+    '<div class="slack-text">' + msg.t + '</div>' +
+    '</div>';
+  ccBody.appendChild(el);
+  ccBody.scrollTop = ccBody.scrollHeight;
+}
+
+function ccRunChat(chatIdx) {
+  CC_STOP = false;
+  var chat = CC[chatIdx];
   ccChannel.textContent = chat.lbl;
-  ccCounter.textContent = (idx + 1) + ' / ' + ccTotal;
-  var html = '';
-  var prevName = '';
-  chat.msgs.forEach(function(m) {
-    var cont = (m.n === prevName) ? ' continued' : '';
-    html += '<div class="slack-msg' + cont + '">';
-    html += '<div class="slack-avatar" style="background:' + m.c + '">' + m.i + '</div>';
-    html += '<div class="slack-content">';
-    if (!cont) {
-      html += '<div class="slack-meta"><span class="slack-sender">' + m.n + '</span>';
-      if (m.r) html += '<span class="slack-role">' + m.r + '</span>';
-      html += '</div>';
+  ccCounter.textContent = (chatIdx + 1) + ' / ' + CC_TOTAL;
+  ccBody.innerHTML = '';
+
+  var queue   = chat.msgs.slice();
+  var idx     = 0;
+  var prevSnd = '';
+
+  function scheduleAdvance() {
+    // After all messages: wait, respecting pause, then move to next chat
+    function attempt() {
+      if (CC_STOP) return;
+      if (CC_PAUSED) { CC_TIMER = setTimeout(attempt, 500); return; }
+      CC_TIMER = setTimeout(function() {
+        if (!CC_STOP) ccTransitionTo(CC_IDX + 1);
+      }, 1400);
     }
-    html += '<div class="slack-text">' + m.t + '</div>';
-    html += '</div></div>';
-    prevName = m.n;
-  });
-  if (chat.dis) html += '<div class="slack-disclaimer">' + chat.dis + '</div>';
-  ccBody.innerHTML = html;
+    CC_TIMER = setTimeout(attempt, 3600);
+  }
+
+  function typeNext() {
+    if (CC_STOP) return;
+    if (idx >= queue.length) {
+      ccRemoveTyping();
+      if (chat.dis) {
+        var dis = document.createElement('div');
+        dis.className = 'slack-disclaimer';
+        dis.textContent = chat.dis;
+        ccBody.appendChild(dis);
+        ccBody.scrollTop = ccBody.scrollHeight;
+      }
+      scheduleAdvance();
+      return;
+    }
+    var msg        = queue[idx];
+    var isCont     = (msg.n === prevSnd);
+    ccShowTyping(msg);
+    CC_TOUT = setTimeout(function() {
+      if (CC_STOP) return;
+      ccRemoveTyping();
+      ccAddMessage(msg, isCont);
+      prevSnd = msg.n;
+      idx++;
+      CC_TOUT = setTimeout(typeNext, 340);
+    }, ccTypingDelay(msg.t));
+  }
+
+  // Brief pause before first message appears (chat just loaded)
+  CC_TOUT = setTimeout(typeNext, 480);
 }
 
 function ccTransitionTo(idx) {
+  clearTimeout(CC_TIMER);
+  clearTimeout(CC_TOUT);
+  CC_STOP = true;
   ccBody.classList.add('fading');
   setTimeout(function() {
-    ccIdx = ((idx % ccTotal) + ccTotal) % ccTotal;
-    ccRender(ccIdx);
+    CC_IDX = ((idx % CC_TOTAL) + CC_TOTAL) % CC_TOTAL;
+    ccBody.innerHTML = '';
     ccBody.classList.remove('fading');
-    ccResetProgress();
+    ccRunChat(CC_IDX);
   }, 320);
 }
 
-function ccResetProgress() {
-  ccPct = 0;
-  ccProgress.style.width = '0%';
-}
+// Boot
+ccRunChat(CC_IDX);
 
-function ccStartProgress() {
-  clearInterval(ccProg);
-  ccProg = setInterval(function() {
-    if (ccPaused) return;
-    ccPct += 0.5;
-    if (ccPct >= 100) { ccPct = 0; ccTransitionTo(ccIdx + 1); }
-    else { ccProgress.style.width = ccPct + '%'; }
-  }, 100);
-}
-
-ccRender(ccIdx);
-ccStartProgress();
-
-document.getElementById('cc-window').addEventListener('mouseenter', function() { ccPaused = true; });
-document.getElementById('cc-window').addEventListener('mouseleave', function() { ccPaused = false; });
-document.getElementById('cc-window').addEventListener('touchstart', function() {
-  ccPaused = true;
-  setTimeout(function() { ccPaused = false; }, 3000);
+// Pause on hover / touch
+var ccWin = document.getElementById('cc-window');
+ccWin.addEventListener('mouseenter',  function() { CC_PAUSED = true; });
+ccWin.addEventListener('mouseleave',  function() { CC_PAUSED = false; });
+ccWin.addEventListener('touchstart',  function() {
+  CC_PAUSED = true;
+  setTimeout(function() { CC_PAUSED = false; }, 4000);
 }, { passive: true });
-document.getElementById('cc-prev').addEventListener('click', function() { ccResetProgress(); ccTransitionTo(ccIdx - 1); });
-document.getElementById('cc-next').addEventListener('click', function() { ccResetProgress(); ccTransitionTo(ccIdx + 1); });
+
+document.getElementById('cc-prev').addEventListener('click', function() { ccTransitionTo(CC_IDX - 1); });
+document.getElementById('cc-next').addEventListener('click', function() { ccTransitionTo(CC_IDX + 1); });
 
 // ── KIT FORM ───────────────────────────────────────────────────────────────
 var LABELS = { a:'Join the Waitlist \u2014 Free', b:'Join the Waitlist \u2014 Free' };
@@ -1035,7 +1142,7 @@ function go(id) {
   fetch('/api/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: em, cc_shown: ccIdx })
+    body: JSON.stringify({ email: em, cc_shown: CC_IDX })
   })
   .then(function(r) { return r.ok ? r : Promise.reject(r.status); })
   .then(function() {
