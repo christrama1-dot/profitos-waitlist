@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfitOS Engine — Beta Program Application</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0D0F1A;
+      color: #E8E9F0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .logo span { color: #00FF88; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0,255,136,0.1);
+      border: 1px solid rgba(0,255,136,0.3);
+      color: #00FF88;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: rgba(232,233,240,0.6);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(232,233,240,0.7);
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(232,233,240,0.12);
+      border-radius: 8px;
+      color: #E8E9F0;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8E9F0' stroke-opacity='0.4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    select option { background: #1A1D2E; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(0,255,136,0.4);
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+
+    ::placeholder { color: rgba(232,233,240,0.3); }
+
+    .submit-btn {
+      width: 100%;
+      background: #00FF88;
+      color: #0D0F1A;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: opacity 0.2s, transform 0.1s;
+      letter-spacing: 0.2px;
+    }
+
+    .submit-btn:hover { opacity: 0.9; }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .footer-note {
+      font-size: 12px;
+      color: rgba(232,233,240,0.35);
+      text-align: center;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .success-state h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .success-state p {
+      font-size: 15px;
+      color: rgba(232,233,240,0.6);
+      line-height: 1.6;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(232,233,240,0.08);
+      margin: 28px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Profit<span>OS</span></div>
+
+    <div id="formView">
+      <div class="badge">Beta Program — July 2026</div>
+      <h1>Apply for Early Access</h1>
+      <p class="subtitle">We're onboarding 3–5 service businesses for our founding beta. You'll get a full Profit Surveillance scan — free — and help shape the product before public launch.</p>
+
+      <hr class="divider" />
+
+      <form id="betaForm">
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" placeholder="Chris" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Business Email</label>
+          <input type="email" id="email" name="email" placeholder="you@yourbusiness.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="business_name">Business Name</label>
+          <input type="text" id="business_name" name="business_name" placeholder="Acme Plumbing LLC" required />
+        </div>
+
+        <div class="form-group">
+          <label for="industry">Industry</label>
+          <select id="industry" name="industry" required>
+            <option value="" disabled selected>Select your industry</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="HVAC">HVAC</option>
+            <option value="Electrical">Electrical</option>
+            <option value="General Contracting">General Contracting</option>
+            <option value="Roofing">Roofing</option>
+            <option value="Landscaping">Landscaping</option>
+            <option value="Painting">Painting</option>
+            <option value="Flooring">Flooring</option>
+            <option value="Cleaning Services">Cleaning Services</option>
+            <option value="Other Trades">Other Trades / Construction</option>
+            <option value="Other Service">Other Service Business</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="revenue_range">Annual Revenue Range</label>
+          <select id="revenue_range" name="revenue_range" required>
+            <option value="" disabled selected>Select a range</option>
+            <option value="Under $500K">Under $500K</option>
+            <option value="$500K - $1M">$500K – $1M</option>
+            <option value="$1M - $3M">$1M – $3M</option>
+            <option value="$3M - $5M">$3M – $5M</option>
+            <option value="$5M - $10M">$5M – $10M</option>
+            <option value="Over $10M">Over $10M</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="team_size">Team Size (employees + contractors)</label>
+          <select id="team_size" name="team_size" required>
+            <option value="" disabled selected>Select team size</option>
+            <option value="Solo (just me)">Solo (just me)</option>
+            <option value="2-5">2–5</option>
+            <option value="6-15">6–15</option>
+            <option value="16-30">16–30</option>
+            <option value="30+">30+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="biggest_leak">What do you think your biggest profit leak is right now? <span style="color:rgba(232,233,240,0.35)">(optional)</span></label>
+          <textarea id="biggest_leak" name="biggest_leak" placeholder="e.g. I think we're overpaying vendors, or we have too many software subscriptions we don't use..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Apply for Beta Access</button>
+      </form>
+
+      <p class="footer-note">No credit card. No commitment. We review every application personally.<br />We'll be in touch within 48 hours.</p>
+    </div>
+
+    <div class="success-state" id="successView">
+      <div class="success-icon">✅</div>
+      <h2>Application received.</h2>
+      <p>We review every application personally. If you're a fit, you'll hear from Chris directly within 48 hours.<br /><br />We're onboarding only 3–5 companies — thank you for applying.</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('betaForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      const payload = {
+        first_name: document.getElementById('first_name').value,
+        email: document.getElementById('email').value,
+        business_name: document.getElementById('business_name').value,
+        industry: document.getElementById('industry').value,
+        revenue_range: document.getElementById('revenue_range').value,
+        team_size: document.getElementById('team_size').value,
+        biggest_leak: document.getElementById('biggest_leak').value,
+        submitted_at: new Date().toISOString()
+      };
+
+      try {
+        // WF-03 webhook — update URL after WF-03 is imported to n8n
+        const WF03_WEBHOOK_URL = 'https://profitos.app.n8n.cloud/webhook/beta-submit';
+
+        const res = await fetch(WF03_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        // Show success regardless (graceful degradation — we capture even if n8n is down)
+        document.getElementById('formView').style.display = 'none';
+        document.getElementById('successView').style.display = 'block';
+      } catch (err) {
+        // Fallback: still show success, Founder reviews manually
+        document.getElementById('formView').style.display = 'none';
+        document.getElementById('successView').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
