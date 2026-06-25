@@ -1,20 +1,19 @@
 /**
- * api/subscribe.js
- * Vercel serverless function — Kit (ConvertKit) waitlist subscription proxy
+ * api/subscribe.js — BUILD 06
+ * Kit waitlist subscription + Command Center A/B logging
  *
- * Required Vercel environment variables (set in Vercel dashboard):
- *   KIT_API_KEY  — API key from Kit account (Settings > Advanced > API Key)
- *   KIT_FORM_ID  — Kit form ID or embed UID (numeric ID or alphanumeric data-uid)
+ * Required Vercel env vars:
+ *   KIT_API_KEY         — Kit account API key
+ *   KIT_FORM_ID         — Kit form UID or numeric ID
+ *   KV_REST_API_URL     — Auto-set when Vercel KV is enabled
+ *   KV_REST_API_TOKEN   — Auto-set when Vercel KV is enabled
  *
- * Endpoint: POST /api/subscribe
- * Body:     { "email": "user@example.com" }
- * Returns:  { "success": true } on success
+ * POST /api/subscribe
+ * Body: { "email": "user@example.com", "cc_shown": 3 }
  */
 
 /**
- * Resolves an alphanumeric form UID (e.g. 'b7ca7a165b') to its numeric Kit form ID.
- * Kit v3 API does not return a uid field directly — the UID appears inside
- * the embed_js and embed_url URLs for each form. We match on that.
+ * Resolves alphanumeric form UID to numeric Kit form ID.
  * Skipped automatically when KIT_FORM_ID is already numeric.
  */
 async function resolveFormId(apiKey, formUid) {
@@ -24,19 +23,15 @@ async function resolveFormId(apiKey, formUid) {
   if (!listRes.ok) {
     throw new Error(`Kit forms list request failed: ${listRes.status}`);
   }
-  const data = await listRes.json();
+  const data  = await listRes.json();
   const forms = data.forms || [];
 
   console.log(`[subscribe] Kit returned ${forms.length} form(s) for UID lookup`);
 
   const match = forms.find(f => {
-    // Direct uid field (Kit v4 / future proofing)
-    if (f.uid && f.uid === formUid) return true;
-    // Numeric ID string match
-    if (String(f.id) === formUid) return true;
-    // UID embedded in embed_js URL: https://profitos.kit.com/{uid}/index.js
-    if (f.embed_js && f.embed_js.includes(formUid)) return true;
-    // UID embedded in embed_url
+    if (f.uid && f.uid === formUid)             return true;
+    if (String(f.id) === formUid)               return true;
+    if (f.embed_js  && f.embed_js.includes(formUid))  return true;
     if (f.embed_url && f.embed_url.includes(formUid)) return true;
     return false;
   });
@@ -50,38 +45,62 @@ async function resolveFormId(apiKey, formUid) {
   return String(match.id);
 }
 
+/**
+ * Increments a KV counter via Vercel KV REST API (Upstash Redis).
+ * Silently skips if KV env vars are not present (KV not yet enabled).
+ */
+async function kvIncr(key) {
+  const url   = process.env.KV_REST_API_URL;
+  const token = process.env.KV_REST_API_TOKEN;
+  if (!url || !token) {
+    console.log(`[subscribe] KV not enabled — skipping counter for key: ${key}`);
+    return;
+  }
+  try {
+    const res = await fetch(`${url}/incr/${encodeURIComponent(key)}`, {
+      method:  'POST',
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      console.error(`[subscribe] KV incr failed (${res.status}): ${body}`);
+    } else {
+      const data = await res.json();
+      console.log(`[subscribe] KV incr ${key} → ${data.result}`);
+    }
+  } catch (err) {
+    console.error(`[subscribe] KV incr error: ${err.message}`);
+  }
+}
+
 module.exports = async function handler(req, res) {
-  // ── CORS headers ──────────────────────────────────────────────
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // ── CORS ──────────────────────────────────────────────────────
+  res.setHeader('Access-Control-Allow-Origin',  '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  // ── Input validation ──────────────────────────────────────────
-  const body  = req.body || {};
-  const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+  // ── Input ─────────────────────────────────────────────────────
+  const body    = req.body || {};
+  const email   = typeof body.email    === 'string' ? body.email.trim().toLowerCase() : '';
+  const ccShown = typeof body.cc_shown === 'number' ? Math.floor(body.cc_shown)       : -1;
 
   if (!email || !email.includes('@') || !email.includes('.') || email.indexOf('@') < 1) {
     return res.status(400).json({ error: 'Valid email address required' });
   }
 
-  // ── Environment check ─────────────────────────────────────────
+  // ── Env check ─────────────────────────────────────────────────
   const apiKey = process.env.KIT_API_KEY;
   let   formId = process.env.KIT_FORM_ID;
 
   if (!apiKey || !formId) {
-    console.error('[subscribe] Missing KIT_API_KEY or KIT_FORM_ID env var');
+    console.error('[subscribe] Missing KIT_API_KEY or KIT_FORM_ID');
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  // ── Resolve UID → numeric ID if needed ───────────────────────
+  // ── Resolve UID → numeric ID ──────────────────────────────────
   try {
     if (!/^\d+$/.test(formId)) {
       formId = await resolveFormId(apiKey, formId);
@@ -91,21 +110,26 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
-  // ── Kit (ConvertKit) API subscribe call ───────────────────────
-  // Docs: https://developers.kit.com/v3#subscribe-to-a-form
-  // API key goes in the request body (Kit v3 — not Authorization header)
+  // ── Kit subscribe ─────────────────────────────────────────────
   try {
     const kitRes = await fetch(
       `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
       {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ api_key: apiKey, email: email })
+        body:    JSON.stringify({ api_key: apiKey, email })
       }
     );
 
-    // Kit returns 200 for both new and existing subscribers
     if (kitRes.ok) {
+      // ── A/B logging — fire and forget ────────────────────────
+      if (ccShown >= 0 && ccShown <= 21) {
+        // Total signups counter
+        kvIncr('cc:total');
+        // Per-chat counter
+        kvIncr(`cc:${ccShown}`);
+        console.log(`[subscribe] cc_shown=${ccShown} email=${email}`);
+      }
       return res.status(200).json({ success: true });
     }
 
