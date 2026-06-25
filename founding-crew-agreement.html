@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founding Crew Member Agreement — ProfitOS Engine</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #0D0F1A;
+      --bg2:    #12141F;
+      --bg3:    #1A1D2E;
+      --green:  #00FF88;
+      --purple: #9F8FEF;
+      --pink:   #F472B6;
+      --cyan:   #00FFFF;
+      --white:  #E8E9F0;
+      --grey:   rgba(232,233,240,0.5);
+      --border: rgba(232,233,240,0.08);
+      --font:   'Inter', sans-serif;
+      --mono:   'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    nav {
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
+    .logo em { font-style: normal; color: var(--green); }
+
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+
+    .doc-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    h1 em { font-style: normal; color: var(--green); }
+
+    .version {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--grey);
+      margin-bottom: 48px;
+    }
+
+    .section { margin-bottom: 44px; }
+    .section-head {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    p {
+      font-size: 0.92rem;
+      color: var(--grey);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--white); font-weight: 700; }
+
+    ul {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    ul li {
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.7;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    ul li::before {
+      content: '—';
+      color: var(--purple);
+      font-family: var(--mono);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .callout {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+    .callout p {
+      font-size: 0.88rem;
+      color: var(--white);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .foot-copy { font-size: 0.7rem; color: rgba(232,233,240,.25); font-family: var(--mono); }
+    .foot-logo { font-weight: 900; font-size: 0.9rem; }
+    .foot-logo em { font-style: normal; color: var(--green); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .page { padding: 48px 16px 72px; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Profit<em>OS</em> Engine</a>
+</nav>
+
+<div class="page">
+
+  <span class="doc-label">Internal — Founding Crew Only</span>
+
+  <h1>Founding Crew<br><em>Member Agreement</em></h1>
+  <div class="version">Version 1.0 &nbsp;&middot;&nbsp; Effective June 2026</div>
+
+  <div class="section">
+    <div class="section-head">01 — What This Is</div>
+    <p>
+      The ProfitOS Founding Crew is a private, limited-access beta program. You are getting direct access to ProfitOS Engine before public launch. Our watchdogs will run on your business. In exchange, you give us honest, direct feedback that shapes the final product.
+    </p>
+    <p>
+      This is not a demo. This is not a discount. This is the actual platform, running on your real business, before anyone else gets it.
+    </p>
+    <div class="callout">
+      <p>Founding Crew access is limited to 50 members. It is not reopened once closed.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">02 — What You Pay</div>
+    <p>
+      <strong>Cost-only access: approximately $14–15/month.</strong> This covers actual platform operating costs for your account during the beta period. There is no free tier. We believe members who have some skin in the game give better feedback.
+    </p>
+    <p>
+      When beta ends and you convert to a full Charter Membership, your rate locks at <strong>$297/month for life</strong> — regardless of what we charge publicly at launch or at any future date.
+    </p>
+    <ul>
+      <li>Beta billing starts when your access is confirmed and payment is set up.</li>
+      <li>There is no commitment beyond month-to-month during beta.</li>
+      <li>You can cancel anytime before conversion with no penalty.</li>
+      <li>If you convert to Charter Member, the rate lock is permanent and applies for as long as you remain a member.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-head">03 — What We Ask from You</div>
+    <p>We are building a product that will be used by real businesses to find and stop real profit leaks. Your job is to tell us the truth.</p>
+    <ul>
+      <li>Be active in our Slack channel at least once per week during the beta period.</li>
+      <li>Run the watchdogs on your business and share the results — wins and misses.</li>
+      <li>Tell us what is confusing, what is broken, and what matters most to you.</li>
+      <li>Provide honest ratings for each watchdog you use within 7 days of running it.</li>
+      <li>Respond to surveys and check-in messages within 48 hours when possible.</li>
+    </ul>
+    <p>You do not need to be a power user. You need to be an honest one.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">04 — What You Get</div>
+    <ul>
+      <li>Direct access to ProfitOS Engine before anyone else.</li>
+      <li>Over 50 watchdog specialists running scans on your business.</li>
+      <li>Charter Member rate lock at $297/month — never renegotiated, never increased.</li>
+      <li>Direct line to the founding team. Your voice shapes the product.</li>
+      <li>First access to every new agent as they are added.</li>
+      <li>Early notification of platform milestones, new features, and pricing changes before they are public.</li>
+    </ul>
+    <div class="callout">
+      <p>Charter Members are the last ones paid when the platform finds money. Your results come first. That is the whole model.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">05 — What This Is Not</div>
+    <ul>
+      <li>This is not a lifetime free membership. Beta pricing exists for the beta period only.</li>
+      <li>ProfitOS does not file taxes, submit grants, or manage payroll on your behalf. We surface opportunities. You act on them with your professional advisors.</li>
+      <li>No specific financial outcome is guaranteed. Results will vary based on your business, industry, and circumstances.</li>
+      <li>Founding Crew membership is non-transferable.</li>
+      <li>ProfitOS Engine LLC reserves the right to end the beta early, change the platform, or remove members who are not participating in good faith.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-head">06 — Confidentiality</div>
+    <p>
+      You are getting access to a pre-launch platform. We ask that you do not share screenshots, pricing, internal documents, or details about unannounced features without written permission from ProfitOS Engine LLC. You may talk about your results and your general experience. We want you to tell people about the wins.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">07 — Contact</div>
+    <p>
+      Questions, concerns, or feedback that does not belong in Slack:<br>
+      <strong>admin@profitosengine.com</strong>
+    </p>
+    <p>We respond within 24 hours, usually faster.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="foot-logo">Profit<em>OS</em> Engine</div>
+  <div class="foot-copy">ProfitOS Engine LLC &nbsp;&middot;&nbsp; profitosengine.com &nbsp;&middot;&nbsp; admin@profitosengine.com</div>
+</footer>
+
+</body>
+</html>
