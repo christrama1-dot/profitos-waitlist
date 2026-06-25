@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfitOS — CC Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #0D0F1A;
+      --bg2:    #12141F;
+      --bg3:    #1A1D2E;
+      --green:  #00FF88;
+      --purple: #9F8FEF;
+      --pink:   #F472B6;
+      --cyan:   #00FFFF;
+      --white:  #E8E9F0;
+      --grey:   rgba(232,233,240,0.5);
+      --border: rgba(232,233,240,0.08);
+      --font:   'Inter', sans-serif;
+      --mono:   'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    .header {
+      max-width: 860px;
+      margin: 0 auto 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo { font-weight: 900; font-size: 1rem; }
+    .logo em { font-style: normal; color: var(--green); }
+    .page-title {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .auth-wrap {
+      max-width: 440px;
+      margin: 80px auto;
+      text-align: center;
+    }
+    .auth-wrap h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 24px; }
+    .auth-row { display: flex; gap: 8px; }
+    .auth-row input {
+      flex: 1;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .auth-row input:focus { border-color: var(--purple); }
+    .auth-row input::placeholder { color: rgba(232,233,240,.3); }
+    .btn {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .auth-err {
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--pink);
+    }
+
+    .dash { display: none; max-width: 860px; margin: 0 auto; }
+    .dash.visible { display: block; }
+
+    .kv-notice {
+      background: rgba(159,143,239,0.08);
+      border: 1px solid rgba(159,143,239,0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--purple);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .summary-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .summary-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      flex: 1 1 160px;
+      text-align: center;
+    }
+    .summary-n {
+      font-family: var(--mono);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .summary-l {
+      font-size: 0.7rem;
+      color: var(--grey);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .section-head {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 16px;
+    }
+
+    .bar-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+    .bar-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .bar-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+    .bar-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--white);
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bar-rank {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--grey);
+      flex-shrink: 0;
+    }
+    .bar-count {
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .bar-pct {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--purple);
+      flex-shrink: 0;
+      min-width: 48px;
+      text-align: right;
+    }
+    .bar-track {
+      background: rgba(232,233,240,0.06);
+      border-radius: 999px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transition: width 0.6s ease;
+    }
+    .bar-item.top .bar-fill { background: linear-gradient(90deg, var(--green), var(--cyan)); }
+
+    .zero-row {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--grey);
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    .footer-note {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: rgba(232,233,240,0.2);
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .refresh-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--grey);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      letter-spacing: 0.08em;
+    }
+    .refresh-btn:hover { border-color: var(--purple); color: var(--white); }
+
+    @media (max-width: 600px) {
+      body { padding: 24px 16px; }
+      .summary-card { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Profit<em>OS</em> Engine</div>
+  <div class="page-title">Command Center Analytics</div>
+</div>
+
+<!-- AUTH -->
+<div class="auth-wrap" id="auth-wrap">
+  <h2>Founder Access</h2>
+  <div class="auth-row">
+    <input type="password" id="stats-key" placeholder="Enter stats key" autocomplete="off" />
+    <button class="btn" id="auth-btn" onclick="loadStats()">View</button>
+  </div>
+  <div class="auth-err" id="auth-err"></div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dash" id="dash">
+  <div id="kv-notice" class="kv-notice" style="display:none">
+    Vercel KV is not yet enabled. Enable KV in the Vercel dashboard to start tracking Command Center conversions.
+    Once enabled, every waitlist signup will log which chat was displayed.
+  </div>
+
+  <div class="summary-row">
+    <div class="summary-card">
+      <span class="summary-n" id="s-total">—</span>
+      <span class="summary-l">Total Signups</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-n" id="s-chats">22</span>
+      <span class="summary-l">Chat Variants</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-n" id="s-top">—</span>
+      <span class="summary-l">Top Chat #</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-n" id="s-top-pct">—</span>
+      <span class="summary-l">Top Chat %</span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div class="section-head" style="margin-bottom:0;">Conversion by Chat Variant</div>
+    <button class="refresh-btn" onclick="loadStats()">↻ Refresh</button>
+  </div>
+  <div class="bar-list" id="bar-list"></div>
+
+  <div class="footer-note" id="footer-note"></div>
+</div>
+
+<script>
+// Chat labels — keep in sync with index.html CC array order
+var CHAT_LABELS = [
+  'Text — Cabo trip',
+  '#team-updates — Holiday party',
+  'Text — Alex: Running it now',
+  'Text — Dinner Saturday',
+  'Text — Mike: Good things we can fix',
+  '#finance — InvoiceChaser $47k',
+  'Notes — 7 findings',
+  '#finance — $22k board deck',
+  'Text — Amy: Really good actually',
+  '#finance — Vendor overcharge',
+  '#accounting — $800/mo subscriptions',
+  '#finance — February billing gaps',
+  '#accounting — GrantHound 2 programs',
+  '#accounting — Tax credit CPA',
+  'Text — Section 179 / CPA',
+  '#accounting — 23 subscriptions / 6 unused',
+  'Note — Priced below average',
+  '#general — Redundant tools / $400 back',
+  '#hr — PayrollGuard 3 flags',
+  '#accounting — Billed twice x3',
+  'Note — Contract canceled',
+  '#accounting — TaxHound deduction',
+];
+
+var statsKey = '';
+
+function loadStats() {
+  var inp = document.getElementById('stats-key');
+  var key = inp ? inp.value.trim() : statsKey;
+  if (!key) {
+    showAuthErr('Enter your stats key.');
+    return;
+  }
+  statsKey = key;
+
+  var authBtn = document.getElementById('auth-btn');
+  if (authBtn) authBtn.disabled = true;
+
+  fetch('/api/cc-stats?key=' + encodeURIComponent(key))
+    .then(function(r) {
+      if (r.status === 401) throw new Error('invalid_key');
+      if (!r.ok)            throw new Error('server_error');
+      return r.json();
+    })
+    .then(function(data) {
+      if (authBtn) authBtn.disabled = false;
+      renderDash(data);
+    })
+    .catch(function(err) {
+      if (authBtn) authBtn.disabled = false;
+      if (err.message === 'invalid_key') {
+        showAuthErr('Invalid key. Try again.');
+      } else {
+        showAuthErr('Could not load stats. Check console.');
+        console.error(err);
+      }
+    });
+}
+
+function showAuthErr(msg) {
+  var el = document.getElementById('auth-err');
+  if (el) el.textContent = msg;
+}
+
+function renderDash(data) {
+  // Hide auth, show dash
+  document.getElementById('auth-wrap').style.display = 'none';
+  var dash = document.getElementById('dash');
+  dash.classList.add('visible');
+
+  // KV notice
+  if (!data.kv_enabled) {
+    document.getElementById('kv-notice').style.display = 'block';
+  }
+
+  var total = data.total || 0;
+  var chats = data.chats || [];
+
+  // Summary cards
+  document.getElementById('s-total').textContent = total;
+
+  var topChat = chats.length > 0 ? chats[0] : null;
+  if (topChat && total > 0) {
+    document.getElementById('s-top').textContent     = '#' + topChat.index;
+    document.getElementById('s-top-pct').textContent = topChat.pct + '%';
+  } else {
+    document.getElementById('s-top').textContent     = '—';
+    document.getElementById('s-top-pct').textContent = '—';
+  }
+
+  // Bar list
+  var list   = document.getElementById('bar-list');
+  list.innerHTML = '';
+
+  if (total === 0 || chats.length === 0) {
+    var zero = document.createElement('div');
+    zero.className = 'zero-row';
+    zero.textContent = 'No signups tracked yet. Signups will appear here once KV is enabled and members join.';
+    list.appendChild(zero);
+  } else {
+    var maxCount = chats[0].count || 1;
+    chats.forEach(function(chat, rank) {
+      if (chat.count === 0 && rank > 5) return; // hide zero rows beyond top 6
+      var label = CHAT_LABELS[chat.index] || ('Chat #' + chat.index);
+      var pct   = parseFloat(chat.pct) || 0;
+      var fill  = maxCount > 0 ? (chat.count / maxCount * 100).toFixed(1) : 0;
+
+      var item = document.createElement('div');
+      item.className = 'bar-item' + (rank === 0 ? ' top' : '');
+      item.innerHTML =
+        '<div class="bar-meta">' +
+          '<span class="bar-rank">#' + (rank + 1) + ' &middot; cc:' + chat.index + '</span>' +
+          '<span class="bar-label">' + label + '</span>' +
+          '<span class="bar-count">' + chat.count + '</span>' +
+          '<span class="bar-pct">' + chat.pct + '%</span>' +
+        '</div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + fill + '%"></div></div>';
+      list.appendChild(item);
+    });
+  }
+
+  // Footer
+  if (data.generated) {
+    document.getElementById('footer-note').textContent =
+      'Generated ' + new Date(data.generated).toLocaleString();
+  }
+}
+
+// Allow Enter key in auth
+document.getElementById('stats-key').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') loadStats();
+});
+</script>
+</body>
+</html>
