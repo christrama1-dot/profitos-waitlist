@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The ProfitOS Founding Crew</title>
+  <meta name="description" content="50 spots. Cost only. Help us build the platform while we find your profit leaks." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #0D0F1A;
+      --bg2:    #12141F;
+      --bg3:    #1A1D2E;
+      --green:  #00FF88;
+      --purple: #9F8FEF;
+      --pink:   #F472B6;
+      --cyan:   #00FFFF;
+      --white:  #E8E9F0;
+      --grey:   rgba(232,233,240,0.5);
+      --border: rgba(232,233,240,0.08);
+      --font:   'Inter', sans-serif;
+      --mono:   'JetBrains Mono', monospace;
+      --grad:   linear-gradient(135deg,#00FFFF 0%,#9F8FEF 50%,#F472B6 100%);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav {
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
+    .logo em { font-style: normal; color: var(--green); }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.07;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+    h1 .hl { color: var(--green); }
+
+    .sub {
+      font-size: 1.1rem;
+      color: var(--grey);
+      line-height: 1.7;
+      margin-bottom: 48px;
+      font-weight: 600;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .info-blocks { display: flex; flex-direction: column; gap: 28px; margin-bottom: 48px; }
+    .info-block {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .info-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.15em;
+      padding-top: 3px;
+      flex-shrink: 0;
+      width: 28px;
+    }
+    .info-text h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .info-text p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+    .info-text p strong { color: var(--white); }
+
+    .form-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad);
+    }
+    .form-card h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .form-card p.form-intro {
+      font-size: 0.88rem;
+      color: var(--grey);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .field { margin-bottom: 20px; }
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 8px;
+      font-family: var(--mono);
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.95rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color .2s;
+      resize: none;
+    }
+    .field input:focus,
+    .field textarea:focus { border-color: var(--purple); }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(232,233,240,.25); }
+    .field textarea { min-height: 120px; line-height: 1.65; }
+
+    .btn-apply {
+      width: 100%;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 18px 28px;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      margin-top: 8px;
+    }
+    .btn-apply:hover   { opacity: .88; }
+    .btn-apply:active  { transform: scale(.98); }
+    .btn-apply:disabled { opacity: .5; cursor: not-allowed; }
+
+    .form-note {
+      margin-top: 16px;
+      font-size: 0.72rem;
+      color: rgba(232,233,240,.28);
+      font-family: var(--mono);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .form-ok {
+      display: none;
+      background: rgba(0,255,136,.07);
+      border: 1px solid rgba(0,255,136,.25);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .form-ok h3 { font-size: 1.1rem; font-weight: 800; color: var(--green); margin-bottom: 10px; }
+    .form-ok p  { font-size: 0.88rem; color: var(--grey); line-height: 1.7; }
+
+    .capacity-note {
+      margin-top: 24px;
+      font-size: 0.82rem;
+      color: var(--grey);
+      text-align: center;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 40px;
+      text-align: center;
+    }
+    .foot-copy { font-size: 0.7rem; color: rgba(232,233,240,.25); font-family: var(--mono); }
+
+    @media (max-width: 600px) {
+      nav  { padding: 16px 20px; }
+      .page { padding: 48px 16px 72px; }
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Profit<em>OS</em> Engine</a>
+</nav>
+
+<div class="page">
+
+  <span class="eyebrow">Limited Access — 50 Spots Total</span>
+
+  <h1>The ProfitOS<br><span class="hl">Founding Crew</span></h1>
+
+  <p class="sub">50 spots. Cost only. You help us build it.</p>
+
+  <hr class="divider" />
+
+  <div class="info-blocks">
+    <div class="info-block">
+      <div class="info-num">01</div>
+      <div class="info-text">
+        <h3>What this is</h3>
+        <p>The Founding Crew is a private beta. You get direct access to ProfitOS before public launch. Our watchdogs run on your business. You tell us what works, what is missing, and what matters most to you. Your feedback shapes the product before it goes live.</p>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="info-num">02</div>
+      <div class="info-text">
+        <h3>What it costs</h3>
+        <p>There is no free tier here. <strong>Cost-only access is approximately $14–15/month</strong> — enough to cover what we actually spend running the platform for you. When you convert to a full Charter Member at the end of beta, your rate locks at $297/month for life. No upgrade pricing. No surprises.</p>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="info-num">03</div>
+      <div class="info-text">
+        <h3>What we ask from you</h3>
+        <p>One Slack channel. Honest reactions. When something is confusing or broken — tell us. When something works — tell us. We are not looking for cheerleaders. We are looking for operators who know their numbers and will say what they think. That is it.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- APPLICATION FORM -->
+  <div class="form-card" id="form-card">
+    <h2>Apply for a Spot</h2>
+    <p class="form-intro">Tell us a little about yourself and your business. We read every application personally. We select based on fit — not speed.</p>
+
+    <div class="field">
+      <label for="fc-name">Full Name</label>
+      <input type="text" id="fc-name" placeholder="Your name" autocomplete="name" />
+    </div>
+
+    <div class="field">
+      <label for="fc-email">Business Email</label>
+      <input type="email" id="fc-email" placeholder="you@yourbusiness.com" autocomplete="email" />
+    </div>
+
+    <div class="field">
+      <label for="fc-answer">What is the biggest profit leak in your business right now?</label>
+      <textarea id="fc-answer" placeholder="Be specific. The more you tell us, the better we can match your business to the right watchdogs."></textarea>
+    </div>
+
+    <button class="btn-apply" id="fc-btn" onclick="applyFC()">Apply for a Spot</button>
+
+    <p class="form-note">
+      No credit card required to apply.<br>
+      If selected, you will receive payment instructions by email within 48 hours.
+    </p>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div class="form-ok" id="form-ok">
+    <h3>Application received.</h3>
+    <p>We review every application personally. You will hear from us within 48 hours. If you are selected, we will send payment instructions and your access details by email.</p>
+  </div>
+
+  <p class="capacity-note">Spots are limited. Not everyone who applies gets in.<br>We select based on fit.</p>
+
+</div>
+
+<footer>
+  <div class="foot-copy">&copy; 2026 ProfitOS Engine LLC &nbsp;&middot;&nbsp; profitosengine.com</div>
+</footer>
+
+<script>
+function applyFC() {
+  var name   = document.getElementById('fc-name').value.trim();
+  var email  = document.getElementById('fc-email').value.trim().toLowerCase();
+  var answer = document.getElementById('fc-answer').value.trim();
+  var btn    = document.getElementById('fc-btn');
+
+  if (!name) {
+    alert('Please enter your full name.');
+    document.getElementById('fc-name').focus();
+    return;
+  }
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    alert('Please enter a valid business email.');
+    document.getElementById('fc-email').focus();
+    return;
+  }
+  if (!answer || answer.length < 10) {
+    alert('Please answer the profit leak question.');
+    document.getElementById('fc-answer').focus();
+    return;
+  }
+
+  btn.disabled    = true;
+  btn.textContent = 'Submitting\u2026';
+
+  fetch('/api/founding-crew-apply', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ name, email, answer })
+  })
+  .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+  .then(function() {
+    document.getElementById('form-card').style.display = 'none';
+    document.getElementById('form-ok').style.display   = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  })
+  .catch(function(err) {
+    btn.disabled    = false;
+    btn.textContent = 'Apply for a Spot';
+    alert('Something went wrong. Please try again or email us at admin@profitosengine.com.');
+    console.error('FC apply error:', err);
+  });
+}
+
+document.getElementById('fc-answer').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    // Allow normal Enter in textarea — do not submit
+  }
+});
+</script>
+</body>
+</html>
