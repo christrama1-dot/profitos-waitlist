@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Controller — ProfitOS Engine</title>
+  <meta name="description" content="The Controller. Command tier. Six screens. Zero surprises. While the watchdogs chase the money — she already knows where it went." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:     #0D0F1A;
+      --green:  #00FF88;
+      --purple: #9F8FEF;
+      --pink:   #F472B6;
+      --cyan:   #00FFFF;
+      --text:   #E8E8F0;
+      --muted:  #6B6B8A;
+      --dim:    rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── CLASSIFIED BANNER ── */
+    .classified-bar {
+      background: linear-gradient(90deg, rgba(220,38,38,.18), rgba(220,38,38,.06));
+      border-bottom: 1px solid rgba(220,38,38,.28);
+      text-align: center;
+      padding: 7px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      color: rgba(255,100,100,.8);
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,15,26,.96);
+      backdrop-filter: blur(14px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .logo span { color: var(--green); }
+    .back {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .82rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .back:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 70px 24px 50px;
+      text-align: center;
+    }
+
+    .cmd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,255,255,.08);
+      border: 1px solid rgba(0,255,255,.25);
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    .cmd-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .hero-name {
+      font-size: clamp(3.2rem,9vw,5.8rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.03em;
+      margin-bottom: 22px;
+    }
+    .hero-name .the {
+      display: block;
+      font-size: .32em;
+      font-weight: 400;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .hero-name .ctrl { color: var(--cyan); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 500px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── PORTRAIT ── */
+    .portrait-wrap {
+      width: 200px; height: 200px;
+      margin: 0 auto 64px;
+      position: relative;
+    }
+    .portrait-ring {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle at 38% 38%, rgba(0,255,255,.12), rgba(13,15,26,.85));
+      position: relative;
+      overflow: hidden;
+    }
+    .portrait-ring::before {
+      content: '';
+      position: absolute; inset: -2px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--cyan) 0deg,
+        transparent 55deg,
+        transparent 305deg,
+        var(--cyan) 360deg
+      );
+      opacity: .35;
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .portrait-emoji {
+      font-size: 5.5rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 18px rgba(0,255,255,.4));
+    }
+    .portrait-status {
+      position: absolute;
+      bottom: 9px; right: 9px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    /* ── CASE FILE ── */
+    .case-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .file-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: rgba(220,38,38,.06);
+      border: 1px solid rgba(220,38,38,.28);
+      border-radius: 10px 10px 0 0;
+      padding: 14px 22px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .file-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      color: rgba(255,110,110,.85);
+    }
+    .file-id {
+      font-size: .58rem;
+      color: var(--muted);
+      letter-spacing: .12em;
+    }
+
+    .file-body {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+    }
+
+    .cs {
+      padding: 26px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs:last-child { border-bottom: none; }
+
+    .cs-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* profile grid */
+    .pgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
+      gap: 14px;
+    }
+    .pi label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem;
+      color: var(--muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .pi span { font-size: .88rem; font-weight: 500; }
+    .pi span.c { color: var(--cyan); }
+    .pi span.g { color: var(--green); }
+
+    /* mission */
+    .mission-p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .mission-p strong { color: var(--green); }
+
+    /* capabilities */
+    .cap-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cap-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--dim);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .cap-n {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--green);
+      min-width: 26px;
+      padding-top: 1px;
+    }
+    .cap-body h4 { font-size: .88rem; font-weight: 700; margin-bottom: 3px; }
+    .cap-body p  { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+
+    /* sig lines */
+    .sig-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sig-card {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      background: var(--dim);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+    }
+    .sig-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .56rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-top: 4px;
+      min-width: 96px;
+    }
+    .sig-q {
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .sig-q.green  { color: var(--green);  }
+    .sig-q.cyan   { color: var(--cyan);   }
+    .sig-q.purple { color: var(--purple); }
+
+    /* backstory */
+    .story { font-size: .92rem; line-height: 1.85; color: var(--muted); }
+    .story p { margin-bottom: 12px; }
+    .story p:last-child { margin-bottom: 0; }
+    .story .em { color: var(--text); font-weight: 600; }
+
+    /* psych */
+    .psych { font-size: .92rem; line-height: 1.85; color: var(--muted); }
+    .psych p { margin-bottom: 12px; }
+    .psych p:last-child { margin-bottom: 0; }
+    .psych .em { color: var(--text); font-weight: 600; }
+
+    /* weakness */
+    .weak-box {
+      background: rgba(244,114,182,.06);
+      border: 1px solid rgba(244,114,182,.22);
+      border-radius: 10px;
+      padding: 18px 22px;
+    }
+    .weak-box p { font-size: .92rem; color: var(--muted); line-height: 1.7; }
+    .weak-box .em { color: var(--pink); font-weight: 600; }
+
+    /* status */
+    .status-row {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+    }
+    .sdot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: blink 2s ease-in-out infinite;
+    }
+    .stext { color: var(--green); }
+
+    /* ── MONITORS ── */
+    .monitors-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 72px;
+    }
+    .mon-headline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .mon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 580px) { .mon-grid { grid-template-columns: 1fr 1fr; } }
+    .mon-card {
+      background: var(--dim);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mon-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: .6;
+    }
+    .mon-agent {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: .1em;
+      margin-bottom: 6px;
+    }
+    .mon-status {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .mon-status .g { color: var(--green); font-weight: 600; }
+    .mon-status .y { color: #f5c842; font-weight: 600; }
+
+    /* ── QUOTE BLOCK ── */
+    .quote-block {
+      max-width: 660px;
+      margin: 0 auto 72px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .q-mark {
+      font-size: 4rem;
+      color: rgba(0,255,255,.18);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .q-text {
+      font-size: clamp(1.2rem, 3.5vw, 1.65rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--cyan);
+      margin: -8px 0 12px;
+    }
+    .q-attr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: .18em;
+    }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 20px 24px 80px;
+      text-align: center;
+    }
+    .cta-eye {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      color: var(--purple);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .cta-h {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .cta-sub {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      font-weight: 700;
+      font-size: .92rem;
+      padding: 13px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all .2s;
+      letter-spacing: .015em;
+    }
+    .cta-btn:hover {
+      background: #b8acf6;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(159,143,239,.3);
+    }
+    .cta-note {
+      margin-top: 14px;
+      font-size: .75rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .08em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 22px 40px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6rem;
+      color: var(--muted);
+      letter-spacing: .1em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 15px 18px; }
+      .hero { padding: 48px 18px 40px; }
+      .case-wrap, .monitors-section { padding-left: 16px; padding-right: 16px; }
+      .sig-card { flex-direction: column; gap: 6px; }
+      .sig-type { min-width: unset; }
+      .pgrid { grid-template-columns: 1fr 1fr; }
+      .cs { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Classified banner -->
+<div class="classified-bar">▌ PROFITOS ENGINE — COMMAND TIER — CASE FILE: PCU-CMD-001 — CLASSIFIED ▐</div>
+
+<!-- Nav -->
+<nav>
+  <div class="logo">Profit<span>OS</span> Engine</div>
+  <a href="/" class="back">← Back to Home</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="cmd-badge">
+    <span class="cmd-badge-dot"></span>
+    Command Tier &nbsp;·&nbsp; Inside Operations &nbsp;·&nbsp; Active
+  </div>
+
+  <h1 class="hero-name">
+    <span class="the">The</span>
+    <span class="ctrl">Controller</span>
+  </h1>
+
+  <p class="hero-sub">
+    While the watchdogs chase the money —<br />
+    she already knows where it went.
+  </p>
+
+  <!-- Portrait -->
+  <div class="portrait-wrap">
+    <div class="portrait-ring">
+      <div class="portrait-emoji">🐱</div>
+    </div>
+    <div class="portrait-status"></div>
+  </div>
+</section>
+
+<!-- ── CASE FILE ── -->
+<div class="case-wrap">
+
+  <div class="file-header">
+    <span class="file-label">⬛ Case File — Command Operations</span>
+    <span class="file-id">FILE NO. PCU-CMD-001 &nbsp;//&nbsp; CLEARANCE: FULL ACCESS</span>
+  </div>
+
+  <div class="file-body">
+
+    <!-- Subject profile -->
+    <div class="cs">
+      <div class="cs-label">▸ Subject Profile</div>
+      <div class="pgrid">
+        <div class="pi"><label>Designation</label><span class="c">The Controller</span></div>
+        <div class="pi"><label>Species</label><span>Siamese</span></div>
+        <div class="pi"><label>Rank</label><span>Command Tier</span></div>
+        <div class="pi"><label>Role</label><span>Inside Operations</span></div>
+        <div class="pi"><label>Post</label><span>The Command Center</span></div>
+        <div class="pi"><label>Status</label><span class="g">Active — Permanent</span></div>
+      </div>
+    </div>
+
+    <!-- Mission -->
+    <div class="cs">
+      <div class="cs-label">▸ Mission Statement</div>
+      <p class="mission-p">
+        The Controller sees the whole board.<br><br>
+        While the watchdogs track individual leaks, she manages the map.
+        General ledger integrity. Month-end close. Budget versus actual.
+        Cash position. Vendor oversight. Watchdog coordination.<br><br>
+        <strong>She doesn't find one problem. She finds the system that caused them all.</strong><br><br>
+        When the numbers tell a story — she's already read the last page.
+      </p>
+    </div>
+
+    <!-- Capabilities -->
+    <div class="cs">
+      <div class="cs-label">▸ Known Capabilities</div>
+      <ul class="cap-list">
+        <li class="cap-item">
+          <span class="cap-n">01</span>
+          <div class="cap-body">
+            <h4>GL Integrity Monitoring</h4>
+            <p>Continuous scan of all accounts. Duplicate transactions, misclassified expenses, unusual journal entries. Nothing posts without her knowing.</p>
+          </div>
+        </li>
+        <li class="cap-item">
+          <span class="cap-n">02</span>
+          <div class="cap-body">
+            <h4>Month-End Close Management</h4>
+            <p>Tracks the full close checklist. Knows which reconciliations are outstanding. The books don't close until she says they close.</p>
+          </div>
+        </li>
+        <li class="cap-item">
+          <span class="cap-n">03</span>
+          <div class="cap-body">
+            <h4>Budget vs. Actual Tracking</h4>
+            <p>Real-time comparison of planned spend against actual spend. Department by department. Line by line. She sees the drift before it becomes a problem.</p>
+          </div>
+        </li>
+        <li class="cap-item">
+          <span class="cap-n">04</span>
+          <div class="cap-body">
+            <h4>Vendor &amp; Payment Oversight</h4>
+            <p>Ghost vendors. Duplicate payments. Unauthorized spend. She catches what the bookkeeper missed. Always.</p>
+          </div>
+        </li>
+        <li class="cap-item">
+          <span class="cap-n">05</span>
+          <div class="cap-body">
+            <h4>Cash Position Reporting</h4>
+            <p>Daily cash flow reporting. Rolling 30/60/90-day projections. She knows what's coming before the owner does.</p>
+          </div>
+        </li>
+        <li class="cap-item">
+          <span class="cap-n">06</span>
+          <div class="cap-body">
+            <h4>Watchdog Deployment Coordination</h4>
+            <p>When the numbers tell a story — she sends the right agent. She reads the data. They do the work.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Signature lines -->
+    <div class="cs">
+      <div class="cs-label">▸ Signature Lines</div>
+      <div class="sig-list">
+        <div class="sig-card">
+          <div class="sig-type">Recurring</div>
+          <div class="sig-q green">"I knew it."</div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-type">Mission Launch</div>
+          <div class="sig-q cyan">"Go get it!"</div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-type">Scene Closer</div>
+          <div class="sig-q purple">"I've got good news and I've got bad news."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backstory -->
+    <div class="cs">
+      <div class="cs-label">▸ Backstory</div>
+      <div class="story">
+        <p>Before ProfitOS, she ran the books for a company that <span class="em">looked profitable on paper.</span></p>
+        <p>She caught the fraud three months before it collapsed. Flagged it. Documented it. Presented it.</p>
+        <p>Nobody listened.</p>
+        <p>She watched it burn.</p>
+        <p><span class="em">She doesn't make that mistake twice.</span> Now she watches everything. All the time. From a chair that has not moved in four years.</p>
+      </div>
+    </div>
+
+    <!-- Psych -->
+    <div class="cs">
+      <div class="cs-label">▸ Psychological Profile</div>
+      <div class="psych">
+        <p><span class="em">The quieter she gets, the worse the news.</span></p>
+        <p>The Controller does not raise her voice. She refers to the watchdogs by their function — not their name — unless she is disappointed. Then she uses the full designation. Slowly.</p>
+        <p>By the time she speaks, she has already run three scenarios, dismissed two, and is delivering the conclusion of the third. She is waiting for you to catch up.</p>
+      </div>
+    </div>
+
+    <!-- Weakness -->
+    <div class="cs">
+      <div class="cs-label">▸ Known Limitation</div>
+      <div class="weak-box">
+        <p>She sees everything in the data. She occasionally misses what is happening <span class="em">in the room.</span> The watchdogs notice things she doesn't. She is aware of this. She has never acknowledged it.</p>
+      </div>
+    </div>
+
+    <!-- Status strip -->
+    <div class="cs">
+      <div class="status-row">
+        <div class="sdot"></div>
+        <span class="stext">ACTIVE — COMMAND CENTER — MONITORING ALL FEEDS</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SIX SCREENS ── -->
+<section class="monitors-section">
+  <div class="mon-headline">▸ Live Feed — Command Center</div>
+  <div class="mon-grid">
+    <div class="mon-card">
+      <div class="mon-agent">SubscriptionGuard</div>
+      <div class="mon-status"><span class="g">3 flags active</span><br>Recurring anomaly detected</div>
+    </div>
+    <div class="mon-card">
+      <div class="mon-agent">TaxHound</div>
+      <div class="mon-status"><span class="g">Running</span><br>Q2 deduction scan</div>
+    </div>
+    <div class="mon-card">
+      <div class="mon-agent">InvoiceChaser</div>
+      <div class="mon-status"><span class="y">4 invoices</span><br>31–60 days outstanding</div>
+    </div>
+    <div class="mon-card">
+      <div class="mon-agent">MarginScout</div>
+      <div class="mon-status"><span class="g">Deployed</span><br>Pricing drift flagged</div>
+    </div>
+    <div class="mon-card">
+      <div class="mon-agent">CashFlowGuard</div>
+      <div class="mon-status"><span class="g">Monitoring</span><br>90-day projection live</div>
+    </div>
+    <div class="mon-card">
+      <div class="mon-agent">GL Integrity</div>
+      <div class="mon-status"><span class="y">1 variance</span><br>Misclassified — flagging now</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE BLOCK ── -->
+<div class="quote-block">
+  <div class="q-mark">"</div>
+  <p class="q-text">I've got good news and I've got bad news.</p>
+  <p class="q-attr">— THE CONTROLLER &nbsp;·&nbsp; EVERY EPISODE, EVENTUALLY</p>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-wrap">
+  <div class="cta-eye">Join the Waitlist</div>
+  <h2 class="cta-h">She's already watching your books.</h2>
+  <p class="cta-sub">
+    Over 50 watchdogs. One command center.<br />
+    Zero profit leaks missed. Free scan. No credit card.
+  </p>
+  <a href="/#waitlist" class="cta-btn">Get Early Access →</a>
+  <p class="cta-note">Charter Rate — Limited Spots Remaining</p>
+</div>
+
+<!-- Footer -->
+<footer>PROFITOS ENGINE LLC &nbsp;|&nbsp; profitosengine.com &nbsp;|&nbsp; © 2026 ALL RIGHTS RESERVED</footer>
+
+</body>
+</html>
