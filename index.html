@@ -9,20 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:     #0D0F1A;
-      --bg2:    #12141F;
+      --bg:     #FFFFFF;
+      --bg2:    #F7F4FF;
       --bg3:    #1A1D2E;
       --bg4:    #141627;
-      --green:  #00FF88;
-      --purple: #9F8FEF;
-      --pink:   #F472B6;
-      --cyan:   #00FFFF;
-      --white:  #E8E9F0;
-      --grey:   rgba(232,233,240,0.5);
-      --border: rgba(232,233,240,0.08);
+      --green:  #009955;
+      --purple: #6B4FD8;
+      --pink:   #C43677;
+      --cyan:   #0088CC;
+      --white:  #0D0F1A;
+      --grey:   rgba(13,15,26,0.5);
+      --border: rgba(13,15,26,0.1);
       --font:   'Inter', sans-serif;
       --mono:   'JetBrains Mono', monospace;
-      --grad:   linear-gradient(135deg,#00FFFF 0%,#9F8FEF 50%,#F472B6 100%);
+      --grad:   linear-gradient(135deg,#0088CC 0%,#6B4FD8 50%,#C43677 100%);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -109,7 +109,7 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--green);
-      border: 1px solid rgba(0,255,136,.25);
+      border: 1px solid rgba(0,153,85,.35);
       border-radius: 999px;
       padding: 6px 16px;
       margin-bottom: 24px;
@@ -146,7 +146,7 @@
       transition: border-color .2s;
     }
     .form-row input[type="email"]:focus { border-color: var(--purple); }
-    .form-row input[type="email"]::placeholder { color: rgba(232,233,240,.28); }
+    .form-row input[type="email"]::placeholder { color: rgba(13,15,26,.35); }
     .btn-main {
       flex: 1 1 auto;
       background: var(--purple);
@@ -164,11 +164,11 @@
     .btn-main:hover { opacity: .88; }
     .btn-main:active { transform: scale(.98); }
     .btn-main:disabled { opacity: .55; cursor: not-allowed; }
-    .form-note { margin-top: 12px; font-size: .72rem; color: rgba(232,233,240,.3); font-family: var(--mono); }
+    .form-note { margin-top: 12px; font-size: .72rem; color: rgba(13,15,26,.5); font-family: var(--mono); }
     .form-ok {
       display: none;
-      background: rgba(0,255,136,.08);
-      border: 1px solid rgba(0,255,136,.3);
+      background: rgba(0,153,85,.08);
+      border: 1px solid rgba(0,153,85,.3);
       border-radius: 12px;
       padding: 18px 24px;
       color: var(--green);
@@ -230,15 +230,15 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
+      background: rgba(13,15,26,0.07);
+      border: 1px solid rgba(13,15,26,0.12);
       border-radius: 999px;
       padding: 10px 18px;
       white-space: nowrap;
       transition: border-color .2s, background .2s;
       cursor: default;
     }
-    .chip:hover { border-color: var(--purple); background: rgba(159,143,239,.08); }
+    .chip:hover { border-color: var(--purple); background: rgba(107,79,216,.08); }
     .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .dot-g { background: var(--green);  box-shadow: 0 0 7px var(--green); }
     .dot-p { background: var(--purple); box-shadow: 0 0 7px var(--purple); }
@@ -303,7 +303,7 @@
       font-family: var(--mono);
       font-size: .72rem;
       color: var(--grey);
-      background: var(--bg3);
+      background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 7px 15px;
@@ -312,14 +312,14 @@
     }
     .prob-chip-hl {
       color: var(--green);
-      background: rgba(0,255,136,.06);
-      border-color: rgba(0,255,136,.22);
+      background: rgba(0,153,85,.08);
+      border-color: rgba(0,153,85,.3);
     }
 
     .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; margin-top: 48px; }
     .step-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
+      background: var(--bg2);
+      border: 1px solid rgba(13,15,26,0.1);
       border-radius: 16px;
       padding: 32px 28px;
     }
@@ -342,11 +342,11 @@
       border: 1px solid rgba(232,233,240,0.1);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(159,143,239,0.1);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.18), 0 0 0 1px rgba(107,79,216,0.15);
     }
     .slack-header {
       background: var(--bg4);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(232,233,240,0.08);
       padding: 12px 18px;
       display: flex;
       align-items: center;
@@ -367,10 +367,10 @@
       flex-shrink: 0;
     }
     .slack-ws-info { line-height: 1; }
-    .slack-ws-name { font-weight: 700; font-size: 0.8rem; color: var(--white); }
+    .slack-ws-name { font-weight: 700; font-size: 0.8rem; color: #E8E9F0; }
     .slack-ws-status {
       font-size: 0.62rem;
-      color: var(--grey);
+      color: rgba(232,233,240,0.5);
       display: flex;
       align-items: center;
       gap: 4px;
@@ -389,7 +389,7 @@
       font-size: 0.65rem;
       color: rgba(232,233,240,0.4);
       background: rgba(232,233,240,0.05);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(232,233,240,0.08);
       border-radius: 6px;
       padding: 3px 9px;
       white-space: nowrap;
@@ -407,11 +407,11 @@
       transition: opacity 0.32s ease;
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: rgba(159,143,239,0.2) transparent;
+      scrollbar-color: rgba(107,79,216,0.2) transparent;
     }
     .slack-body::-webkit-scrollbar { width: 3px; }
     .slack-body::-webkit-scrollbar-track { background: transparent; }
-    .slack-body::-webkit-scrollbar-thumb { background: rgba(159,143,239,0.2); border-radius: 2px; }
+    .slack-body::-webkit-scrollbar-thumb { background: rgba(107,79,216,0.2); border-radius: 2px; }
     .slack-body.fading { opacity: 0; }
     .slack-msg { display: flex; gap: 11px; align-items: flex-start; }
     .slack-avatar {
@@ -422,7 +422,7 @@
       justify-content: center;
       font-weight: 800;
       font-size: 0.82rem;
-      color: var(--bg);
+      color: #0D0F1A;
       flex-shrink: 0;
       margin-top: 1px;
     }
@@ -434,7 +434,7 @@
       margin-bottom: 2px;
       flex-wrap: wrap;
     }
-    .slack-sender { font-weight: 700; font-size: 0.86rem; color: var(--white); line-height: 1; }
+    .slack-sender { font-weight: 700; font-size: 0.86rem; color: #E8E9F0; line-height: 1; }
     .slack-role {
       font-size: 0.62rem;
       color: rgba(232,233,240,0.45);
@@ -444,13 +444,13 @@
       padding: 1px 5px;
       line-height: 1.4;
     }
-    .slack-text { font-size: 0.88rem; color: var(--white); line-height: 1.6; word-break: break-word; }
+    .slack-text { font-size: 0.88rem; color: #E8E9F0; line-height: 1.6; word-break: break-word; }
     .slack-msg.continued .slack-avatar { visibility: hidden; }
     .slack-msg.continued .slack-meta { display: none; }
     .slack-disclaimer {
       margin-top: 4px;
       padding-top: 10px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(232,233,240,0.08);
       font-size: 0.62rem;
       font-family: var(--mono);
       color: rgba(232,233,240,0.22);
@@ -458,7 +458,7 @@
     }
     .slack-footer {
       background: var(--bg4);
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(232,233,240,0.08);
       padding: 10px 18px;
       display: flex;
       align-items: center;
@@ -466,7 +466,7 @@
     }
     .cc-nav-btn {
       background: none;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(232,233,240,0.12);
       border-radius: 6px;
       color: rgba(232,233,240,0.45);
       width: 26px; height: 26px;
@@ -480,7 +480,7 @@
       font-family: var(--font);
       line-height: 1;
     }
-    .cc-nav-btn:hover { border-color: var(--purple); color: var(--white); }
+    .cc-nav-btn:hover { border-color: var(--purple); color: #E8E9F0; }
     .cc-counter {
       font-family: var(--mono);
       font-size: 0.62rem;
@@ -518,8 +518,8 @@
     }
 
     .price-card {
-      background: var(--bg3);
-      border: 1px solid rgba(159,143,239,.3);
+      background: var(--bg2);
+      border: 1px solid rgba(107,79,216,.3);
       border-radius: 20px;
       padding: 48px 40px;
       max-width: 500px;
@@ -554,19 +554,19 @@
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(232,233,240,0.28);
+      color: rgba(13,15,26,0.55);
       margin-bottom: 10px;
     }
     .sources-body {
       font-family: var(--mono);
       font-size: 0.62rem;
-      color: rgba(232,233,240,0.22);
+      color: rgba(13,15,26,0.6);
       line-height: 1.9;
     }
-    .sources-body sup { font-size: 0.52rem; color: rgba(159,143,239,0.6); vertical-align: super; line-height: 0; margin-right: 2px; }
+    .sources-body sup { font-size: 0.52rem; color: rgba(107,79,216,0.8); vertical-align: super; line-height: 0; margin-right: 2px; }
     .sources-body em { font-style: italic; }
-    .sources-body a { color: rgba(159,143,239,0.5); text-decoration: none; }
-    .sources-body a:hover { color: var(--purple); }
+    .sources-body a { color: rgba(107,79,216,0.7); text-decoration: none; }
+    .sources-body a:hover { color: rgba(107,79,216,0.9); }
 
     footer {
       background: var(--bg);
@@ -581,7 +581,7 @@
     .foot-links { display: flex; gap: 24px; }
     .foot-links a { font-size: .78rem; color: var(--grey); text-decoration: none; }
     .foot-links a:hover { color: var(--white); }
-    .foot-copy { font-size: .7rem; color: rgba(232,233,240,.28); font-family: var(--mono); }
+    .foot-copy { font-size: .7rem; color: rgba(13,15,26,.35); font-family: var(--mono); }
 
     @media (max-width: 960px) {
       .hero-grid { grid-template-columns: 1fr; gap: 44px; padding: 48px 24px 56px; }
@@ -704,7 +704,7 @@
       <span class="prob-chip">Unpaid invoices</span>
       <span class="prob-chip prob-chip-hl">+ 49 other metrics you haven&rsquo;t considered</span>
     </div>
-    <p style="font-family:var(--mono);font-size:0.58rem;color:rgba(232,233,240,0.2);">Based on industry research. See full sources below.</p>
+    <p style="font-family:var(--mono);font-size:0.58rem;color:rgba(13,15,26,0.45);">Based on industry research. See full sources below.</p>
   </div>
   <h2 style="max-width:560px;margin:0 auto 20px;">Built to find what you all may have been missing.</h2>
   <p class="lead lead-c">
@@ -714,7 +714,7 @@
     <br><br>
     We built over 50 watchdogs to do exactly that.
   </p>
-  <p style="font-family:var(--mono);font-size:0.62rem;color:rgba(232,233,240,0.22);margin-top:28px;max-width:520px;margin-left:auto;margin-right:auto;">
+  <p style="font-family:var(--mono);font-size:0.62rem;color:rgba(13,15,26,0.5);margin-top:28px;max-width:520px;margin-left:auto;margin-right:auto;">
     <sup>1</sup> Intuit QuickBooks Late Payments Report 2025 &nbsp;&middot;&nbsp; <sup>2</sup> BetterCloud / Zylo 2025 &nbsp;&middot;&nbsp; <sup>3</sup> U.S. Chamber of Commerce &mdash; see full sources below.
     Individual results will vary. No specific outcome is guaranteed.
   </p>
@@ -1128,7 +1128,7 @@ function go(id) {
   var btn = document.getElementById('btn-' + id);
   var ok  = document.getElementById('ok-' + id);
   var em  = inp.value.trim();
-  if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#F472B6'; inp.focus(); return; }
+  if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#C43677'; inp.focus(); return; }
   btn.disabled = true;
   btn.textContent = 'Joining\u2026';
   inp.disabled = true;
@@ -1147,7 +1147,7 @@ function go(id) {
     btn.disabled = false;
     btn.textContent = LABELS[id];
     inp.disabled = false;
-    inp.style.borderColor = '#F472B6';
+    inp.style.borderColor = '#C43677';
   });
 }
 
