@@ -6,7 +6,7 @@
  * Variants:
  *   0 = A (CONTROL) — "It's like having a Controller / without the salary."
  *   1 = B           — "You just got a Controller. / Without the salary."
- *   2 = D           — "Your profit is LEAKING. / A Controller would have caught it."
+ *   2 = D           — "Your profit is LEAKING. / The Controller would have caught it."
  *
  * Force a variant for testing: ?h=0 | ?h=1 | ?h=2
  */
@@ -28,7 +28,7 @@
     {
       // D — Challenger
       line1: 'Your profit is LEAKING.',
-      line2: 'A Controller would have caught it.',
+      line2: 'The Controller would have caught it.',
       sub:   'Now you have one. Over 50 watchdogs. Results in about a minute. No credit card.'
     }
   ];
