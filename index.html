@@ -10,23 +10,23 @@
   <style>
     :root {
       --bg:     #FFFFFF;
-      --bg2:    #F7F4FF;
+      --bg2:    #FFF5EC;
       --bg3:    #1A1D2E;
       --bg4:    #141627;
       --green:  #009955;
-      --purple: #6B4FD8;
-      --pink:   #C43677;
-      --cyan:   #0088CC;
+      --orange: #D97706;
+      --blue:   #1A6CE8;
+      --amber:  #F5A623;
       --white:  #0D0F1A;
       --grey:   rgba(13,15,26,0.5);
       --border: rgba(13,15,26,0.1);
       --font:   'Inter', sans-serif;
       --mono:   'JetBrains Mono', monospace;
-      --grad:   linear-gradient(135deg,#0088CC 0%,#6B4FD8 50%,#C43677 100%);
+      --grad:   linear-gradient(135deg,#1A6CE8 0%,#D97706 60%,#009955 100%);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { background: linear-gradient(160deg,#FFFFFF 0%,#FFF8F0 45%,#EEF4FF 100%) fixed; color: var(--white); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
     .gradient-text {
       background: var(--grad);
@@ -57,7 +57,7 @@
     .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; }
     .logo em { font-style: normal; color: var(--green); }
     .nav-pill {
-      background: var(--purple);
+      background: var(--blue);
       color: #fff;
       border: none;
       border-radius: 999px;
@@ -145,11 +145,11 @@
       outline: none;
       transition: border-color .2s;
     }
-    .form-row input[type="email"]:focus { border-color: var(--purple); }
+    .form-row input[type="email"]:focus { border-color: var(--blue); }
     .form-row input[type="email"]::placeholder { color: rgba(13,15,26,.35); }
     .btn-main {
       flex: 1 1 auto;
-      background: var(--purple);
+      background: var(--blue);
       color: #fff;
       border: none;
       border-radius: 999px;
@@ -203,7 +203,7 @@
     }
     .stat-l { font-size: .72rem; color: var(--grey); text-transform: uppercase; letter-spacing: .1em; }
 
-    .ticker-wrap { padding: 14px 0; overflow: hidden; border-bottom: 1px solid var(--border); }
+    .ticker-wrap { padding: 14px 0; overflow: hidden; border-bottom: 1px solid var(--border); background: #FFFFFF; }
     .ticker-rail { overflow: hidden; position: relative; }
     .ticker-rail::before,
     .ticker-rail::after {
@@ -238,12 +238,12 @@
       transition: border-color .2s, background .2s;
       cursor: default;
     }
-    .chip:hover { border-color: var(--purple); background: rgba(107,79,216,.08); }
+    .chip:hover { border-color: var(--orange); background: rgba(217,119,6,.08); }
     .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .dot-g { background: var(--green);  box-shadow: 0 0 7px var(--green); }
-    .dot-p { background: var(--purple); box-shadow: 0 0 7px var(--purple); }
-    .dot-c { background: var(--cyan);   box-shadow: 0 0 7px var(--cyan); }
-    .dot-k { background: var(--pink);   box-shadow: 0 0 7px var(--pink); }
+    .dot-p { background: var(--orange); box-shadow: 0 0 7px var(--orange); }
+    .dot-c { background: var(--blue);   box-shadow: 0 0 7px var(--blue); }
+    .dot-k { background: var(--amber);  box-shadow: 0 0 7px var(--amber); }
     .chip-name { font-family: var(--mono); font-size: .78rem; color: var(--white); }
 
     .sec { padding: 80px 24px; }
@@ -330,7 +330,7 @@
     .src {
       font-family: var(--mono);
       font-size: 0.52rem;
-      color: var(--purple);
+      color: var(--blue);
       opacity: 0.75;
       vertical-align: super;
       line-height: 0;
@@ -342,7 +342,7 @@
       border: 1px solid rgba(232,233,240,0.1);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 8px 48px rgba(0,0,0,0.18), 0 0 0 1px rgba(107,79,216,0.15);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.12), 0 0 0 1px rgba(217,119,6,0.2);
     }
     .slack-header {
       background: var(--bg4);
@@ -356,7 +356,7 @@
     .slack-ws { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
     .slack-ws-icon {
       width: 26px; height: 26px;
-      background: var(--purple);
+      background: var(--blue);
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -407,11 +407,11 @@
       transition: opacity 0.32s ease;
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: rgba(107,79,216,0.2) transparent;
+      scrollbar-color: rgba(26,108,232,0.2) transparent;
     }
     .slack-body::-webkit-scrollbar { width: 3px; }
     .slack-body::-webkit-scrollbar-track { background: transparent; }
-    .slack-body::-webkit-scrollbar-thumb { background: rgba(107,79,216,0.2); border-radius: 2px; }
+    .slack-body::-webkit-scrollbar-thumb { background: rgba(26,108,232,0.2); border-radius: 2px; }
     .slack-body.fading { opacity: 0; }
     .slack-msg { display: flex; gap: 11px; align-items: flex-start; }
     .slack-avatar {
@@ -480,7 +480,7 @@
       font-family: var(--font);
       line-height: 1;
     }
-    .cc-nav-btn:hover { border-color: var(--purple); color: #E8E9F0; }
+    .cc-nav-btn:hover { border-color: var(--orange); color: #E8E9F0; }
     .cc-counter {
       font-family: var(--mono);
       font-size: 0.62rem;
@@ -519,7 +519,7 @@
 
     .price-card {
       background: var(--bg2);
-      border: 1px solid rgba(107,79,216,.3);
+      border: 1px solid rgba(217,119,6,.35);
       border-radius: 20px;
       padding: 48px 40px;
       max-width: 500px;
@@ -563,10 +563,10 @@
       color: rgba(13,15,26,0.6);
       line-height: 1.9;
     }
-    .sources-body sup { font-size: 0.52rem; color: rgba(107,79,216,0.8); vertical-align: super; line-height: 0; margin-right: 2px; }
+    .sources-body sup { font-size: 0.52rem; color: rgba(26,108,232,0.8); vertical-align: super; line-height: 0; margin-right: 2px; }
     .sources-body em { font-style: italic; }
-    .sources-body a { color: rgba(107,79,216,0.7); text-decoration: none; }
-    .sources-body a:hover { color: rgba(107,79,216,0.9); }
+    .sources-body a { color: rgba(217,119,6,0.85); text-decoration: none; }
+    .sources-body a:hover { color: rgba(217,119,6,1); }
 
     footer {
       background: var(--bg);
@@ -831,13 +831,13 @@ var dotClass = { g:'dot-g', p:'dot-p', c:'dot-c', k:'dot-k' };
 
 var CC = [
   { lbl:'Text Message \u2014 7:18 PM', dis:null, msgs:[
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Remember that trip to Cabo we\'ve been "planning" for three years?' },
-    { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'\u2026what did you do' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Nothing bad. ProfitOS did a full scan on the business. First run came back with things I didn\'t know were there.' },
-    { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'How many things' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Enough for Cabo. I already checked flights.' },
-    { n:'Jen',  r:'', i:'J', c:'#F472B6', t:'I\'m not joking around with you.' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Neither am I. Check your email.' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Remember that trip to Cabo we\'ve been "planning" for three years?' },
+    { n:'Jen',  r:'', i:'J', c:'#3A88FF', t:'\u2026what did you do' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Nothing bad. ProfitOS did a full scan on the business. First run came back with things I didn\'t know were there.' },
+    { n:'Jen',  r:'', i:'J', c:'#3A88FF', t:'How many things' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Enough for Cabo. I already checked flights.' },
+    { n:'Jen',  r:'', i:'J', c:'#3A88FF', t:'I\'m not joking around with you.' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Neither am I. Check your email.' },
   ]},
   { lbl:'#team-updates \u2014 4:53 PM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'@team \u2014 Year-end position update.' },
@@ -845,145 +845,145 @@ var CC = [
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'Holiday party is confirmed. December 19th. Details coming Thursday.' },
     { n:'Sarah',  r:'', i:'S', c:'#00FF88', t:'Wait \u2014 I thought we were cutting it this year.' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'We were. Turns out we had more budget than the books were showing.' },
-    { n:'Jamie',  r:'', i:'J', c:'#00FFFF', t:'What changed?' },
+    { n:'Jamie',  r:'', i:'J', c:'#FFB347', t:'What changed?' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'We stopped paying for things we weren\'t using.' },
   ]},
   { lbl:'Text Message \u2014 8:30 PM', dis:null, msgs:[
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Did you run yours yet?' },
-    { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'Not yet. You?' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'This morning. You need to see what came back.' },
-    { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'Good or bad?' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Depends on how you feel about finding out how long this was going on.' },
-    { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'Running it now.' },
-    { n:'Alex', r:'Partner', i:'A', c:'#F472B6', t:'I think I need to call you.' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Did you run yours yet?' },
+    { n:'Alex', r:'Partner', i:'A', c:'#3A88FF', t:'Not yet. You?' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'This morning. You need to see what came back.' },
+    { n:'Alex', r:'Partner', i:'A', c:'#3A88FF', t:'Good or bad?' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Depends on how you feel about finding out how long this was going on.' },
+    { n:'Alex', r:'Partner', i:'A', c:'#3A88FF', t:'Running it now.' },
+    { n:'Alex', r:'Partner', i:'A', c:'#3A88FF', t:'I think I need to call you.' },
   ]},
   { lbl:'Text Message \u2014 6:48 PM', dis:null, msgs:[
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Taking you to dinner Saturday.' },
-    { n:'Jen', r:'', i:'J', c:'#F472B6', t:'Good news?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS found billing gaps we\'d been missing for months. Already fixed. Money\'s back on the table.' },
-    { n:'Jen', r:'', i:'J', c:'#F472B6', t:'How much?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Enough for dinner. I already took care of something else with the rest too. Ask me Saturday.' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'Taking you to dinner Saturday.' },
+    { n:'Jen', r:'', i:'J', c:'#3A88FF', t:'Good news?' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'ProfitOS found billing gaps we\'d been missing for months. Already fixed. Money\'s back on the table.' },
+    { n:'Jen', r:'', i:'J', c:'#3A88FF', t:'How much?' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'Enough for dinner. I already took care of something else with the rest too. Ask me Saturday.' },
   ]},
   { lbl:'Text Message \u2014 8:15 PM', dis:null, msgs:[
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS finished its first full scan.' },
-    { n:'Mike', r:'Partner', i:'M', c:'#F472B6', t:'And?' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'We need to talk. Found some things we\'ve been missing.' },
-    { n:'Mike', r:'Partner', i:'M', c:'#F472B6', t:'Good things or bad things?' },
-    { n:'You',  r:'', i:'Y', c:'#9F8FEF', t:'Good things we can fix. Call me when you\'re free.' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'ProfitOS finished its first full scan.' },
+    { n:'Mike', r:'Partner', i:'M', c:'#3A88FF', t:'And?' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'We need to talk. Found some things we\'ve been missing.' },
+    { n:'Mike', r:'Partner', i:'M', c:'#3A88FF', t:'Good things or bad things?' },
+    { n:'You',  r:'', i:'Y', c:'#FF8C00', t:'Good things we can fix. Call me when you\'re free.' },
   ]},
   { lbl:'#finance \u2014 10:48 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'InvoiceChaser flagged $47,000 sitting uncollected. Some of it is 90 days out.' },
-    { n:'CFO',   r:'', i:'C', c:'#00FFFF', t:'I knew receivables were soft. I didn\'t think it was that number.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Three clients account for most of it. Two of them we\'re still actively working with.' },
-    { n:'CFO',   r:'', i:'C', c:'#00FFFF', t:'I\'ll have a report on your desk by end of day.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Make it a plan. Not a report.' },
+    { n:'Owner', r:'', i:'O', c:'#FF8C00', t:'InvoiceChaser flagged $47,000 sitting uncollected. Some of it is 90 days out.' },
+    { n:'CFO',   r:'', i:'C', c:'#FFB347', t:'I knew receivables were soft. I didn\'t think it was that number.' },
+    { n:'Owner', r:'', i:'O', c:'#FF8C00', t:'Three clients account for most of it. Two of them we\'re still actively working with.' },
+    { n:'CFO',   r:'', i:'C', c:'#FFB347', t:'I\'ll have a report on your desk by end of day.' },
+    { n:'Owner', r:'', i:'O', c:'#FF8C00', t:'Make it a plan. Not a report.' },
   ]},
   { lbl:'Notes \u2014 11:52 PM', dis:null, msgs:[
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'ProfitOS first full scan complete.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Seven findings. I expected maybe two.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'The subscription list alone \u2014 I genuinely did not know those were still running.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Called the card company. Canceled four charges on the spot.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'First Thursday night in a while that I actually feel like things are under control.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'ProfitOS first full scan complete.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Seven findings. I expected maybe two.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'The subscription list alone \u2014 I genuinely did not know those were still running.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Called the card company. Canceled four charges on the spot.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'First Thursday night in a while that I actually feel like things are under control.' },
   ]},
   { lbl:'#finance \u2014 2:44 PM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Maria', r:'Controller', i:'M', c:'#00FF88', t:'Heads up before Thursday. I\'m revising the Q4 board deck.' },
-    { n:'CEO',   r:'',           i:'C', c:'#00FFFF', t:'Good news or bad?' },
+    { n:'CEO',   r:'',           i:'C', c:'#FFB347', t:'Good news or bad?' },
     { n:'Maria', r:'Controller', i:'M', c:'#00FF88', t:'Better than last month\'s numbers. ProfitOS surfaced a vendor credit that was never applied and a refund we were owed from Q2.' },
-    { n:'CEO',   r:'',           i:'C', c:'#00FFFF', t:'How much better?' },
+    { n:'CEO',   r:'',           i:'C', c:'#FFB347', t:'How much better?' },
     { n:'Maria', r:'Controller', i:'M', c:'#00FF88', t:'$22,000 better than what we reported.' },
-    { n:'CEO',   r:'',           i:'C', c:'#00FFFF', t:'Put it in the deck.' },
+    { n:'CEO',   r:'',           i:'C', c:'#FFB347', t:'Put it in the deck.' },
   ]},
   { lbl:'Text Message \u2014 9:12 PM', dis:null, msgs:[
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Business stuff \u2014 you have a minute?' },
-    { n:'Amy', r:'', i:'A', c:'#F472B6', t:'Always. What\'s wrong?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Nothing\'s wrong. That\'s kind of the thing.' },
-    { n:'Amy', r:'', i:'A', c:'#F472B6', t:'???' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'ProfitOS ran its first scan. Found a grant we qualify for. Tax stuff I\'d missed. Software we\'ve been paying for two years that nobody\'s opened.' },
-    { n:'Amy', r:'', i:'A', c:'#F472B6', t:'Are you okay?' },
-    { n:'You', r:'', i:'Y', c:'#9F8FEF', t:'Really good, actually.' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'Business stuff \u2014 you have a minute?' },
+    { n:'Amy', r:'', i:'A', c:'#3A88FF', t:'Always. What\'s wrong?' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'Nothing\'s wrong. That\'s kind of the thing.' },
+    { n:'Amy', r:'', i:'A', c:'#3A88FF', t:'???' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'ProfitOS ran its first scan. Found a grant we qualify for. Tax stuff I\'d missed. Software we\'ve been paying for two years that nobody\'s opened.' },
+    { n:'Amy', r:'', i:'A', c:'#3A88FF', t:'Are you okay?' },
+    { n:'You', r:'', i:'Y', c:'#FF8C00', t:'Really good, actually.' },
   ]},
   { lbl:'#finance \u2014 2:15 PM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'Quick heads up. Year-end bonus picture looks stronger than last quarter.' },
-    { n:'VP',     r:'',           i:'V', c:'#00FFFF', t:'What changed?' },
+    { n:'VP',     r:'',           i:'V', c:'#FFB347', t:'What changed?' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'ProfitOS flagged a vendor overcharge we\'d been paying for over a year. Refund is in process.' },
-    { n:'VP',     r:'',           i:'V', c:'#00FFFF', t:'How much are we getting back?' },
+    { n:'VP',     r:'',           i:'V', c:'#FFB347', t:'How much are we getting back?' },
     { n:'Marcus', r:'Controller', i:'M', c:'#00FF88', t:'Still finalizing but enough to notice. I\'ll send the summary this afternoon.' },
   ]},
   { lbl:'#accounting \u2014 10:22 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Sarah', r:'Accounting', i:'S', c:'#00FF88', t:'Hey \u2014 ProfitOS flagged three subscriptions we haven\'t touched since Q1. Combined they\'re running us around $800 a month.' },
     { n:'Sarah', r:'Accounting', i:'S', c:'#00FF88', t:'Do you want me to cancel them or review first?' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Cancel all three. Good catch.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Cancel all three. Good catch.' },
     { n:'Sarah', r:'Accounting', i:'S', c:'#00FF88', t:'Done. I\'ll note it in the books.' },
   ]},
   { lbl:'#finance \u2014 11:02 AM', dis:null, msgs:[
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Quick question \u2014 ProfitOS is showing billing gaps from February. Did those service invoices ever get reconciled?' },
-    { n:'CFO',   r:'', i:'C', c:'#00FFFF', t:'Checking now. I\'ll have an answer within the hour.' },
-    { n:'Owner', r:'', i:'O', c:'#9F8FEF', t:'Appreciate it.' },
-    { n:'CFO',   r:'', i:'C', c:'#00FFFF', t:'Found it. Three invoices marked sent but no payment recorded. I\'m on it.' },
+    { n:'Owner', r:'', i:'O', c:'#FF8C00', t:'Quick question \u2014 ProfitOS is showing billing gaps from February. Did those service invoices ever get reconciled?' },
+    { n:'CFO',   r:'', i:'C', c:'#FFB347', t:'Checking now. I\'ll have an answer within the hour.' },
+    { n:'Owner', r:'', i:'O', c:'#FF8C00', t:'Appreciate it.' },
+    { n:'CFO',   r:'', i:'C', c:'#FFB347', t:'Found it. Three invoices marked sent but no payment recorded. I\'m on it.' },
   ]},
   { lbl:'#accounting \u2014 9:04 AM', dis:'GrantHound identifies potential programs. Amounts vary by eligibility and application.', msgs:[
     { n:'Lisa',  r:'Bookkeeper', i:'L', c:'#00FF88', t:'ProfitOS ran GrantHound last night. Found two programs we qualify for. Applications look pretty straightforward.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'What\'s the process?' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'What\'s the process?' },
     { n:'Lisa',  r:'Bookkeeper', i:'L', c:'#00FF88', t:'I pull the requirements, you review and sign. I can have everything ready by end of week.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Do it. Keep me posted.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Do it. Keep me posted.' },
   ]},
   { lbl:'#accounting \u2014 3:28 PM', dis:'ProfitOS surfaces potential opportunities. Your CPA confirms and files. See sources below.', msgs:[
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'ProfitOS flagged a tax credit category we haven\'t been claiming. Goes back two quarters.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Is it real?' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Is it real?' },
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'Solid. I\'m looping in the CPA to confirm and process. Should have an answer by next week.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Good. Let me know what they say.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Good. Let me know what they say.' },
   ]},
   { lbl:'Text Message \u2014 1:22 PM', dis:'ProfitOS surfaces potential opportunities. Your CPA confirms and files. See sources below.', msgs:[
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'ProfitOS flagged a deduction category we haven\'t been claiming. Home office plus a vehicle percentage we\'ve been running wrong.' },
-    { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'How solid is the flag?' },
+    { n:'CPA',   r:'External',   i:'C', c:'#FFB347', t:'How solid is the flag?' },
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'Solid enough that I\'m sending it to you before I touch anything.' },
-    { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'Send me everything. I\'ll review before Thursday.' },
+    { n:'CPA',   r:'External',   i:'C', c:'#FFB347', t:'Send me everything. I\'ll review before Thursday.' },
     { n:'Donna', r:'Accounting', i:'D', c:'#00FF88', t:'There\'s also a Section 179 item on the March equipment purchase that may not have been captured correctly.' },
-    { n:'CPA',   r:'External',   i:'C', c:'#00FFFF', t:'Send. Everything.' },
+    { n:'CPA',   r:'External',   i:'C', c:'#FFB347', t:'Send. Everything.' },
   ]},
   { lbl:'#accounting \u2014 9:41 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Monthly subscription review is back. 23 active subscriptions. 6 show no usage in the last 90 days.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Send me the list.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Send me the list.' },
     { n:'Ray',   r:'Controller', i:'R', c:'#00FF88', t:'Already in your inbox. Highlighted the ones I\'d cut immediately.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'I\'ll review tonight. Good work.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'I\'ll review tonight. Good work.' },
   ]},
   { lbl:'Note to Self \u2014 7:33 PM', dis:'Industry benchmarks based on publicly available market data. See sources below.', msgs:[
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Most popular service. Priced below industry average for over a year.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Not by a little.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Raising it next billing cycle. Should have done this sooner.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Most popular service. Priced below industry average for over a year.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Not by a little.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Raising it next billing cycle. Should have done this sooner.' },
   ]},
   { lbl:'#general \u2014 11:30 AM', dis:'Numbers illustrative \u2014 based on industry research. See sources below.', msgs:[
     { n:'Priya', r:'Office Mgr', i:'P', c:'#00FF88', t:'You know that project tool the team has been asking about for six months?' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'The one we kept saying wasn\'t in the budget.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'The one we kept saying wasn\'t in the budget.' },
     { n:'Priya', r:'Office Mgr', i:'P', c:'#00FF88', t:'ProfitOS found overlap in what we\'re already paying for. Three redundant tools. If we cancel them, the new one is covered plus about $400 back per month.' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Show me the list.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Show me the list.' },
     { n:'Priya', r:'Office Mgr', i:'P', c:'#00FF88', t:'Already in your inbox. Want me to handle the cancellations?' },
-    { n:'Owner', r:'',           i:'O', c:'#9F8FEF', t:'Do it today.' },
+    { n:'Owner', r:'',           i:'O', c:'#FF8C00', t:'Do it today.' },
   ]},
   { lbl:'#hr \u2014 10:16 AM', dis:'ProfitOS identifies potential issues. Always consult a qualified employment attorney.', msgs:[
-    { n:'Jordan', r:'HR', i:'J', c:'#00FFFF', t:'PayrollGuard flagged three worker classification situations that need a second look before year-end.' },
-    { n:'Owner',  r:'',   i:'O', c:'#9F8FEF', t:'What kind of situations?' },
-    { n:'Jordan', r:'HR', i:'J', c:'#00FFFF', t:'Two contractors based on hours and integration that may not qualify. One salary situation that looks like an overtime exposure.' },
-    { n:'Owner',  r:'',   i:'O', c:'#9F8FEF', t:'How exposed are we?' },
-    { n:'Jordan', r:'HR', i:'J', c:'#00FFFF', t:'Enough that I\'d rather we fix it before someone else flags it.' },
-    { n:'Owner',  r:'',   i:'O', c:'#9F8FEF', t:'Get the employment attorney on the calendar. This week.' },
+    { n:'Jordan', r:'HR', i:'J', c:'#FFB347', t:'PayrollGuard flagged three worker classification situations that need a second look before year-end.' },
+    { n:'Owner',  r:'',   i:'O', c:'#FF8C00', t:'What kind of situations?' },
+    { n:'Jordan', r:'HR', i:'J', c:'#FFB347', t:'Two contractors based on hours and integration that may not qualify. One salary situation that looks like an overtime exposure.' },
+    { n:'Owner',  r:'',   i:'O', c:'#FF8C00', t:'How exposed are we?' },
+    { n:'Jordan', r:'HR', i:'J', c:'#FFB347', t:'Enough that I\'d rather we fix it before someone else flags it.' },
+    { n:'Owner',  r:'',   i:'O', c:'#FF8C00', t:'Get the employment attorney on the calendar. This week.' },
   ]},
   { lbl:'#accounting \u2014 4:37 PM', dis:'Illustrative \u2014 duplicate billing is documented across B2B research. See sources below.', msgs:[
     { n:'Jamie',   r:'', i:'J', c:'#00FF88', t:'Hey \u2014 ProfitOS flagged something on the vendor invoices. Looks like we\'ve been billed twice for the same service three times this quarter.' },
-    { n:'Manager', r:'', i:'M', c:'#00FFFF', t:'Are you sure?' },
+    { n:'Manager', r:'', i:'M', c:'#FFB347', t:'Are you sure?' },
     { n:'Jamie',   r:'', i:'J', c:'#00FF88', t:'Cross-referenced with the originals. Pretty clear. Wanted to flag it before month close.' },
-    { n:'Manager', r:'', i:'M', c:'#00FFFF', t:'Send it to accounting now. Good catch.' },
+    { n:'Manager', r:'', i:'M', c:'#FFB347', t:'Send it to accounting now. Good catch.' },
   ]},
   { lbl:'Note to Self \u2014 11:19 AM', dis:null, msgs:[
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Vendor service contract. Signed it years ago. Still paying.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Haven\'t used it once.' },
-    { n:'Note to self', r:'', i:'N', c:'#9F8FEF', t:'Canceled today. Done.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Vendor service contract. Signed it years ago. Still paying.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Haven\'t used it once.' },
+    { n:'Note to self', r:'', i:'N', c:'#FF8C00', t:'Canceled today. Done.' },
   ]},
   { lbl:'#accounting \u2014 2:07 PM', dis:'ProfitOS surfaces potential opportunities. Your CPA confirms and files. See sources below.', msgs:[
     { n:'Kara', r:'Bookkeeper', i:'K', c:'#00FF88', t:'TaxHound flagged a deduction category we\'ve been completely missing. Routing to the CPA now.' },
-    { n:'CFO',  r:'',           i:'C', c:'#00FFFF', t:'How significant?' },
+    { n:'CFO',  r:'',           i:'C', c:'#FFB347', t:'How significant?' },
     { n:'Kara', r:'Bookkeeper', i:'K', c:'#00FF88', t:'Still verifying the full amount but it could change the year-end picture. CPA will have the answer by Thursday.' },
-    { n:'CFO',  r:'',           i:'C', c:'#00FFFF', t:'Good. Get it in writing before year-end close.' },
+    { n:'CFO',  r:'',           i:'C', c:'#FFB347', t:'Good. Get it in writing before year-end close.' },
   ]},
 ];
 
@@ -1128,7 +1128,7 @@ function go(id) {
   var btn = document.getElementById('btn-' + id);
   var ok  = document.getElementById('ok-' + id);
   var em  = inp.value.trim();
-  if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#C43677'; inp.focus(); return; }
+  if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#D97706'; inp.focus(); return; }
   btn.disabled = true;
   btn.textContent = 'Joining\u2026';
   inp.disabled = true;
@@ -1147,7 +1147,7 @@ function go(id) {
     btn.disabled = false;
     btn.textContent = LABELS[id];
     inp.disabled = false;
-    inp.style.borderColor = '#C43677';
+    inp.style.borderColor = '#D97706';
   });
 }
 
