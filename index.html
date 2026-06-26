@@ -71,6 +71,24 @@
     }
     .nav-pill:hover { opacity: .85; }
 
+    .audience-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 22px 40px;
+      font-family: var(--font);
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-bottom: 1px solid var(--border);
+    }
+
     .hero { padding: 0; }
     .hero-grid {
       display: grid;
@@ -82,21 +100,6 @@
       padding: 64px 48px 72px;
     }
     .hero-left { text-align: left; }
-
-    .audience-label {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(232,233,240,0.65);
-      border: 1px solid rgba(232,233,240,0.14);
-      border-radius: 8px;
-      padding: 6px 14px;
-      display: inline-block;
-      background: rgba(232,233,240,0.04);
-      margin-bottom: 14px;
-    }
 
     .eyebrow-pill {
       display: inline-block;
@@ -583,7 +586,7 @@
     @media (max-width: 960px) {
       .hero-grid { grid-template-columns: 1fr; gap: 44px; padding: 48px 24px 56px; }
       .hero-left { text-align: center; }
-      .audience-label { text-align: center; }
+      .audience-label { padding: 16px 20px; font-size: 1.1rem; }
       .hero-left h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
       .hero-left .hero-sub { text-align: center; max-width: 100%; margin: 0 auto 36px; }
       .hero-left .form-wrap { margin: 0 auto; max-width: 480px; }
@@ -592,6 +595,7 @@
     }
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
+      .audience-label { font-size: 0.75rem; padding: 12px 16px; }
       .cc-pause-hint { display: none; }
       .sources-sec { padding: 24px 20px; }
       footer { flex-direction: column; align-items: center; text-align: center; }
@@ -621,10 +625,18 @@
 </div>
 
 <section class="hero">
+  <div class="audience-label">
+    <span>OWNERS</span>
+    <span>&middot;</span>
+    <span>INVESTORS</span>
+    <span>&middot;</span>
+    <span>PRINCIPALS</span>
+    <span>&middot;</span>
+    <span>SENIOR MANAGEMENT</span>
+  </div>
   <div class="hero-grid">
 
     <div class="hero-left">
-      <div class="audience-label">OWNERS &nbsp;&middot;&nbsp; INVESTORS &nbsp;&middot;&nbsp; PRINCIPALS &nbsp;&middot;&nbsp; SENIOR MANAGEMENT</div>
       <div class="eyebrow-pill">PROFIT SURVEILLANCE</div>
       <h1>
         <span class="gradient-text">It's like having a Controller</span>
