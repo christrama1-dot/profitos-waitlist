@@ -4,7 +4,7 @@
  * Intercepts /api/subscribe fetch to inject hook_shown without modifying index.html.
  *
  * Variants:
- *   0 = A (control) — "Your Profit Is Leaking. / Let Us Help Stop It."
+ *   0 = A (CONTROL) — "It's like having a Controller / without the salary."
  *   1 = B           — "You just got a Controller. / Without the salary."
  *   2 = D           — "Your profit is LEAKING. / A Controller would have caught it."
  *
@@ -14,16 +14,19 @@
 (function () {
   var HOOKS = [
     {
-      line1: 'Your Profit Is Leaking.',
-      line2: 'Let Us Help Stop It.',
-      sub:   'Over 50 watchdog specialists scan your business. Results in about a minute. Find the money your accountant missed, your software ignored, and your business is bleeding every month.'
+      // A — CONTROL (Founder-approved June 26, 2026)
+      line1: "It's like having a Controller",
+      line2: 'without the salary.',
+      sub:   "Most businesses your size can't afford a Controller, that is until now. Profit leaks are real, and we specialize in finding them. So you can spend your time growing your business."
     },
     {
+      // B — Challenger
       line1: 'You just got a Controller.',
       line2: 'Without the salary.',
       sub:   'Over 50 watchdogs watching your money around the clock. Results in about a minute. No credit card.'
     },
     {
+      // D — Challenger
       line1: 'Your profit is LEAKING.',
       line2: 'A Controller would have caught it.',
       sub:   'Now you have one. Over 50 watchdogs. Results in about a minute. No credit card.'
@@ -40,6 +43,7 @@
   window.HOOK_IDX = idx;
 
   // ── Swap DOM ────────────────────────────────────────────────────
+  // Variant 0 is the default index.html copy — no swap needed.
   if (idx !== 0) {
     var hook  = HOOKS[idx];
     var line1 = document.querySelector('.hero-left h1 .gradient-text');
