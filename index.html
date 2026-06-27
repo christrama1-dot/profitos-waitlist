@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProfitOS Engine — Stop the Profit Leaks. Give Yourself a Raise.</title>
-  <meta name="description" content="Over 50 watchdog specialists scan your business. Results in about a minute. Free. No credit card. ProfitOS finds the money your accountant missed." />
+  <meta name="description" content="Over 50 profit leak watchdog specialists scan your business. Results in about a minute. Free. No credit card. ProfitOS finds the money your accountant missed." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -768,7 +768,7 @@
 
 <div class="stats">
   <div class="stats-row">
-    <div class="stat"><span class="stat-n">50+</span><span class="stat-l">Watchdog Specialists</span></div>
+    <div class="stat"><span class="stat-n">50+</span><span class="stat-l">Profit Leak Watchdog Specialists</span></div>
     <div class="stat"><span class="stat-n">~1 min</span><span class="stat-l">First Scan</span></div>
     <div class="stat"><span class="stat-n">$0</span><span class="stat-l">To Start</span></div>
     <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Always Watching</span></div>
@@ -777,9 +777,7 @@
 
 <!-- PROBLEM -->
 <section class="sec sec-center">
-  <div class="eyebrow" style="font-size:1.4rem;letter-spacing:.16em;margin-bottom:28px;">The Problem</div>
-  <p class="big-leak gradient-text">$20,000 &ndash; $80,000</p>
-  <p class="big-sub">composite estimate &mdash; unpaid invoices,<sup class="src">1</sup> unused software,<sup class="src">2</sup> and overlooked tax opportunities<sup class="src">3</sup></p>
+  <h2 class="gradient-text" style="font-size:clamp(2rem,3.5vw,3.2rem);font-weight:900;letter-spacing:-0.03em;line-height:1.06;margin-bottom:32px;">The Problem</h2>
   <div class="prob-block">
     <span class="prob-pct">56%</span>
     <p class="prob-lead">of small to medium-sized businesses are currently losing profit on:</p>
@@ -800,7 +798,7 @@
     Nobody is actively hunting the money that&rsquo;s escaping &mdash; missed tax deductions,<sup class="src">3</sup>
     grants you qualify for, subscriptions<sup class="src">2</sup> billing you twice, invoices going uncollected.<sup class="src">1</sup>
     <br><br>
-    We built over 50 watchdogs to do exactly that.
+    We built over 50 profit leak watchdogs to do exactly that.
   </p>
   <p style="font-family:var(--mono);font-size:0.62rem;color:rgba(13,15,26,0.5);font-weight:700;margin-top:28px;max-width:520px;margin-left:auto;margin-right:auto;">
     <sup>1</sup> Intuit QuickBooks Late Payments Report 2025 &nbsp;&middot;&nbsp; <sup>2</sup> BetterCloud / Zylo 2025 &nbsp;&middot;&nbsp; <sup>3</sup> U.S. Chamber of Commerce &mdash; see full sources below.
@@ -817,16 +815,16 @@
       <div class="step-card">
         <div class="step-n">STEP 01</div>
         <h3>Drop in your business URL</h3>
-        <p>ProfitOS reads your business profile &mdash; industry, revenue signals, risk areas, and your top watchdog recommendations.</p>
+        <p>ProfitOS reads your business profile &mdash; industry, revenue signals, risk areas, and your top profit leak watchdog recommendations.</p>
       </div>
       <div class="step-card">
         <div class="step-n">STEP 02</div>
         <h3>Your first specialist is pre-selected</h3>
-        <p>Based on your industry and business profile, ProfitOS recommends the watchdog most likely to find money in your type of business.</p>
+        <p>Based on your industry and business profile, ProfitOS recommends the profit leak watchdog most likely to find money in your type of business.</p>
       </div>
       <div class="step-card">
         <div class="step-n">STEP 03</div>
-        <h3>Run your top watchdog &mdash; free</h3>
+        <h3>Run your top profit leak watchdog &mdash; free</h3>
         <p>Your first specialist runs at zero cost. Results in about a minute. A ProfitOS Leak Report generated automatically &mdash; yours to keep and share.</p>
       </div>
     </div>
@@ -842,7 +840,7 @@
     <div class="price-num">$297</div>
     <div class="price-tag">per month &mdash; Charter rate, locked for life</div>
     <p class="price-body">
-      Over 50 watchdog specialists. Unlimited scans.<br>
+      Over 50 profit leak watchdog specialists. Unlimited scans.<br>
       ProfitOS Leak Report on every run.<br>
       Cancel anytime. Find money first, then decide.
     </p>
@@ -1264,14 +1262,12 @@ function go(id) {
   var pIdx = 0;
   var busy = false;
 
-  /* Rect of el relative to nav top-left */
   function rel(el) {
     var er = el.getBoundingClientRect();
     var nr = nav.getBoundingClientRect();
     return { l: er.left - nr.left, t: er.top - nr.top, w: er.width, h: er.height };
   }
 
-  /* Set position + transition */
   function pos(el, l, t, tr) {
     el.style.transition = tr || 'none';
     el.style.left = l + 'px';
@@ -1291,7 +1287,6 @@ function go(id) {
     var cx   = navW / 2 - flyW / 2;
     var cy   = navH / 2 - flyH / 2;
 
-    /* Snap fly to logo OS position, invisible */
     pos(fly, r.l, r.t);
     fly.style.opacity = '0';
     logoEm.style.transition = 'opacity 0.12s';
@@ -1300,7 +1295,6 @@ function go(id) {
     requestAnimationFrame(function() { requestAnimationFrame(function() {
       fly.style.opacity = '1';
       setTimeout(function() {
-        /* Springy bounce to nav center */
         pos(fly, cx, cy,
           'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.4s ease');
         setTimeout(osCycle, 660);
@@ -1317,14 +1311,12 @@ function go(id) {
     pWrap.style.transition = 'opacity 0.42s ease';
     pWrap.style.opacity   = '1';
 
-    /* Hold phrase then fade out */
     setTimeout(function() {
       pWrap.style.transition = 'opacity 0.32s ease';
       pWrap.style.opacity    = '0';
       setTimeout(function() {
         pIdx++;
         if (pIdx < phrases.length) {
-          /* Brief OS flash between phrases */
           fly.style.transition = 'opacity 0.18s ease';
           fly.style.opacity    = '1';
           setTimeout(osCycle, 260);
@@ -1340,7 +1332,6 @@ function go(id) {
     fly.style.transition = 'opacity 0.18s ease';
     fly.style.opacity    = '1';
     setTimeout(function() {
-      /* Snap back with quick deceleration */
       pos(fly, r.l, r.t,
         'left 0.4s cubic-bezier(0.6,-0.28,0.74,0.05), top 0.36s ease, opacity 0.16s ease 0.3s');
       fly.style.opacity = '0';
