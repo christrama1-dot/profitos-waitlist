@@ -18,7 +18,7 @@
       --blue:   #1A6CE8;
       --amber:  #F5A623;
       --white:  #0D0F1A;
-      --grey:   rgba(13,15,26,0.5);
+      --grey:   rgba(13,15,26,0.72);
       --border: rgba(13,15,26,0.1);
       --font:   'Inter', sans-serif;
       --mono:   'JetBrains Mono', monospace;
@@ -29,18 +29,21 @@
     body { background: linear-gradient(160deg,#FFFFFF 0%,#FFF8F0 45%,#EEF4FF 100%) fixed; color: var(--white); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
     .gradient-text {
-      color: var(--white);
+      color: var(--orange);
     }
 
+    .hdr {
+      background: linear-gradient(180deg, #0D0F1A 0%, #1A6CE8 100%);
+    }
     .announce {
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
+      background: transparent;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       padding: 10px 24px;
       text-align: center;
       font-family: var(--mono);
       font-size: 0.72rem;
       letter-spacing: 0.08em;
-      color: var(--grey);
+      color: rgba(255,255,255,0.65);
     }
     .announce strong { color: var(--green); }
 
@@ -49,24 +52,44 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
     }
-    .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; }
+    .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; color: #FFFFFF; }
     .logo em { font-style: normal; color: var(--green); }
     .nav-pill {
-      background: var(--blue);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 55%, rgba(0,0,0,0.08) 100%),
+        linear-gradient(180deg, #F5A723 0%, #D97706 60%, #B86200 100%);
       color: #fff;
-      border: none;
+      border: 1px solid rgba(255,255,255,0.22);
       border-radius: 999px;
       padding: 10px 22px;
       font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
-      transition: opacity .2s;
+      transition: transform .1s, box-shadow .15s;
       display: inline-block;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.3) inset,
+        0 -1px 0 rgba(0,0,0,0.12) inset,
+        0 4px 14px rgba(217,119,6,0.45),
+        0 2px 4px rgba(0,0,0,0.14);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
     }
-    .nav-pill:hover { opacity: .85; }
+    .nav-pill::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 46%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+    .nav-pill:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 -1px 0 rgba(0,0,0,0.12) inset, 0 6px 20px rgba(217,119,6,0.55), 0 3px 6px rgba(0,0,0,0.16); }
 
     .audience-label {
       display: flex;
@@ -98,15 +121,15 @@
     .eyebrow-pill {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--green);
-      border: 1px solid rgba(0,153,85,.35);
+      border: 1.5px solid rgba(0,153,85,.4);
       border-radius: 999px;
-      padding: 6px 16px;
-      margin-bottom: 24px;
+      padding: 9px 22px;
+      margin-bottom: 28px;
     }
     .hero-left h1 {
       font-size: clamp(2rem, 3.5vw, 3.2rem);
@@ -130,22 +153,25 @@
     .form-row input[type="email"] {
       flex: 1 1 200px;
       background: var(--bg2);
-      border: 1px solid var(--border);
+      border: 2px solid rgba(13,15,26,0.25);
       border-radius: 12px;
       color: var(--white);
       font-family: var(--font);
       font-size: .95rem;
-      padding: 16px 20px;
+      padding: 15px 20px;
       outline: none;
-      transition: border-color .2s;
+      transition: border-color .2s, box-shadow .2s;
+      box-shadow: 0 2px 8px rgba(13,15,26,0.07), 0 0 0 1px rgba(13,15,26,0.04);
     }
-    .form-row input[type="email"]:focus { border-color: var(--blue); }
+    .form-row input[type="email"]:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,108,232,0.15), 0 2px 8px rgba(13,15,26,0.07); }
     .form-row input[type="email"]::placeholder { color: rgba(13,15,26,.35); }
     .btn-main {
       flex: 1 1 auto;
-      background: var(--blue);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 55%, rgba(0,0,0,0.1) 100%),
+        linear-gradient(180deg, #4D96FF 0%, #1A6CE8 55%, #1050C0 100%);
       color: #fff;
-      border: none;
+      border: 1px solid rgba(255,255,255,0.22);
       border-radius: 999px;
       padding: 16px 28px;
       font-family: var(--font);
@@ -153,10 +179,34 @@
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
-      transition: opacity .2s, transform .1s;
+      transition: transform .12s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.35) inset,
+        0 -1px 0 rgba(0,0,0,0.14) inset,
+        0 4px 18px rgba(26,108,232,0.45),
+        0 2px 5px rgba(0,0,0,0.16);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.18);
     }
-    .btn-main:hover { opacity: .88; }
-    .btn-main:active { transform: scale(.98); }
+    .btn-main::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 6%; right: 6%;
+      height: 46%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0) 100%);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+    .btn-main:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.35) inset,
+        0 -1px 0 rgba(0,0,0,0.14) inset,
+        0 7px 24px rgba(26,108,232,0.55),
+        0 3px 8px rgba(0,0,0,0.18);
+    }
+    .btn-main:active { transform: scale(.98); box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 2px 8px rgba(26,108,232,0.32); }
     .btn-main:disabled { opacity: .55; cursor: not-allowed; }
     .form-note { margin-top: 12px; font-size: .72rem; color: rgba(13,15,26,.5); font-family: var(--mono); }
     .form-ok {
@@ -197,7 +247,7 @@
     }
     .stat-l { font-size: .72rem; color: var(--grey); text-transform: uppercase; letter-spacing: .1em; }
 
-    .ticker-wrap { padding: 14px 0; overflow: hidden; border-bottom: 1px solid var(--border); background: #FFFFFF; }
+    .ticker-wrap { padding: 14px 0; overflow: hidden; }
     .ticker-rail { overflow: hidden; position: relative; }
     .ticker-rail::before,
     .ticker-rail::after {
@@ -207,8 +257,8 @@
       width: 100px;
       z-index: 2;
     }
-    .ticker-rail::before { left: 0; background: linear-gradient(90deg,var(--bg),transparent); }
-    .ticker-rail::after  { right: 0; background: linear-gradient(-90deg,var(--bg),transparent); }
+    .ticker-rail::before { left: 0; background: linear-gradient(90deg,#1A6CE8,transparent); }
+    .ticker-rail::after  { right: 0; background: linear-gradient(-90deg,#1A6CE8,transparent); }
     .ticker-track {
       display: flex;
       gap: 10px;
@@ -224,21 +274,21 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      background: rgba(13,15,26,0.07);
-      border: 1px solid rgba(13,15,26,0.12);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 999px;
       padding: 10px 18px;
       white-space: nowrap;
       transition: border-color .2s, background .2s;
       cursor: default;
     }
-    .chip:hover { border-color: var(--orange); background: rgba(217,119,6,.08); }
+    .chip:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.2); }
     .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .dot-g { background: var(--green);  box-shadow: 0 0 7px var(--green); }
     .dot-p { background: var(--orange); box-shadow: 0 0 7px var(--orange); }
     .dot-c { background: var(--blue);   box-shadow: 0 0 7px var(--blue); }
     .dot-k { background: var(--amber);  box-shadow: 0 0 7px var(--amber); }
-    .chip-name { font-family: var(--mono); font-size: .78rem; color: var(--white); }
+    .chip-name { font-family: var(--mono); font-size: .78rem; color: #FFFFFF; }
 
     .sec { padding: 80px 24px; }
     .sec-alt { background: var(--bg2); }
@@ -603,6 +653,7 @@
 </head>
 <body>
 
+<div class="hdr">
 <div class="announce">
   Waitlist closes <strong>August 29th</strong> &mdash; Charter rate locked for life &mdash; Free to join
 </div>
@@ -616,6 +667,7 @@
   <div class="ticker-rail">
     <div class="ticker-track" id="ticker"></div>
   </div>
+</div>
 </div>
 
 <section class="hero">
