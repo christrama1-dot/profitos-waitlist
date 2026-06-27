@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProfitOS Engine — Stop the Profit Leaks. Give Yourself a Raise.</title>
-  <meta name="description" content="Over 50 profit leak watchdog specialists scan your business. Results in about a minute. Free. No credit card. ProfitOS finds the money your accountant missed." />
+  <meta name="description" content="Over 50 profit leak watchdog specialists scan your business. Results in about a minute. ProfitOS finds the money your accountant missed." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
@@ -257,11 +257,13 @@
     }
 
     .stats {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #0D0F1A 0%, #1A6CE8 100%);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       padding: 36px 24px;
     }
+    .stats .stat-n { color: #00FF88; font-size: 2.8rem; font-weight: 900; }
+    .stats .stat-l { color: rgba(255,255,255,0.9); font-size: .82rem; font-weight: 900; letter-spacing: .08em; }
     .stats-row {
       max-width: 680px;
       margin: 0 auto;
@@ -736,7 +738,7 @@
           <input type="email" id="email-a" placeholder="your@email.com" autocomplete="email" />
           <button class="btn-main" id="btn-a" onclick="go('a')">Join the Waitlist &mdash; Free</button>
         </div>
-        <p class="form-note">No credit card &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
+        <p class="form-note">Unsubscribe anytime</p>
         <div class="form-ok" id="ok-a">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
       </div>
     </div>
@@ -768,10 +770,8 @@
 
 <div class="stats">
   <div class="stats-row">
-    <div class="stat"><span class="stat-n">50+</span><span class="stat-l">Profit Leak Watchdog Specialists</span></div>
-    <div class="stat"><span class="stat-n">~1 min</span><span class="stat-l">First Scan</span></div>
-    <div class="stat"><span class="stat-n">$0</span><span class="stat-l">To Start</span></div>
-    <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Always Watching</span></div>
+    <div class="stat"><span class="stat-n">50+</span><span class="stat-l">Profit Leak Watchdogs</span></div>
+    <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Surveillance</span></div>
   </div>
 </div>
 
@@ -824,8 +824,8 @@
       </div>
       <div class="step-card">
         <div class="step-n">STEP 03</div>
-        <h3>Run your top profit leak watchdog &mdash; free</h3>
-        <p>Your first specialist runs at zero cost. Results in about a minute. A ProfitOS Leak Report generated automatically &mdash; yours to keep and share.</p>
+        <h3>Run your top profit leak watchdog</h3>
+        <p>Results in about a minute. A ProfitOS Leak Report generated automatically &mdash; yours to keep and share.</p>
       </div>
     </div>
   </div>
@@ -861,7 +861,7 @@
       <input type="email" id="email-b" placeholder="your@email.com" autocomplete="email" />
       <button class="btn-main" id="btn-b" onclick="go('b')">Join the Waitlist &mdash; Free</button>
     </div>
-    <p class="form-note">No credit card &nbsp;&middot;&nbsp; No obligation &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
+    <p class="form-note">Unsubscribe anytime</p>
     <div class="form-ok" id="ok-b">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
   </div>
 </section>
