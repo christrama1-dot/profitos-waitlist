@@ -137,8 +137,8 @@
       font-weight: 900;
       letter-spacing: -0.02em;
       text-transform: uppercase;
-      color: var(--white);
-      border-bottom: 1px solid var(--border);
+      color: #FFFFFF;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .hero { padding: 0; }
@@ -173,7 +173,7 @@
       letter-spacing: -0.03em;
       margin-bottom: 22px;
     }
-    .hero-left h1 .line2 { display: block; color: var(--white); }
+    .hero-left h1 .line2 { display: block; color: #FFFFFF; }
     .hero-sub {
       font-size: clamp(0.9rem, 1.6vw, 1.02rem);
       color: var(--grey);
@@ -181,6 +181,8 @@
       margin: 0 0 40px;
       line-height: 1.75;
     }
+    .hero .hero-sub { color: rgba(255,255,255,0.82); }
+    .hero .form-note { color: rgba(255,255,255,0.5); }
 
     .form-wrap { max-width: 480px; margin: 0 auto; }
     .hero-left .form-wrap { margin: 0; max-width: 440px; }
@@ -396,6 +398,11 @@
       background: rgba(0,153,85,.08);
       border-color: rgba(0,153,85,.3);
     }
+    .prob-dark-top { background: linear-gradient(180deg, #0D0F1A 0%, #1A6CE8 100%); }
+    .prob-dark-top .prob-pct { color: #00FF88; }
+    .prob-dark-top .prob-lead { color: rgba(255,255,255,0.9); }
+    .prob-dark-top .prob-chip { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+    .prob-dark-top .prob-chip-hl { color: #00FF88; background: rgba(0,255,136,0.1); border-color: rgba(0,255,136,0.35); }
 
     .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 24px; margin-top: 48px; }
     .step-card {
@@ -712,7 +719,6 @@
     <div class="ticker-track" id="ticker"></div>
   </div>
 </div>
-</div>
 
 <section class="hero">
   <div class="audience-label">
@@ -729,7 +735,7 @@
     <div class="hero-left">
       <div class="eyebrow-pill">PROFIT LEAK SURVEILLANCE</div>
       <h1>
-        <span class="gradient-text">Meet your new Controller.</span>
+        <span class="gradient-text">Meet your new (The Controller).</span>
         <span class="line2">Without the salary expense.</span>
       </h1>
       <p class="hero-sub">Most businesses your size can't afford a Controller, that is until now. Profit leaks are real, and we specialize in finding them.</p>
@@ -767,6 +773,7 @@
 
   </div>
 </section>
+</div>
 
 <div class="stats">
   <div class="stats-row">
@@ -776,7 +783,7 @@
 </div>
 
 <!-- PROBLEM -->
-<section class="sec sec-center">
+<section class="sec sec-center prob-dark-top">
   <h2 class="gradient-text" style="font-size:clamp(2rem,3.5vw,3.2rem);font-weight:900;letter-spacing:-0.03em;line-height:1.06;margin-bottom:32px;">The Problem</h2>
   <div class="prob-block">
     <span class="prob-pct">56%</span>
@@ -790,8 +797,11 @@
       <span class="prob-chip">Unpaid invoices</span>
       <span class="prob-chip prob-chip-hl">+ 49 other metrics you haven&rsquo;t considered</span>
     </div>
-    <p style="font-family:var(--mono);font-size:0.58rem;color:rgba(13,15,26,0.45);font-weight:700;">Based on industry research. See full sources below.</p>
+    <p style="font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.45);font-weight:700;">Based on industry research. See full sources below.</p>
   </div>
+</section>
+
+<section class="sec sec-center">
   <h2 style="max-width:560px;margin:0 auto 20px;">Designed to find what you may have missed.</h2>
   <p class="lead lead-c">
     Your accountant files what happened. Your software tracks what you told it.
