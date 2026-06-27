@@ -54,9 +54,44 @@
       justify-content: space-between;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       background: transparent;
+      position: relative;
     }
     .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em; color: #FFFFFF; }
     .logo em { font-style: normal; color: var(--green); }
+    #os-fly {
+      position: absolute;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: #009955;
+      font-family: var(--font);
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    #os-phrase-wrap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      font-family: var(--font);
+      pointer-events: none;
+      z-index: 9;
+      opacity: 0;
+      white-space: nowrap;
+      line-height: 1;
+      text-align: center;
+    }
+    .os-hl { color: #009955; }
+    @media (max-width: 600px) {
+      #os-fly, #os-phrase-wrap { display: none !important; }
+    }
     .nav-pill {
       background:
         linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 55%, rgba(0,0,0,0.08) 100%),
@@ -664,7 +699,9 @@
 </div>
 
 <nav>
-  <div class="logo">Profit<em>OS</em> Engine</div>
+  <div class="logo">Profit<em id="logo-em">OS</em> Engine</div>
+  <div id="os-fly" aria-hidden="true">OS</div>
+  <div id="os-phrase-wrap" aria-hidden="true"></div>
   <a href="#join" class="nav-pill">Join Waitlist &mdash; Free</a>
 </nav>
 
@@ -1207,6 +1244,118 @@ function go(id) {
   el.addEventListener('keydown', function(e) { if (e.key === 'Enter') go(id); });
   el.addEventListener('input',   function() { this.style.borderColor = ''; });
 });
+
+/* ===== OS LOGO ANIMATION ===== */
+(function() {
+  if (window.innerWidth <= 600) return;
+  var logoEm = document.getElementById('logo-em');
+  var fly    = document.getElementById('os-fly');
+  var pWrap  = document.getElementById('os-phrase-wrap');
+  if (!logoEm || !fly || !pWrap) return;
+
+  var nav = document.querySelector('nav');
+
+  var phrases = [
+    '<span class="os-hl">O</span>perating\u00a0<span class="os-hl">S</span>ystem',
+    '<span class="os-hl">O</span>perational\u00a0<span class="os-hl">S</span>urveillance',
+    '<span class="os-hl">O</span>ver\u00a0<span class="os-hl">S</span>ight'
+  ];
+
+  var pIdx = 0;
+  var busy = false;
+
+  /* Rect of el relative to nav top-left */
+  function rel(el) {
+    var er = el.getBoundingClientRect();
+    var nr = nav.getBoundingClientRect();
+    return { l: er.left - nr.left, t: er.top - nr.top, w: er.width, h: er.height };
+  }
+
+  /* Set position + transition */
+  function pos(el, l, t, tr) {
+    el.style.transition = tr || 'none';
+    el.style.left = l + 'px';
+    el.style.top  = t + 'px';
+  }
+
+  function osRun() {
+    if (busy) return;
+    busy = true;
+    pIdx = 0;
+
+    var r    = rel(logoEm);
+    var flyW = fly.offsetWidth  || 36;
+    var flyH = fly.offsetHeight || 26;
+    var navW = nav.offsetWidth;
+    var navH = nav.offsetHeight;
+    var cx   = navW / 2 - flyW / 2;
+    var cy   = navH / 2 - flyH / 2;
+
+    /* Snap fly to logo OS position, invisible */
+    pos(fly, r.l, r.t);
+    fly.style.opacity = '0';
+    logoEm.style.transition = 'opacity 0.12s';
+    logoEm.style.opacity    = '0';
+
+    requestAnimationFrame(function() { requestAnimationFrame(function() {
+      fly.style.opacity = '1';
+      setTimeout(function() {
+        /* Springy bounce to nav center */
+        pos(fly, cx, cy,
+          'left 0.55s cubic-bezier(0.34,1.56,0.64,1), top 0.4s ease');
+        setTimeout(osCycle, 660);
+      }, 40);
+    }); });
+  }
+
+  function osCycle() {
+    if (pIdx >= phrases.length) { osReturn(); return; }
+
+    pWrap.innerHTML = phrases[pIdx];
+    fly.style.transition  = 'opacity 0.28s ease';
+    fly.style.opacity     = '0';
+    pWrap.style.transition = 'opacity 0.42s ease';
+    pWrap.style.opacity   = '1';
+
+    /* Hold phrase then fade out */
+    setTimeout(function() {
+      pWrap.style.transition = 'opacity 0.32s ease';
+      pWrap.style.opacity    = '0';
+      setTimeout(function() {
+        pIdx++;
+        if (pIdx < phrases.length) {
+          /* Brief OS flash between phrases */
+          fly.style.transition = 'opacity 0.18s ease';
+          fly.style.opacity    = '1';
+          setTimeout(osCycle, 260);
+        } else {
+          setTimeout(osReturn, 200);
+        }
+      }, 360);
+    }, 2700);
+  }
+
+  function osReturn() {
+    var r = rel(logoEm);
+    fly.style.transition = 'opacity 0.18s ease';
+    fly.style.opacity    = '1';
+    setTimeout(function() {
+      /* Snap back with quick deceleration */
+      pos(fly, r.l, r.t,
+        'left 0.4s cubic-bezier(0.6,-0.28,0.74,0.05), top 0.36s ease, opacity 0.16s ease 0.3s');
+      fly.style.opacity = '0';
+      setTimeout(function() {
+        logoEm.style.transition = 'opacity 0.25s';
+        logoEm.style.opacity    = '1';
+        busy = false;
+        setTimeout(osRun, 4500);
+      }, 540);
+    }, 160);
+  }
+
+  setTimeout(osRun, 3000);
+})();
+/* ============================= */
 </script>
 <script defer src="/cap-check.js"></script>
 <script defer src="/hook-test.js"></script>
