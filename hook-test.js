@@ -1,32 +1,23 @@
 /**
  * hook-test.js — Hero Hook A/B Split Test
- * Runs with defer. Assigns visitor to variant A/B/D and swaps hero copy.
+ * Runs with defer. Assigns visitor to variant A or D and swaps hero copy.
  * Intercepts /api/subscribe fetch to inject hook_shown without modifying index.html.
  *
  * Variants:
- *   0 = A (CONTROL) — "It's like having a Controller / without the salary."
- *   1 = B           — "You just got a Controller. / Without the salary."
- *   2 = D           — "Your profit is LEAKING. / The Controller would have caught it."
+ *   0 = A (CONTROL) — default index.html copy
+ *   1 = D           — "Your profit is LEAKING. / The Controller would have caught it."
  *
- * Force a variant for testing: ?h=0 | ?h=1 | ?h=2
+ * Variant B ("You just got a Controller. / Without the salary.") removed by Founder, June 27, 2026.
+ * Force a variant for testing: ?h=0 | ?h=1
  */
 
 (function () {
   var HOOKS = [
     {
-      // A — CONTROL (Founder-approved June 26, 2026)
-      line1: "It's like having a Controller",
-      line2: 'without the salary.',
-      sub:   "Most businesses your size can't afford a Controller, that is until now. Profit leaks are real, and we specialize in finding them. So you can spend your time growing your business."
+      // A — CONTROL — default index.html H1, no DOM swap performed
     },
     {
-      // B — Challenger
-      line1: 'You just got a Controller.',
-      line2: 'Without the salary.',
-      sub:   'Over 50 watchdogs watching your money around the clock. Results in about a minute. No credit card.'
-    },
-    {
-      // D — Challenger
+      // D — Challenger (previously index 2)
       line1: 'Your profit is LEAKING.',
       line2: 'The Controller would have caught it.',
       sub:   'Now you have one. Over 50 watchdogs. Results in about a minute. No credit card.'
@@ -60,9 +51,9 @@
   window.fetch = function (url, options) {
     if (typeof url === 'string' && url.includes('/api/subscribe') && options && options.body) {
       try {
-        var body      = JSON.parse(options.body);
+        var body        = JSON.parse(options.body);
         body.hook_shown = window.HOOK_IDX || 0;
-        options       = Object.assign({}, options, { body: JSON.stringify(body) });
+        options         = Object.assign({}, options, { body: JSON.stringify(body) });
       } catch (e) { /* leave body unchanged if parse fails */ }
     }
     return _fetch.apply(this, arguments);
