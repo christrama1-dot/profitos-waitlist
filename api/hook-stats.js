@@ -12,21 +12,29 @@
  * {
  *   total: 42,
  *   hooks: [
- *     { index: 0, label: "Control — Your Profit Is Leaking.", count: 18, pct: "42.9" },
+ *     { index: 0, label: "A (Control) — default index.html hero copy", count: 18, pct: "42.9" },
  *     ...
  *   ],
  *   winner: { index: 1, label: "...", pct: "..." },
  *   kv_enabled: true
  * }
+ *
+ * FIXED July 1, 2026: this file still had 3 hook variants on record (A/B/D) after
+ * Variant B was retired from hook-test.js on June 27, 2026. The live script only
+ * ever sends index 0 or 1 now, with index 1 meaning D — but this file still labeled
+ * index 1 as "B." Every D-variant hit since June 27 was being mislabeled as B in
+ * the stats below. HOOK_LABELS and HOOK_COUNT updated to match the live 2-variant
+ * script exactly. Historical hits recorded under index 1 between June 27 and July 1
+ * are a blended B+D count with no clean way to separate them after the fact —
+ * flagged to Founder, not corrected retroactively. Going forward this is accurate.
  */
 
 var HOOK_LABELS = [
-  'A (Control) — Your Profit Is Leaking. / Let Us Help Stop It.',
-  'B — You just got a Controller. / Without the salary.',
-  'D — Your profit is LEAKING. / A Controller would have caught it.'
+  'A (Control) — default index.html hero copy',
+  'D — Your profit is LEAKING. / The Controller would have caught it.'
 ];
 
-var HOOK_COUNT = 3;
+var HOOK_COUNT = 2;
 
 async function kvMGet(keys) {
   var url   = process.env.KV_REST_API_URL;
