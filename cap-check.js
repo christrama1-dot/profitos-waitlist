@@ -7,7 +7,7 @@
     .then(function (data) {
       if (!data || data.open !== false) return;
       var forms = document.querySelectorAll('.form-wrap');
-      var msg   = '<div style="background:rgba(159,143,239,.08);border:1px solid rgba(159,143,239,.25);border-radius:14px;padding:20px 24px;text-align:center;font-family:var(--mono,monospace);font-size:0.78rem;color:#9F8FEF;margin-top:8px;line-height:1.7;">Charter Membership is now closed.<br>Join the waitlist for the next opening.</div>';
+      var msg   = '<div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:14px;padding:20px 24px;text-align:center;font-family:var(--mono,monospace);font-size:0.78rem;color:#F5A623;margin-top:8px;line-height:1.7;">Charter Membership is now closed.<br>Join the waitlist for the next opening.</div>';
       forms.forEach(function (f) {
         f.style.display = 'none';
         var el = document.createElement('div');
