@@ -8,7 +8,7 @@
  * GET /api/check-capacity
  * Returns: { open: true } if < 100 charter members, { open: false } if capped
  *
- * Logic: counts Kit subscribers tagged "charter-member"
+ * Logic: counts Kit subscribers tagged "member-active"
  * Cap: 100 (INTERNAL ONLY — never show count to user)
  */
 
@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // Kit v3: fetch all subscribers with 'charter-member' tag
+    // Kit v3: fetch all subscribers with 'member-active' tag
     // We only need the count — fetch page 1 with 1 result to get total_count
     const tagsRes = await fetch(
       `https://api.convertkit.com/v3/tags?api_key=${encodeURIComponent(apiKey)}`
@@ -46,11 +46,11 @@ module.exports = async function handler(req, res) {
 
     const tagsData = await tagsRes.json();
     const tags     = tagsData.tags || [];
-    const cmTag    = tags.find(t => t.name === 'charter-member');
+    const cmTag    = tags.find(t => t.name === 'member-active');
 
     if (!cmTag) {
-      // Tag doesn't exist yet — no charter members, definitely open
-      console.log('[check-capacity] charter-member tag not found → open');
+      // Tag doesn't exist yet — no active members, definitely open
+      console.log('[check-capacity] member-active tag not found → open');
       return res.status(200).json({ open: true });
     }
 
@@ -68,7 +68,7 @@ module.exports = async function handler(req, res) {
     const count   = subData.total_subscriptions || 0;
 
     const open = count < CHARTER_CAP;
-    console.log(`[check-capacity] charter-member count=${count} cap=${CHARTER_CAP} open=${open}`);
+    console.log(`[check-capacity] member-active count=${count} cap=${CHARTER_CAP} open=${open}`);
 
     return res.status(200).json({ open });
 
