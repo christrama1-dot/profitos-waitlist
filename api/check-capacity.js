@@ -8,8 +8,14 @@
  * GET /api/check-capacity
  * Returns: { open: true } if < 100 charter members, { open: false } if capped
  *
- * Logic: counts Kit subscribers tagged "member-active"
+ * Logic: counts Kit subscribers tagged "charter-member"
  * Cap: 100 (INTERNAL ONLY — never show count to user)
+ *
+ * Updated July 4, 2026: switched from "member-active" (counted every paid
+ * member, any tier) to "charter-member" (Charter tier only). The 100-member
+ * cap applies to Charter specifically, not to all active members — see
+ * CLAUDE.md Section 2 and Founder To-Do #44. Done after WF-04 Task 2 was
+ * live, tested, and Published, per plan.
  */
 
 const CHARTER_CAP = 100;
@@ -33,7 +39,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // Kit v3: fetch all subscribers with 'member-active' tag
+    // Kit v3: fetch all subscribers with 'charter-member' tag
     // We only need the count — fetch page 1 with 1 result to get total_count
     const tagsRes = await fetch(
       `https://api.convertkit.com/v3/tags?api_key=${encodeURIComponent(apiKey)}`
@@ -46,11 +52,11 @@ module.exports = async function handler(req, res) {
 
     const tagsData = await tagsRes.json();
     const tags     = tagsData.tags || [];
-    const cmTag    = tags.find(t => t.name === 'member-active');
+    const cmTag    = tags.find(t => t.name === 'charter-member');
 
     if (!cmTag) {
-      // Tag doesn't exist yet — no active members, definitely open
-      console.log('[check-capacity] member-active tag not found → open');
+      // Tag doesn't exist yet — no charter members yet, definitely open
+      console.log('[check-capacity] charter-member tag not found → open');
       return res.status(200).json({ open: true });
     }
 
@@ -68,7 +74,7 @@ module.exports = async function handler(req, res) {
     const count   = subData.total_subscriptions || 0;
 
     const open = count < CHARTER_CAP;
-    console.log(`[check-capacity] member-active count=${count} cap=${CHARTER_CAP} open=${open}`);
+    console.log(`[check-capacity] charter-member count=${count} cap=${CHARTER_CAP} open=${open}`);
 
     return res.status(200).json({ open });
 
