@@ -37,37 +37,111 @@
   </div>
 </header>
 
+<!-- SKEPTIC SECTION -->
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">THE FOUR WALLS</span>
-      <h2>How your data is protected</h2>
+      <span class="eyebrow">LET'S BE DIRECT</span>
+      <h2>You should be skeptical.</h2>
+      <p class="lead">Your financial data is personal and powerful. Anyone asking to see it should have to earn that — including us. So here's exactly how the connection works, who handles what, and where the walls are. No hand-waving.</p>
     </div>
-    <div class="grid2">
+    <div class="grid3">
       <div class="card">
-        <span class="chip green">01 · READ-ONLY</span>
-        <h3>We can look. We can never touch.</h3>
-        <p>Every connection is read-only. Watchdogs audit transactions — they cannot move money, edit records, or change your books. Not restricted from it. Incapable of it.</p>
+        <span class="chip blue">STEP 1</span>
+        <h3>You sign in with your bank — not with us</h3>
+        <p>Bank connections run through Plaid, the connection layer behind thousands of financial apps and most major banks. You enter your login with your bank, through Plaid's secure window. ProfitOS never sees it. Never stores it. Never touches it.</p>
       </div>
       <div class="card">
-        <span class="chip blue">02 · BANK-GRADE CONNECTIONS</span>
-        <h3>Your bank credentials never touch us</h3>
-        <p>Bank feeds connect through Plaid, the same secure connection layer used by leading financial apps. You authenticate with your bank directly. We never see or store your banking login.</p>
+        <span class="chip green">STEP 2</span>
+        <h3>We get read-only data. Nothing else.</h3>
+        <p>What comes back to us is transaction data — the trail your money leaves. Not your credentials. Not transfer access. The watchdogs read the trail and flag what's escaping.</p>
       </div>
       <div class="card">
-        <span class="chip orange">03 · WALLED-OFF DATA</span>
-        <h3>Your data is yours. Only yours.</h3>
-        <p>Every member's data is isolated at the database level with row-level security. No member can ever see another member's data — the wall is enforced by the database itself, not by good intentions.</p>
-      </div>
-      <div class="card">
-        <span class="chip green">04 · LOGGED &amp; ENCRYPTED</span>
-        <h3>Every action leaves a trail</h3>
-        <p>Data is encrypted in transit and at rest. Credentials live in encrypted storage, never in code. Watchdog activity is logged, so there's always a record of what was read and when.</p>
+        <span class="chip orange">STEP 3</span>
+        <h3>You hold the kill switch</h3>
+        <p>Disconnect any account, any time, from your ProfitOS settings. Plaid also gives you your own dashboard — Plaid Portal — where you can see every app you've ever connected and cut any of them off yourself.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FOUR WALLS -->
+<section class="dark-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" style="color:var(--amber)">THE FOUR WALLS</span>
+      <h2>How your data is protected</h2>
+    </div>
+    <div class="grid4">
+      <div class="card">
+        <span class="tag">01 · READ-ONLY</span>
+        <h3>We can look. We can never touch.</h3>
+        <p>Every connection is read-only. Watchdogs audit transactions — they cannot move money, edit records, or change your books. Not restricted from it. Incapable of it.</p>
+      </div>
+      <div class="card">
+        <span class="tag">02 · BANK-GRADE CONNECTIONS</span>
+        <h3>Your bank credentials never touch us</h3>
+        <p>You authenticate with your bank directly through Plaid. We never see or store your banking login — the connection is built so we can't.</p>
+      </div>
+      <div class="card">
+        <span class="tag">03 · WALLED-OFF DATA</span>
+        <h3>Your data is yours. Only yours.</h3>
+        <p>Every member's data is isolated at the database level with row-level security. The wall is enforced by the database itself, not by good intentions.</p>
+      </div>
+      <div class="card">
+        <span class="tag">04 · LOGGED &amp; ENCRYPTED</span>
+        <h3>Every action leaves a trail</h3>
+        <p>Data is encrypted in transit and at rest. Credentials live in encrypted storage, never in code. Watchdog activity is logged — there's always a record of what was read and when.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKEPTIC FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">STRAIGHT ANSWERS</span>
+      <h2>The questions skeptics ask. Good.</h2>
+      <p class="lead">These are the exact questions we'd ask before connecting our own accounts. Direct answers, with sources you can check yourself.</p>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>Will ProfitOS see my bank password?</summary>
+        <p>No. You sign in with your financial institution directly, through Plaid's secure connection window. Your login goes to your bank — not to us. ProfitOS never sees it, never stores it, and the connection is built so we can't. Read Plaid's own explanation at <a href="https://plaid.com/how-we-handle-data/" target="_blank" rel="noopener">plaid.com/how-we-handle-data</a>.</p>
+      </details>
+
+      <details class="faq">
+        <summary>Can ProfitOS move my money or change my books?</summary>
+        <p>No. Every connection we make is read-only. Watchdogs can read transaction data and flag what's leaking — they have no ability to transfer funds, pay anyone, or edit a single record. Findings come to you. You act on them.</p>
+      </details>
+
+      <details class="faq">
+        <summary>Who is Plaid, and why should I trust them?</summary>
+        <p>Plaid is the connection layer used by thousands of financial apps and most major banks to link accounts securely. Their security stack includes AES-256 encryption, Transport Layer Security, multi-factor authentication, around-the-clock monitoring, and regular independent audits. Don't take our word for it — read their security answers directly at <a href="https://plaid.com/trust-safety/" target="_blank" rel="noopener">plaid.com/trust-safety</a>.</p>
+      </details>
+
+      <details class="faq">
+        <summary>What if I want out?</summary>
+        <p>Disconnect any account, any time, from your ProfitOS settings — access revokes instantly. You also have your own control panel outside of us: Plaid Portal (<a href="https://my.plaid.com" target="_blank" rel="noopener">my.plaid.com</a>) shows every app you've connected through Plaid and lets you cut any connection yourself. You never need our permission to leave.</p>
+      </details>
+
+      <details class="faq">
+        <summary>Do you sell my data?</summary>
+        <p>Never. Your financial data exists for one purpose: finding your leaks. It is not sold, rented, or shared — and it's not used to train anything for anyone else. Plaid's end-user privacy policy states the same on their side: data isn't sold to third parties and is shared only with your permission. Their policy: <a href="https://plaid.com/legal/" target="_blank" rel="noopener">plaid.com/legal</a>.</p>
+      </details>
+
+      <details class="faq">
+        <summary>I'm still not sure. What's the smallest way to start?</summary>
+        <p>Start with one account. Connect a single card or checking account, watch the watchdogs work, and read your first findings. Add the rest when we've earned it. Trust is built on results — we'd rather prove it than promise it.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- THREE PROMISES -->
 <section class="dark-band">
   <div class="wrap">
     <div class="sec-head">

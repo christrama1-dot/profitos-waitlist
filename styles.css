@@ -224,3 +224,36 @@ footer.site .fine{font-family:'JetBrains Mono',monospace;font-size:0.66rem;lette
 .doc-item .d-title{font-weight:900}
 .doc-item .d-sub{color:var(--ink2);font-weight:700;font-size:0.88rem}
 .doc-item .d-status{font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink2);white-space:nowrap}
+
+/* skeptic FAQ (Security page) */
+.faq-list{display:grid;gap:14px;max-width:820px}
+details.faq{
+  background:var(--bg2);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:0;
+  overflow:hidden;
+}
+details.faq summary{
+  cursor:pointer;
+  list-style:none;
+  font-weight:900;
+  font-size:1rem;
+  padding:20px 52px 20px 24px;
+  position:relative;
+}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{
+  content:"+";
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.2rem;
+  color:var(--orange);
+}
+details.faq[open] summary::after{content:"\2212"}
+details.faq[open] summary{border-bottom:1px solid var(--line)}
+details.faq p{
+  padding:18px 24px 22px;
+  color:var(--ink2);font-weight:700;font-size:0.95rem;
+}
+details.faq a{color:var(--blue);font-weight:700}
+details.faq summary:focus-visible{outline:3px solid var(--amber);outline-offset:-3px}
