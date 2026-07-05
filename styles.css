@@ -144,6 +144,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
 .card a.more{color:var(--blue);font-weight:700;text-decoration:none;font-size:0.9rem}
 .card a.more:hover{text-decoration:underline}
 
+/* brand wordmarks (placeholder until official SVG assets) */
+.brandmark{
+  display:block;font-weight:900;font-size:1.35rem;letter-spacing:-0.02em;
+  line-height:1;margin:14px 0 2px;
+}
+
 /* step cards */
 .step-num{
   font-family:'JetBrains Mono',monospace;font-weight:700;font-size:2.2rem;
@@ -257,3 +263,60 @@ details.faq p{
 }
 details.faq a{color:var(--blue);font-weight:700}
 details.faq summary:focus-visible{outline:3px solid var(--amber);outline-offset:-3px}
+
+/* Slack-style chat widget */
+.sw{
+  background:var(--bg3);border:1px solid rgba(232,233,240,0.1);
+  border-radius:16px;overflow:hidden;max-width:640px;
+  box-shadow:0 8px 48px rgba(0,0,0,0.18), 0 0 0 1px rgba(217,119,6,0.2);
+}
+.sw-head{
+  background:var(--bg4);border-bottom:1px solid rgba(232,233,240,0.08);
+  padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.sw-title{font-weight:700;font-size:0.8rem;color:#E8E9F0;line-height:1.2}
+.sw-sub{font-size:0.62rem;color:rgba(232,233,240,0.5);display:flex;align-items:center;gap:5px}
+.sw-on{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);display:inline-block;flex-shrink:0}
+.sw-badge{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:rgba(232,233,240,0.45);
+  background:rgba(232,233,240,0.05);border:1px solid rgba(232,233,240,0.08);
+  border-radius:6px;padding:3px 9px;white-space:nowrap;max-width:190px;overflow:hidden;text-overflow:ellipsis;
+}
+.sw-body{
+  padding:16px;height:300px;overflow-y:auto;
+  display:flex;flex-direction:column;gap:13px;
+  transition:opacity .3s ease;scrollbar-width:thin;
+}
+.sw-body.fading{opacity:0}
+.sw-msg{display:flex;gap:10px;align-items:flex-start}
+.sw-av{
+  width:32px;height:32px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.8rem;color:#0D0F1A;
+}
+.sw-name{font-weight:700;font-size:0.82rem;color:#E8E9F0;line-height:1.2;margin-bottom:2px}
+.sw-text{font-size:0.86rem;color:rgba(232,233,240,0.92);line-height:1.55;word-break:break-word}
+.sw-dots{display:flex;gap:4px;align-items:center;height:20px;padding:4px 0}
+.sw-dots span{
+  width:6px;height:6px;border-radius:50%;background:rgba(232,233,240,0.32);
+  animation:swb 1.2s infinite ease-in-out;
+}
+.sw-dots span:nth-child(2){animation-delay:.2s}
+.sw-dots span:nth-child(3){animation-delay:.4s}
+@keyframes swb{0%,60%,100%{transform:translateY(0);opacity:.32}30%{transform:translateY(-4px);opacity:1}}
+.sw-foot{
+  background:var(--bg4);border-top:1px solid rgba(232,233,240,0.08);
+  padding:10px 16px;display:flex;align-items:center;gap:12px;
+}
+.sw-btn{
+  background:none;border:1px solid rgba(232,233,240,0.12);border-radius:6px;
+  color:rgba(232,233,240,0.5);width:26px;height:26px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:0.8rem;line-height:1;
+}
+.sw-btn:hover{border-color:var(--orange);color:#E8E9F0}
+.sw-count{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:rgba(232,233,240,0.35);margin:0 auto;letter-spacing:0.05em}
+.sw-dis{
+  background:var(--bg4);font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.14em;color:rgba(232,233,240,0.25);text-align:center;padding:0 0 10px;
+}
+.sw-wrap{display:grid;grid-template-columns:1fr;justify-items:center}
