@@ -54,11 +54,72 @@ section{padding:80px 0}
 @media (max-width:900px){.grid3,.grid4{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
 
-/* ---------- nav ---------- */
+/* ---------- header v2: logo row + nav row (To-Do #55) ---------- */
 header.site{
   background:linear-gradient(180deg,#0D0F1A 0%,#1A6CE8 100%);
   color:#fff;
 }
+.logo-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 0;position:relative;
+}
+header.site .logo{
+  font-weight:900;letter-spacing:-0.02em;
+  font-size:clamp(1.5rem,2.2vw,2rem);
+  text-decoration:none;line-height:1;
+  background:linear-gradient(170deg, rgba(255,255,255,1) 0%, rgba(210,228,255,0.96) 16%, rgba(148,188,244,0.88) 33%, rgba(220,238,255,0.92) 50%, rgba(255,255,255,0.97) 65%, rgba(172,207,252,0.82) 82%, rgba(232,244,255,0.88) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 20px rgba(160,210,255,0.5), 0 0 42px rgba(100,165,255,0.2);
+}
+header.site .logo em{
+  font-style:normal;
+  background:linear-gradient(170deg, rgba(255,255,255,0.98) 0%, rgba(0,153,85,1) 10%, rgba(0,126,66,0.92) 28%, rgba(0,99,51,0.82) 44%, rgba(0,153,85,0.90) 58%, rgba(215,255,238,0.75) 64%, rgba(0,119,62,0.87) 76%, rgba(0,77,40,0.78) 90%, rgba(0,153,85,0.68) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 18px rgba(0,153,85,0.62), 0 0 38px rgba(0,120,62,0.25);
+}
+#os-fly{
+  position:absolute;
+  font-weight:900;font-size:clamp(1.5rem,2.2vw,2rem);letter-spacing:-0.02em;
+  background:linear-gradient(170deg, rgba(255,255,255,0.98) 0%, rgba(0,153,85,1) 10%, rgba(0,126,66,0.92) 28%, rgba(0,99,51,0.82) 44%, rgba(0,153,85,0.90) 58%, rgba(215,255,238,0.75) 64%, rgba(0,119,62,0.87) 76%, rgba(0,77,40,0.78) 90%, rgba(0,153,85,0.68) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 18px rgba(0,153,85,0.62), 0 0 38px rgba(0,120,62,0.25);
+  font-family:'Inter',sans-serif;pointer-events:none;z-index:10;
+  opacity:0;white-space:nowrap;line-height:1;
+}
+#os-phrase-wrap{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-weight:900;font-size:clamp(1.5rem,2.2vw,2rem);letter-spacing:-0.02em;
+  background:linear-gradient(170deg, rgba(255,255,255,1) 0%, rgba(210,228,255,0.96) 16%, rgba(148,188,244,0.88) 33%, rgba(220,238,255,0.92) 50%, rgba(255,255,255,0.97) 65%, rgba(172,207,252,0.82) 82%, rgba(232,244,255,0.88) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 20px rgba(160,210,255,0.5), 0 0 42px rgba(100,165,255,0.2);
+  font-family:'Inter',sans-serif;pointer-events:none;z-index:9;
+  opacity:0;white-space:nowrap;line-height:1;text-align:center;
+}
+.os-hl{
+  background:linear-gradient(170deg, rgba(255,255,255,0.98) 0%, rgba(0,153,85,1) 10%, rgba(0,126,66,0.92) 28%, rgba(0,99,51,0.82) 44%, rgba(0,153,85,0.90) 58%, rgba(215,255,238,0.75) 64%, rgba(0,119,62,0.87) 76%, rgba(0,77,40,0.78) 90%, rgba(0,153,85,0.68) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 18px rgba(0,153,85,0.62), 0 0 38px rgba(0,120,62,0.25);
+}
+@media (max-width:600px){#os-fly,#os-phrase-wrap{display:none!important}}
+
+.navrow{
+  display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+  padding:2px 0 16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.navrow a{
+  color:rgba(255,255,255,0.85);text-decoration:none;
+  font-weight:700;font-size:0.9rem;
+}
+.navrow a:hover,.navrow a:focus-visible{color:#fff}
+.navrow a.active{color:var(--amber)}
+
+/* legacy nav classes kept for compatibility */
 nav.top{
   display:flex;align-items:center;justify-content:space-between;
   padding:20px 0;gap:16px;flex-wrap:wrap;
@@ -77,6 +138,40 @@ nav.top{
 .navlinks a:hover,.navlinks a:focus-visible{color:#fff}
 .navlinks a.active{color:var(--amber)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
+
+/* ---------- watchdog ticker (To-Do #55) ---------- */
+.ticker-wrap{padding:14px 0 0}
+.ticker-rail{
+  overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.ticker-track{display:flex;gap:10px;width:max-content;animation:tkroll 75s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+@keyframes tkroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tk-chip{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  border-radius:999px;padding:10px 18px;white-space:nowrap;
+  transition:border-color .2s, background .2s;cursor:default;
+}
+.tk-chip:hover{border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.2)}
+.tk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.tk-g{background:var(--green);box-shadow:0 0 7px var(--green)}
+.tk-o{background:var(--orange);box-shadow:0 0 7px var(--orange)}
+.tk-c{background:var(--blue);box-shadow:0 0 7px var(--blue)}
+.tk-k{background:var(--amber);box-shadow:0 0 7px var(--amber)}
+.tk-name{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#fff}
+
+/* ---------- audience band (index only, To-Do #55) ---------- */
+.audience-band{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;
+  padding:18px 0;margin-top:14px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  font-weight:900;letter-spacing:-0.02em;text-transform:uppercase;
+  color:#fff;font-size:clamp(0.72rem,1.6vw,1.4rem);
+}
 
 /* ---------- CTA button (locked spec) ---------- */
 .btn-main{
@@ -110,7 +205,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
 .btn-ghost.dark-on-light{border-color:rgba(13,15,26,0.3);color:var(--ink)}
 
 /* ---------- hero ---------- */
-.hero{padding:72px 0 88px;color:#fff}
+.hero{padding:56px 0 88px;color:#fff}
 .hero .eyebrow{color:var(--green)}
 .hero h1{color:#fff;margin:18px 0}
 .hero .lead{color:rgba(255,255,255,0.85);max-width:640px;margin-bottom:32px}
