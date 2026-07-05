@@ -232,6 +232,13 @@
     }
     .form-row input[type="email"]:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,108,232,0.15), 0 2px 8px rgba(13,15,26,0.07); }
     .form-row input[type="email"]::placeholder { color: rgba(13,15,26,.35); }
+    .hp-field {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px; height: 1px;
+      opacity: 0;
+      overflow: hidden;
+    }
     .btn-main {
       flex: 1 1 auto;
       background:
@@ -734,7 +741,7 @@
 
 <div class="hdr">
 <div class="announce">
-  Waitlist closes <strong>August 29th</strong> &mdash; Charter rate locked for life &mdash; Free to join
+  Doors open <strong>August 29th</strong> &mdash; Join the waitlist free &mdash; Charter rate locked for life
 </div>
 
 <nav>
@@ -772,6 +779,7 @@
       <div class="form-wrap" id="join">
         <div class="form-row">
           <input type="email" id="email-a" placeholder="your@email.com" autocomplete="email" />
+          <input type="text" id="hp-a" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <button class="btn-main" id="btn-a" onclick="go('a')">Join the Waitlist &mdash; Free</button>
         </div>
         <p class="form-note">Unsubscribe anytime</p>
@@ -817,7 +825,7 @@
   <h2 class="gradient-text" style="font-size:clamp(2rem,3.5vw,3.2rem);font-weight:900;letter-spacing:-0.03em;line-height:1.06;margin-bottom:32px;">The Problem</h2>
   <div class="prob-block">
     <span class="prob-pct">56%</span>
-    <p class="prob-lead">of small to medium-sized businesses are currently losing profit on:</p>
+    <p class="prob-lead">of small businesses have invoices sitting unpaid right now &mdash; per Intuit QuickBooks&rsquo; <em>Small Business Late Payments Report</em>, 2025.<sup class="src">1</sup><br>And that&rsquo;s just ONE leak. The others:</p>
     <div class="prob-chips">
       <span class="prob-chip">Tax break opportunities</span>
       <span class="prob-chip">Unused leased equipment &amp; software</span>
@@ -890,7 +898,7 @@
 
 <!-- FINAL CTA -->
 <section class="sec cta-sec">
-  <div class="eyebrow">Priority Waitlist &mdash; Closes August 29th</div>
+  <div class="eyebrow">Doors Open August 29th &mdash; Waitlist Is Free</div>
   <h2 class="gradient-text" style="margin-bottom:16px;">Your money is waiting.</h2>
   <p class="lead lead-c" style="margin-bottom:40px;">
     The easiest way to give yourself a raise is to stop the profit leaks in your business.<br>
@@ -899,6 +907,7 @@
   <div class="form-wrap">
     <div class="form-row">
       <input type="email" id="email-b" placeholder="your@email.com" autocomplete="email" />
+      <input type="text" id="hp-b" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <button class="btn-main" id="btn-b" onclick="go('b')">Join the Waitlist &mdash; Free</button>
     </div>
     <p class="form-note">Unsubscribe anytime</p>
@@ -1253,6 +1262,7 @@ function go(id) {
   var inp = document.getElementById('email-' + id);
   var btn = document.getElementById('btn-' + id);
   var ok  = document.getElementById('ok-' + id);
+  var hp  = document.getElementById('hp-' + id);
   var em  = inp.value.trim();
   if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#D97706'; inp.focus(); return; }
   btn.disabled = true;
@@ -1261,7 +1271,7 @@ function go(id) {
   fetch('/api/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: em, cc_shown: CC_IDX })
+    body: JSON.stringify({ email: em, cc_shown: CC_IDX, website: hp ? hp.value : '' })
   })
   .then(function(r) { return r.ok ? r : Promise.reject(r.status); })
   .then(function() {
