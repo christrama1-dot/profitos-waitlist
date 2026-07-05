@@ -28,7 +28,7 @@
     <div class="hero">
       <span class="eyebrow">SECURITY</span>
       <h1>Hardened by default.</h1>
-      <p class="lead">You're handing us a window into your money. We treat that like the responsibility it is. Read-only access, walled-off data, logged actions — not as an upgrade, as the default.</p>
+      <p class="lead">You're handing us a window into your money. We treat that like the responsibility it is. Read-only access, walled-off data, logged actions — not as an upgrade, as the default. This is why we're a proud Plaid partner.</p>
       <div class="cta-row">
         <a class="btn-main" href="index.html#waitlist">Join the Waitlist →</a>
       </div>
@@ -48,17 +48,17 @@
     <div class="grid3">
       <div class="card">
         <span class="chip blue">STEP 1</span>
-        <h3>You sign in with your bank — not with us</h3>
+        <h3>The Plaid connection</h3>
         <p>Bank connections run through Plaid, the connection layer behind thousands of financial apps and most major banks. You enter your login with your bank, through Plaid's secure window. ProfitOS never sees it. Never stores it. Never touches it.</p>
       </div>
       <div class="card">
         <span class="chip green">STEP 2</span>
-        <h3>We get read-only data. Nothing else.</h3>
+        <h3>Read-only. That's it.</h3>
         <p>What comes back to us is transaction data — the trail your money leaves. Not your credentials. Not transfer access. The watchdogs read the trail and flag what's escaping.</p>
       </div>
       <div class="card">
         <span class="chip orange">STEP 3</span>
-        <h3>You hold the kill switch</h3>
+        <h3>You maintain full control</h3>
         <p>Disconnect any account, any time, from your ProfitOS settings. Plaid also gives you your own dashboard — Plaid Portal — where you can see every app you've ever connected and cut any of them off yourself.</p>
       </div>
     </div>
@@ -141,6 +141,35 @@
   </div>
 </section>
 
+<!-- SECURITY CHATTER WIDGET -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">SECURITY CHATTER</span>
+      <h2>Overheard: security check, passed.</h2>
+      <p class="lead">What the connection conversation actually sounds like — secure AND easy, in the same breath.</p>
+    </div>
+    <div class="sw-wrap">
+      <div class="sw" id="sww">
+        <div class="sw-head">
+          <div>
+            <div class="sw-title">ProfitOS Engine</div>
+            <div class="sw-sub"><span class="sw-on"></span> Read-only. Walled off. Logged.</div>
+          </div>
+          <div class="sw-badge" id="swl">loading…</div>
+        </div>
+        <div class="sw-body" id="swb"></div>
+        <div class="sw-foot">
+          <button class="sw-btn" id="swp" aria-label="Previous conversation">←</button>
+          <div class="sw-count" id="swc">1 / 25</div>
+          <button class="sw-btn" id="swn" aria-label="Next conversation">→</button>
+        </div>
+        <div class="sw-dis">ILLUSTRATIVE CONVERSATIONS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- THREE PROMISES -->
 <section class="dark-band">
   <div class="wrap">
@@ -190,5 +219,52 @@
   </div>
 </footer>
 
+<script>
+var CHATS=[
+{lbl:'#finance \u2014 9:05 AM',m:[{n:'Owner',i:'O',c:'#D97706',t:'Did we hand over our bank login?'},{n:'Rita',i:'R',c:'#009955',t:'No. I signed in with the bank through Plaid. ProfitOS never sees it.'}]},
+{lbl:'#ops \u2014 10:14 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'What access did we actually grant?'},{n:'Dana',i:'D',c:'#009955',t:'Read-only. They can look. They can\'t move a dollar.'}]},
+{lbl:'Text Message \u2014 7:22 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'What if I want out later?'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'Disconnect in settings. Access dies instantly. I tested it.'}]},
+{lbl:'#accounting \u2014 11:30 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Same connection layer as the big finance apps. Plaid.'},{n:'Owner',i:'O',c:'#D97706',t:'The one the banks already work with?'},{n:'Rita',i:'R',c:'#009955',t:'That one.'}]},
+{lbl:'#finance \u2014 2:08 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Can they edit the books?'},{n:'Dana',i:'D',c:'#009955',t:'Incapable. The connection has no write access. Not a setting. A wall.'}]},
+{lbl:'Text Message \u2014 8:31 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'My bank had me approve the connection with my own MFA.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'So the bank stays in charge?'},{n:'You',i:'Y',c:'#D97706',t:'Exactly how I want it.'}]},
+{lbl:'#ops \u2014 9:47 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'Every member\'s data is walled off at the database level.'},{n:'Owner',i:'O',c:'#D97706',t:'Meaning?'},{n:'Dana',i:'D',c:'#009955',t:'Nobody sees ours. We see nobody\'s.'}]},
+{lbl:'#general \u2014 1:12 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'Where do the credentials live?'},{n:'Dana',i:'D',c:'#009955',t:'Encrypted storage. Never in code. Never in email.'}]},
+{lbl:'Text Message \u2014 6:44 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Checked Plaid Portal today.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'What\'s that?'},{n:'You',i:'Y',c:'#D97706',t:'A dashboard showing every app I\'ve connected. I can cut any of them off myself.'}]},
+{lbl:'#finance \u2014 3:29 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Is the data encrypted?'},{n:'Dana',i:'D',c:'#009955',t:'In transit and at rest. And every read is logged.'}]},
+{lbl:'#accounting \u2014 10:02 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Our CPA reviewed the access before we connected.'},{n:'Owner',i:'O',c:'#D97706',t:'Verdict?'},{n:'Rita',i:'R',c:'#009955',t:'Read-only, revocable, logged. She approved in one email.'}]},
+{lbl:'Text Message \u2014 9:18 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'I started with one account to test the walls.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'And?'},{n:'You',i:'Y',c:'#D97706',t:'Connected the rest a week later. They earned it.'}]},
+{lbl:'#ops \u2014 8:55 AM',m:[{n:'Owner',i:'O',c:'#D97706',t:'Do they sell the data?'},{n:'Dana',i:'D',c:'#009955',t:'No. It exists to find our leaks. That\'s it. It\'s in writing on their site.'}]},
+{lbl:'#finance \u2014 12:36 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Worst case, what can a read-only connection do?'},{n:'Dana',i:'D',c:'#009955',t:'Read. That\'s the whole list.'}]},
+{lbl:'Text Message \u2014 5:50 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Setup asked for less access than my food delivery app.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'That\'s a low bar.'},{n:'You',i:'Y',c:'#D97706',t:'And they still cleared it with room.'}]},
+{lbl:'#general \u2014 2:23 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'Who can pull the plug?'},{n:'Owner',i:'O',c:'#D97706',t:'We can. Any time. No phone call, no ticket.'}]},
+{lbl:'#accounting \u2014 4:11 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Disconnect test: revoked the bank feed, then reconnected.'},{n:'Owner',i:'O',c:'#D97706',t:'Time?'},{n:'Rita',i:'R',c:'#009955',t:'Under a minute each way.'}]},
+{lbl:'Text Message \u2014 7:39 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'I read their security page twice looking for the catch.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Find one?'},{n:'You',i:'Y',c:'#D97706',t:'Found sources instead. They link to Plaid\'s own answers.'}]},
+{lbl:'#ops \u2014 11:48 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'No payment rails. No transfer permissions.'},{n:'Owner',i:'O',c:'#D97706',t:'So findings come to us, and we act?'},{n:'Dana',i:'D',c:'#009955',t:'That\'s the design.'}]},
+{lbl:'#finance \u2014 9:33 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Audit trail?'},{n:'Dana',i:'D',c:'#009955',t:'Every watchdog read is logged. There\'s always a record of what and when.'}]},
+{lbl:'Text Message \u2014 8:07 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'My banker had zero problem with the Plaid connection.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'They know it?'},{n:'You',i:'Y',c:'#D97706',t:'Most banks already work with it.'}]},
+{lbl:'#general \u2014 3:44 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'What did we have to install?'},{n:'Dana',i:'D',c:'#009955',t:'Nothing. No agent on our machines. It reads the cloud tools we already use.'}]},
+{lbl:'#accounting \u2014 1:27 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Passwords stay with the bank. Data stays walled. Access stays revocable.'},{n:'Owner',i:'O',c:'#D97706',t:'That\'s the checklist I needed.'}]},
+{lbl:'Text Message \u2014 6:15 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Secure AND easy is rare.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Usually it\'s one or the other.'},{n:'You',i:'Y',c:'#D97706',t:'This was both. Minutes to set up, no keys handed over.'}]},
+{lbl:'#ops \u2014 10:59 AM',m:[{n:'Owner',i:'O',c:'#D97706',t:'Bottom line on risk?'},{n:'Dana',i:'D',c:'#009955',t:'They can see the trail. They can\'t touch the money. And we hold the kill switch.'}]}
+];
+var i=0,T1=null,T2=null,P=false,S=false;
+var B=document.getElementById('swb'),L=document.getElementById('swl'),C=document.getElementById('swc');
+function dly(t){return Math.min(Math.max(t.length*40,700),2600)}
+function typing(m){var e=document.createElement('div');e.id='swt';e.className='sw-msg';e.innerHTML='<div class="sw-av" style="background:'+m.c+'">'+m.i+'</div><div><div class="sw-name">'+m.n+'</div><div class="sw-dots"><span></span><span></span><span></span></div></div>';B.appendChild(e);B.scrollTop=B.scrollHeight}
+function rmt(){var e=document.getElementById('swt');if(e)e.remove()}
+function add(m){var e=document.createElement('div');e.className='sw-msg';e.innerHTML='<div class="sw-av" style="background:'+m.c+'">'+m.i+'</div><div><div class="sw-name">'+m.n+'</div><div class="sw-text">'+m.t+'</div></div>';B.appendChild(e);B.scrollTop=B.scrollHeight}
+function run(x){S=false;var ch=CHATS[x];L.textContent=ch.lbl;C.textContent=(x+1)+' / '+CHATS.length;B.innerHTML='';var q=ch.m.slice(),k=0;
+function adv(){function a(){if(S)return;if(P){T1=setTimeout(a,500);return}T1=setTimeout(function(){if(!S)go(i+1)},1300)}T1=setTimeout(a,4200)}
+function nx(){if(S)return;if(k>=q.length){rmt();adv();return}var m=q[k];typing(m);T2=setTimeout(function(){if(S)return;rmt();add(m);k++;T2=setTimeout(nx,300)},dly(m.t))}
+T2=setTimeout(nx,400)}
+function go(x){clearTimeout(T1);clearTimeout(T2);S=true;B.classList.add('fading');setTimeout(function(){i=((x%CHATS.length)+CHATS.length)%CHATS.length;B.classList.remove('fading');run(i)},300)}
+run(0);
+var w=document.getElementById('sww');
+w.addEventListener('mouseenter',function(){P=true});
+w.addEventListener('mouseleave',function(){P=false});
+w.addEventListener('touchstart',function(){P=true;setTimeout(function(){P=false},4000)},{passive:true});
+document.getElementById('swp').addEventListener('click',function(){go(i-1)});
+document.getElementById('swn').addEventListener('click',function(){go(i+1)});
+</script>
 </body>
 </html>
