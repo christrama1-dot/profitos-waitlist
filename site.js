@@ -25,11 +25,6 @@
   ];
   var pIdx=0,busy=false;
 
-  function rel(el){
-    var er=el.getBoundingClientRect();
-    var nr=row.getBoundingClientRect();
-    return{l:er.left-nr.left,t:er.top-nr.t||er.top-nr.top};
-  }
   function relSafe(el){
     var er=el.getBoundingClientRect();
     var nr=row.getBoundingClientRect();
