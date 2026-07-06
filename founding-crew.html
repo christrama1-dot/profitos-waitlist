@@ -222,7 +222,14 @@
       border-top: 1px solid var(--border);
       padding: 24px 40px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
     }
+    .foot-links { display: flex; gap: 20px; }
+    .foot-links a { font-size: 0.78rem; color: rgba(232,233,240,.5); text-decoration: none; }
+    .foot-links a:hover { color: var(--white); }
     .foot-copy { font-size: 0.7rem; color: rgba(232,233,240,.25); font-family: var(--mono); }
 
     @media (max-width: 600px) {
@@ -313,6 +320,11 @@
 </div>
 
 <footer>
+  <div class="foot-links">
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="mailto:support@profitosengine.com">Support</a>
+  </div>
   <div class="foot-copy">&copy; 2026 ProfitOS Engine LLC &nbsp;&middot;&nbsp; profitosengine.com</div>
 </footer>
 
