@@ -41,6 +41,19 @@ function base64UrlDecode(str) {
   return Buffer.from(str.replace(/-/g, '+').replace(/_/g, '/'), 'base64');
 }
 
+// B4 fix (July 6): Vercel's default body parser consumes and re-serializes the
+// request body, changing the bytes (key order/whitespace) so Plaid's
+// request_body_sha256 check fails on real events. We disable the parser (see the
+// config export at the bottom) and read the exact raw bytes off the stream here.
+function readRawBody(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', (chunk) => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    req.on('error', reject);
+  });
+}
+
 // Cache verification keys by kid — they rotate rarely. Cold starts just re-fetch.
 const keyCache = new Map();
 
@@ -104,7 +117,13 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Missing verification header' });
   }
 
-  const rawBody = JSON.stringify(req.body || {});
+  let rawBody;
+  try {
+    rawBody = await readRawBody(req);
+  } catch (err) {
+    console.error('[plaid-webhook] Failed to read raw body:', err.message);
+    return res.status(400).json({ error: 'Could not read request body' });
+  }
 
   try {
     await verifyPlaidWebhook(rawBody, signedJwt);
@@ -134,3 +153,7 @@ module.exports = async function handler(req, res) {
 
   return res.status(200).json({ received: true, forwarded: true });
 };
+
+// B4 fix (July 6): disable Vercel's body parser so we can read the exact raw
+// bytes Plaid signed — JSON.stringify(req.body) does NOT reproduce them.
+module.exports.config = { api: { bodyParser: false } };
