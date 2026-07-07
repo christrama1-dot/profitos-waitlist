@@ -122,12 +122,9 @@ module.exports = async function handler(req, res) {
 
     const encrypted = encryptToken(accessToken, process.env.MEMBER_TOKEN_ENCRYPTION_KEY);
 
-    await supabaseInsert('plaid_tokens', [{
-      member_id: String(member_id),
-      plaid_item_id: itemId,
-      access_token_encrypted: encrypted,
-    }]);
-
+    // B3 fix (July 6): insert connected_accounts FIRST, then plaid_tokens.
+    // The plaid_tokens -> connected_accounts FK was dropped in the schema, but
+    // keeping parent-before-child order is correct and safe regardless.
     const accountRows = accounts.map(acct => ({
       member_id: String(member_id),
       plaid_item_id: itemId,
@@ -142,6 +139,12 @@ module.exports = async function handler(req, res) {
     if (accountRows.length > 0) {
       await supabaseInsert('connected_accounts', accountRows);
     }
+
+    await supabaseInsert('plaid_tokens', [{
+      member_id: String(member_id),
+      plaid_item_id: itemId,
+      access_token_encrypted: encrypted,
+    }]);
 
     console.log(`[exchange-token] member=${member_id} item=${itemId} accounts=${accounts.length}`);
 
