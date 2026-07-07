@@ -163,7 +163,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offs
 .tk-k{background:var(--amber);box-shadow:0 0 7px var(--amber)}
 .tk-name{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#fff}
 
-/* ---------- audience band (index only, To-Do #55) ---------- */
+/* ---------- audience band (all pages) ---------- */
 .audience-band{
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;
   padding:18px 0;margin-top:14px;
