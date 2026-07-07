@@ -152,7 +152,15 @@
     <span class="eyebrow" style="color:var(--orange)">DOORS OPEN AUGUST 29, 2026</span>
     <h2>Do you know where your profit is this evening?</h2>
     <p class="lead">Join the waitlist. When doors open, your Controller clocks in.</p>
-    <a class="btn-main" href="https://profitosengine.com">Join the Waitlist →</a>
+    <div class="wl-form-wrap">
+      <div class="wl-form-row">
+        <input type="email" id="wl-email" placeholder="your@email.com" autocomplete="email" />
+        <input type="text" id="wl-hp" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button class="btn-main" id="wl-btn" onclick="wlSubscribe()">Join the Waitlist →</button>
+      </div>
+      <p class="wl-form-note">Unsubscribe anytime</p>
+      <div class="wl-form-ok" id="wl-ok">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
+    </div>
   </div>
 </section>
 
@@ -165,13 +173,45 @@
       <a href="security.html">Security</a>
       <a href="docs.html">Docs</a>
       <a href="team.html">The Team</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/privacy">Privacy Policy</a>
     </div>
     <p class="fine">© 2026 PROFITOS ENGINE LLC · YOUR PROFIT IS ESCAPING. LET US HELP STOP IT.</p>
   </div>
 </footer>
 
 <script src="site.js" defer></script>
+<script>
+function wlSubscribe() {
+  var inp = document.getElementById('wl-email');
+  var btn = document.getElementById('wl-btn');
+  var ok  = document.getElementById('wl-ok');
+  var hp  = document.getElementById('wl-hp');
+  var em  = inp.value.trim();
+  if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#D97706'; inp.focus(); return; }
+  btn.disabled = true;
+  btn.textContent = 'Joining…';
+  inp.disabled = true;
+  fetch('/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: em, website: hp ? hp.value : '' })
+  })
+  .then(function(r) { return r.ok ? r : Promise.reject(r.status); })
+  .then(function() {
+    inp.style.display = 'none';
+    btn.style.display = 'none';
+    ok.style.display  = 'block';
+  })
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Join the Waitlist →';
+    inp.disabled = false;
+    inp.style.borderColor = '#D97706';
+  });
+}
+document.getElementById('wl-email').addEventListener('keydown', function(e) { if (e.key === 'Enter') wlSubscribe(); });
+document.getElementById('wl-email').addEventListener('input', function() { this.style.borderColor = ''; });
+</script>
 </body>
 </html>
