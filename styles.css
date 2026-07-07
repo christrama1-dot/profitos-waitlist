@@ -419,3 +419,21 @@ details.faq summary:focus-visible{outline:3px solid var(--amber);outline-offset:
   letter-spacing:0.14em;color:rgba(232,233,240,0.25);text-align:center;padding:0 0 10px;
 }
 .sw-wrap{display:grid;grid-template-columns:1fr;justify-items:center}
+
+/* ---------- waitlist form (site v2 — To-Do #57 item 1) ---------- */
+.wl-form-wrap{max-width:480px;margin:28px auto 0}
+.wl-form-row{display:flex;gap:8px;flex-wrap:wrap}
+.wl-form-row input[type="email"]{
+  flex:1 1 200px;background:#fff;border:2px solid rgba(13,15,26,0.25);
+  border-radius:12px;color:var(--ink);font-family:'Inter',sans-serif;font-size:.95rem;
+  padding:15px 20px;outline:none;transition:border-color .2s, box-shadow .2s;
+  box-shadow:0 2px 8px rgba(13,15,26,0.07), 0 0 0 1px rgba(13,15,26,0.04);
+}
+.wl-form-row input[type="email"]:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(26,108,232,0.15), 0 2px 8px rgba(13,15,26,0.07)}
+.wl-form-row input[type="email"]::placeholder{color:rgba(13,15,26,.35)}
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;overflow:hidden}
+.wl-form-note{margin-top:12px;font-size:.72rem;color:var(--ink2);font-family:'JetBrains Mono',monospace}
+.wl-form-ok{
+  display:none;background:rgba(0,153,85,.08);border:1px solid rgba(0,153,85,.3);
+  border-radius:12px;padding:18px 24px;color:var(--green);font-weight:700;text-align:center;margin-top:12px;
+}
