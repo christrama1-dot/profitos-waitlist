@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Security — Hardened by Default — ProfitOS Engine</title>
-<meta name="description" content="Read-only access. Every member's data walled off. Every action logged. ProfitOS is hardened by default.">
+<meta name="description" content="Read-only access. Every member's data walled off. Encrypted everywhere. ProfitOS is hardened by default.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -37,11 +37,11 @@
     <div class="hero">
       <span class="eyebrow">SECURITY</span>
       <h1>Hardened by default.</h1>
-      <p class="lead">You're handing us a window into your money. We treat that like the responsibility it is. Read-only access, walled-off data, logged actions — not as an upgrade, as the default. Bank connections powered by Plaid.</p>
+      <p class="lead">You're handing us a window into your money. We treat that like the responsibility it is. Read-only access, walled-off data, encrypted everywhere — not as an upgrade, as the default. Bank connections powered by Plaid.</p>
       <div class="cta-row">
         <a class="btn-main" href="index.html#waitlist">Join the Waitlist →</a>
       </div>
-      <p class="footnote">READ-ONLY · WALLED OFF · LOGGED</p>
+      <p class="footnote">READ-ONLY · WALLED OFF · ENCRYPTED</p>
     </div>
   </div>
 </header>
@@ -95,12 +95,12 @@
       <div class="card">
         <span class="tag">03 · WALLED-OFF DATA</span>
         <h3>Your data is yours. Only yours.</h3>
-        <p>Every member's data is isolated at the database level with row-level security. The wall is enforced by the database itself, not by good intentions.</p>
+        <p>Every member's data is walled off at the database level with row-level security — the wall is built into the database itself, not into policy documents. We verify it before any member's data ever lands.</p>
       </div>
       <div class="card">
-        <span class="tag">04 · LOGGED &amp; ENCRYPTED</span>
-        <h3>Every action leaves a trail</h3>
-        <p>Data is encrypted in transit and at rest. Credentials live in encrypted storage, never in code. Every watchdog read is built to leave a record of what was accessed and when — the audit trail is part of the architecture, not an afterthought.</p>
+        <span class="tag">04 · ENCRYPTED &amp; ACCOUNTABLE</span>
+        <h3>Built to leave a trail</h3>
+        <p>Data is encrypted in transit and at rest. Credentials live in encrypted storage, never in code. And we're building the audit trail into the architecture itself — every watchdog read will leave a record of what was accessed and when. Not bolted on. Built in.</p>
       </div>
     </div>
   </div>
@@ -163,7 +163,7 @@
         <div class="sw-head">
           <div>
             <div class="sw-title">ProfitOS Engine</div>
-            <div class="sw-sub"><span class="sw-on"></span> Read-only. Walled off. Logged.</div>
+            <div class="sw-sub"><span class="sw-on"></span> Read-only. Walled off. Encrypted.</div>
           </div>
           <div class="sw-badge" id="swl">loading…</div>
         </div>
@@ -233,24 +233,24 @@
 var CHATS=[
 {lbl:'#finance — 9:05 AM',m:[{n:'Owner',i:'O',c:'#D97706',t:'Did we hand over our bank login?'},{n:'Rita',i:'R',c:'#009955',t:'No. I signed in with the bank through Plaid. ProfitOS never sees it.'}]},
 {lbl:'#ops — 10:14 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'What access did we actually grant?'},{n:'Dana',i:'D',c:'#009955',t:'Read-only. They can look. They can\'t move a dollar.'}]},
-{lbl:'Text Message — 7:22 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'What if I want out later?'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'Disconnect in settings. Access dies instantly. I tested it.'}]},
+{lbl:'Text Message — 7:22 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'What if I want out later?'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'Disconnect in settings whenever I want. And Plaid Portal is my backstop.'}]},
 {lbl:'#accounting — 11:30 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Same connection layer as the big finance apps. Plaid.'},{n:'Owner',i:'O',c:'#D97706',t:'The one the banks already work with?'},{n:'Rita',i:'R',c:'#009955',t:'That one.'}]},
 {lbl:'#finance — 2:08 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Can they edit the books?'},{n:'Dana',i:'D',c:'#009955',t:'Incapable. The connection has no write access. Not a setting. A wall.'}]},
 {lbl:'Text Message — 8:31 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'My bank had me approve the connection with my own MFA.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'So the bank stays in charge?'},{n:'You',i:'Y',c:'#D97706',t:'Exactly how I want it.'}]},
 {lbl:'#ops — 9:47 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'Every member\'s data is walled off at the database level.'},{n:'Owner',i:'O',c:'#D97706',t:'Meaning?'},{n:'Dana',i:'D',c:'#009955',t:'Nobody sees ours. We see nobody\'s.'}]},
 {lbl:'#general — 1:12 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'Where do the credentials live?'},{n:'Dana',i:'D',c:'#009955',t:'Encrypted storage. Never in code. Never in email.'}]},
 {lbl:'Text Message — 6:44 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Checked Plaid Portal today.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'What\'s that?'},{n:'You',i:'Y',c:'#D97706',t:'A dashboard showing every app I\'ve connected. I can cut any of them off myself.'}]},
-{lbl:'#finance — 3:29 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Is the data encrypted?'},{n:'Dana',i:'D',c:'#009955',t:'In transit and at rest. And every read is logged.'}]},
-{lbl:'#accounting — 10:02 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Our CPA reviewed the access before we connected.'},{n:'Owner',i:'O',c:'#D97706',t:'Verdict?'},{n:'Rita',i:'R',c:'#009955',t:'Read-only, revocable, logged. She approved in one email.'}]},
+{lbl:'#finance — 3:29 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Is the data encrypted?'},{n:'Dana',i:'D',c:'#009955',t:'In transit and at rest. Encrypted the whole way.'}]},
+{lbl:'#accounting — 10:02 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Our CPA reviewed the access before we connected.'},{n:'Owner',i:'O',c:'#D97706',t:'Verdict?'},{n:'Rita',i:'R',c:'#009955',t:'Read-only and revocable. She approved in one email.'}]},
 {lbl:'Text Message — 9:18 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'I started with one account to test the walls.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'And?'},{n:'You',i:'Y',c:'#D97706',t:'Connected the rest a week later. They earned it.'}]},
 {lbl:'#ops — 8:55 AM',m:[{n:'Owner',i:'O',c:'#D97706',t:'Do they sell the data?'},{n:'Dana',i:'D',c:'#009955',t:'No. It exists to find our leaks. That\'s it. It\'s in writing on their site.'}]},
 {lbl:'#finance — 12:36 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Worst case, what can a read-only connection do?'},{n:'Dana',i:'D',c:'#009955',t:'Read. That\'s the whole list.'}]},
 {lbl:'Text Message — 5:50 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Setup asked for less access than my food delivery app.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'That\'s a low bar.'},{n:'You',i:'Y',c:'#D97706',t:'And they still cleared it with room.'}]},
 {lbl:'#general — 2:23 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'Who can pull the plug?'},{n:'Owner',i:'O',c:'#D97706',t:'We can. Any time. No phone call, no ticket.'}]},
-{lbl:'#accounting — 4:11 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Disconnect test: revoked the bank feed, then reconnected.'},{n:'Owner',i:'O',c:'#D97706',t:'Time?'},{n:'Rita',i:'R',c:'#009955',t:'Under a minute each way.'}]},
+{lbl:'#accounting — 4:11 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Checked Plaid Portal — the whole connection list, one screen.'},{n:'Owner',i:'O',c:'#D97706',t:'And?'},{n:'Rita',i:'R',c:'#009955',t:'Kill switch for every app, right there.'}]},
 {lbl:'Text Message — 7:39 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'I read their security page twice looking for the catch.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Find one?'},{n:'You',i:'Y',c:'#D97706',t:'Found sources instead. They link to Plaid\'s own answers.'}]},
 {lbl:'#ops — 11:48 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'No payment rails. No transfer permissions.'},{n:'Owner',i:'O',c:'#D97706',t:'So findings come to us, and we act?'},{n:'Dana',i:'D',c:'#009955',t:'That\'s the design.'}]},
-{lbl:'#finance — 9:33 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Audit trail?'},{n:'Dana',i:'D',c:'#009955',t:'Every watchdog read is logged. There\'s always a record of what and when.'}]},
+{lbl:'#finance — 9:33 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Audit trail?'},{n:'Dana',i:'D',c:'#009955',t:'They\'re building it into the architecture — a record of what and when, by design.'}]},
 {lbl:'Text Message — 8:07 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'My banker had zero problem with the Plaid connection.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'They know it?'},{n:'You',i:'Y',c:'#D97706',t:'Most banks already work with it.'}]},
 {lbl:'#general — 3:44 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'What did we have to install?'},{n:'Dana',i:'D',c:'#009955',t:'Nothing. No agent on our machines. It reads the cloud tools we already use.'}]},
 {lbl:'#accounting — 1:27 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Passwords stay with the bank. Data stays walled. Access stays revocable.'},{n:'Owner',i:'O',c:'#D97706',t:'That\'s the checklist I needed.'}]},
