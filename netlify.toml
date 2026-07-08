@@ -1,0 +1,29 @@
+# ProfitOS Waitlist — Netlify Phase 1 config (dry-run prep)
+# Purpose: fallback hosting path in case Vercel 2FA lockout is not resolved in time for launch.
+# Scope: static HTML/CSS/JS pages only. API functions are NOT yet ported (see notes below).
+
+[build]
+  publish = "."
+  command = ""
+
+# --- NOT YET ACTIVE ---
+# The /api directory currently uses Vercel's serverless function format:
+#   module.exports = async (req, res) => { ... }
+# Netlify Functions require a different format:
+#   exports.handler = async (event, context) => { ... }
+#
+# Files needing conversion before they'll work on Netlify:
+#   api/cc-stats.js
+#   api/check-capacity.js
+#   api/flag-feedback.js
+#   api/founding-crew-apply.js
+#   api/hook-stats.js
+#   api/subscribe.js
+#   api/plaid/create-link-token.js   <- Founder review required (Plaid signature handling)
+#   api/plaid/exchange-token.js      <- Founder review required (FK-violation order, per STANDING-LESSONS)
+#   api/plaid/webhook.js             <- Founder review required (signature verification, per STANDING-LESSONS)
+#
+# Once ready to port functions, add:
+#   [functions]
+#     directory = "netlify/functions"
+# and move converted files there.
