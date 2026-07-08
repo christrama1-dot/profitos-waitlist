@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>ProfitOS Founder Dashboard</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="robots" content="noindex, nofollow"/><title>ProfitOS Founder Dashboard</title>
 <style>
   #flag-btn {
     position: fixed; bottom: 20px; right: 20px; z-index: 9000;
@@ -87,120 +87,168 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 </style>
-<script>(function(){const H='759e9530bf8afba291c57a986f15b7d3c8b31409dc03b5b15e37910841e1a01b';async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}function gate(){document.documentElement.style.visibility='hidden';window.addEventListener('DOMContentLoaded',()=>{document.body.innerHTML='<div style="background:#080808;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:monospace"><div style="width:360px;text-align:center"><div style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:6px">Profit<span style="color:#009955">OS</span> Engine</div><div style="font-size:.65rem;color:#888;letter-spacing:.2em;text-transform:uppercase;margin-bottom:40px">Founder Dashboard - Private</div><input id="p" type="password" placeholder="Access code" style="width:100%;background:#111;border:1px solid #333;color:#fff;font-family:monospace;font-size:1rem;padding:16px 20px;outline:none;margin-bottom:12px;box-sizing:border-box" onkeydown="if(event.key===\'Enter\')chk()"/><button onclick="chk()" style="width:100%;background:#D97706;color:#fff;font-weight:900;font-size:1rem;padding:16px;border:none;cursor:pointer">Access Dashboard</button><div id="e" style="color:#FF3B30;font-size:.78rem;margin-top:12px;min-height:18px"></div></div></div>';document.documentElement.style.visibility='visible';setTimeout(()=>document.getElementById('p').focus(),100);});}async function chk(){const v=document.getElementById('p').value;if(!v)return;const h=await sha256(v);if(h===H){sessionStorage.setItem('pa','1');location.reload();}else{document.getElementById('e').textContent='Incorrect.';document.getElementById('p').value='';}}window.chk=chk;if(sessionStorage.getItem('pa')!=='1')gate();})();</script></head>
+</head>
 
-<body style="background:#080808;color:#fff;font-family:monospace;margin:0;padding:40px;text-align:center">
-<h1 style="color:#009955">ProfitOS Founder Dashboard</h1>
-<p style="color:#888;margin-top:20px">Full dashboard loading...</p>
-<p style="margin-top:16px"><a href="https://profitosengine.com" style="color:#1A6CE8">Back to main site</a></p>
+<body style="background:#080808;color:#fff;font-family:monospace;margin:0;padding:0">
 
-<!-- FLAG THIS BUTTON -->
-<button id="flag-btn" onclick="flagOpen()">Flag This</button>
+<!--
+  #42 SERVER-SIDE AUTH.  The old client-side SHA-256 gate is GONE.
+  Access is decided by the server: this page renders nothing sensitive until
+  GET /api/dashboard-data returns 200 for a valid httpOnly session cookie.
+  There is no access code, hash, or secret anywhere in this file.
+-->
 
-<!-- FLAG MODAL OVERLAY -->
-<div id="flag-overlay" onclick="flagOverlayClick(event)">
-  <div id="flag-modal">
-    <h3>Flag Something</h3>
-    <p class="sub">Takes 30 seconds. Helps us build a better product.</p>
-
-    <div class="flag-stars" id="flag-stars" aria-label="Rating">
-      <span class="star" onclick="flagStar(1)" data-v="1">&#9733;</span>
-      <span class="star" onclick="flagStar(2)" data-v="2">&#9733;</span>
-      <span class="star" onclick="flagStar(3)" data-v="3">&#9733;</span>
-      <span class="star" onclick="flagStar(4)" data-v="4">&#9733;</span>
-      <span class="star" onclick="flagStar(5)" data-v="5">&#9733;</span>
-    </div>
-
-    <div class="flag-field">
-      <label for="flag-task">What were you trying to do?</label>
-      <textarea id="flag-task" placeholder="Describe the task or action you were trying to complete..."></textarea>
-    </div>
-    <div class="flag-field">
-      <label for="flag-stop">What stopped you?</label>
-      <textarea id="flag-stop" placeholder="What went wrong, was confusing, or wasn't working the way you expected?"></textarea>
-    </div>
-
-    <div class="flag-btns">
-      <button id="flag-cancel" onclick="flagClose()">Cancel</button>
-      <button id="flag-submit" onclick="flagSubmit()">Send Feedback</button>
-    </div>
+<!-- LOGIN VIEW (shown only when the server says 401) -->
+<div id="login-view" style="display:none;min-height:100vh;align-items:center;justify-content:center">
+  <div style="width:360px;text-align:center;padding:16px">
+    <div style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:6px">Profit<span style="color:#009955">OS</span> Engine</div>
+    <div style="font-size:.65rem;color:#888;letter-spacing:.2em;text-transform:uppercase;margin-bottom:40px">Founder Dashboard - Private</div>
+    <input id="p" type="password" autocomplete="current-password" placeholder="Access code" style="width:100%;background:#111;border:1px solid #333;color:#fff;font-family:monospace;font-size:1rem;padding:16px 20px;outline:none;margin-bottom:12px;box-sizing:border-box"/>
+    <button id="login-btn" style="width:100%;background:#D97706;color:#fff;font-weight:900;font-size:1rem;padding:16px;border:none;cursor:pointer">Access Dashboard</button>
+    <div id="e" style="color:#FF3B30;font-size:.78rem;margin-top:12px;min-height:18px"></div>
   </div>
 </div>
 
-<!-- TOAST -->
-<div id="flag-toast">Got it. Thank you.</div>
+<!-- DASHBOARD VIEW (shown only after a verified server session) -->
+<div id="dash-view" style="display:none;padding:40px;text-align:center">
+  <h1 style="color:#009955">ProfitOS Founder Dashboard</h1>
+  <p id="dash-status" style="color:#888;margin-top:20px">Loading…</p>
+  <p style="margin-top:16px">
+    <a href="https://profitosengine.com" style="color:#1A6CE8">Back to main site</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="logout-link" style="color:#888">Log out</a>
+  </p>
+
+  <!-- FLAG THIS BUTTON -->
+  <button id="flag-btn" onclick="flagOpen()">Flag This</button>
+
+  <!-- FLAG MODAL OVERLAY -->
+  <div id="flag-overlay" onclick="flagOverlayClick(event)">
+    <div id="flag-modal">
+      <h3>Flag Something</h3>
+      <p class="sub">Takes 30 seconds. Helps us build a better product.</p>
+      <div class="flag-stars" id="flag-stars" aria-label="Rating">
+        <span class="star" onclick="flagStar(1)" data-v="1">&#9733;</span>
+        <span class="star" onclick="flagStar(2)" data-v="2">&#9733;</span>
+        <span class="star" onclick="flagStar(3)" data-v="3">&#9733;</span>
+        <span class="star" onclick="flagStar(4)" data-v="4">&#9733;</span>
+        <span class="star" onclick="flagStar(5)" data-v="5">&#9733;</span>
+      </div>
+      <div class="flag-field">
+        <label for="flag-task">What were you trying to do?</label>
+        <textarea id="flag-task" placeholder="Describe the task or action you were trying to complete..."></textarea>
+      </div>
+      <div class="flag-field">
+        <label for="flag-stop">What stopped you?</label>
+        <textarea id="flag-stop" placeholder="What went wrong, was confusing, or wasn't working the way you expected?"></textarea>
+      </div>
+      <div class="flag-btns">
+        <button id="flag-cancel" onclick="flagClose()">Cancel</button>
+        <button id="flag-submit" onclick="flagSubmit()">Send Feedback</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="flag-toast">Got it. Thank you.</div>
+</div>
 
 <script>
-var flagRating = 0;
+// ── Server-side session flow ───────────────────────────────────────────
+function show(view) {
+  document.getElementById('login-view').style.display = (view === 'login') ? 'flex' : 'none';
+  document.getElementById('dash-view').style.display  = (view === 'dash')  ? 'block' : 'none';
+}
 
+function loadDashboard() {
+  return fetch('/api/dashboard-data', { credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+    .then(function (r) {
+      if (r.status === 200) return r.json().then(function (data) {
+        show('dash');
+        var s = document.getElementById('dash-status');
+        s.textContent = (data && data.note) ? data.note : 'Authenticated.';
+        return true;
+      });
+      // 401 (or anything else) => not authenticated => show login
+      show('login');
+      setTimeout(function () { var p = document.getElementById('p'); if (p) p.focus(); }, 60);
+      return false;
+    })
+    .catch(function () { show('login'); return false; });
+}
+
+function doLogin() {
+  var input = document.getElementById('p');
+  var err   = document.getElementById('e');
+  var btn   = document.getElementById('login-btn');
+  var code  = input.value;
+  if (!code) return;
+  err.textContent = '';
+  btn.disabled = true;
+  fetch('/api/login', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code: code })
+  })
+  .then(function (r) {
+    btn.disabled = false;
+    input.value = '';
+    if (r.status === 200) { return loadDashboard(); }
+    if (r.status === 429) { err.textContent = 'Too many attempts. Wait a few minutes.'; return; }
+    err.textContent = 'Incorrect.';
+    input.focus();
+  })
+  .catch(function () { btn.disabled = false; err.textContent = 'Network error.'; });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('login-btn').addEventListener('click', doLogin);
+  document.getElementById('p').addEventListener('keydown', function (ev) { if (ev.key === 'Enter') doLogin(); });
+  document.getElementById('logout-link').addEventListener('click', function (ev) {
+    ev.preventDefault();
+    fetch('/api/logout', { method: 'POST', credentials: 'same-origin' }).then(function () { loadDashboard(); });
+  });
+  loadDashboard();
+});
+
+// ── Flag This feedback widget (unchanged behavior) ────────────────────────
+var flagRating = 0;
 function flagOpen() {
   flagRating = 0;
-  document.querySelectorAll('.star').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.star').forEach(function (s) { s.classList.remove('active'); });
   document.getElementById('flag-task').value = '';
   document.getElementById('flag-stop').value = '';
   document.getElementById('flag-overlay').classList.add('open');
-  setTimeout(function() { document.getElementById('flag-task').focus(); }, 100);
+  setTimeout(function () { document.getElementById('flag-task').focus(); }, 100);
 }
-
-function flagClose() {
-  document.getElementById('flag-overlay').classList.remove('open');
-}
-
-function flagOverlayClick(e) {
-  if (e.target === document.getElementById('flag-overlay')) flagClose();
-}
-
+function flagClose() { document.getElementById('flag-overlay').classList.remove('open'); }
+function flagOverlayClick(e) { if (e.target === document.getElementById('flag-overlay')) flagClose(); }
 function flagStar(n) {
   flagRating = n;
-  document.querySelectorAll('.star').forEach(function(s) {
-    s.classList.toggle('active', parseInt(s.dataset.v, 10) <= n);
-  });
+  document.querySelectorAll('.star').forEach(function (s) { s.classList.toggle('active', parseInt(s.dataset.v, 10) <= n); });
 }
-
 function flagSubmit() {
   var task = document.getElementById('flag-task').value.trim();
   var stop = document.getElementById('flag-stop').value.trim();
   var btn  = document.getElementById('flag-submit');
-
-  if (!task && !stop) {
-    document.getElementById('flag-task').focus();
-    return;
-  }
-
-  btn.disabled    = true;
-  btn.textContent = 'Sending\u2026';
-
+  if (!task && !stop) { document.getElementById('flag-task').focus(); return; }
+  btn.disabled = true; btn.textContent = 'Sending…';
   fetch('/api/flag-feedback', {
-    method:  'POST',
+    method: 'POST', credentials: 'same-origin',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ rating: flagRating, task: task, stop: stop, page: location.pathname })
+    body: JSON.stringify({ rating: flagRating, task: task, stop: stop, page: location.pathname })
   })
-  .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
-  .then(function() {
-    flagClose();
-    btn.disabled    = false;
-    btn.textContent = 'Send Feedback';
-    showToast();
-  })
-  .catch(function(err) {
-    btn.disabled    = false;
-    btn.textContent = 'Send Feedback';
-    console.error('Flag error:', err);
-    // Still close and toast — don't block user on a failed feedback submission
-    flagClose();
-    showToast();
-  });
+  .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+  .then(function () { flagClose(); btn.disabled = false; btn.textContent = 'Send Feedback'; showToast(); })
+  .catch(function (err) { btn.disabled = false; btn.textContent = 'Send Feedback'; console.error('Flag error:', err); flagClose(); showToast(); });
 }
-
 function showToast() {
   var t = document.getElementById('flag-toast');
   t.style.display = 'block';
-  setTimeout(function() { t.style.display = 'none'; }, 3200);
+  setTimeout(function () { t.style.display = 'none'; }, 3200);
 }
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') flagClose();
-});
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') flagClose(); });
 </script>
 </body>
 </html>
