@@ -1,0 +1,4 @@
+# Keep test tooling out of the Vercel static deploy (it lives in the repo for CI only).
+tests/
+node_modules/
+.github/
