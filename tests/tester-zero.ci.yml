@@ -1,0 +1,48 @@
+# CI WORKFLOW FOR #82 — MOVE THIS FILE TO .github/workflows/tester-zero.yml
+# (The integration that created this branch lacks GitHub 'workflows' permission,
+#  so it could not push directly under .github/workflows/. Founder or any account
+#  with workflows permission: `git mv tests/tester-zero.ci.yml .github/workflows/tester-zero.yml`.)
+name: tester-zero
+# Internal deterministic e2e suite (#82 layer 1). Runs on every push/PR against a
+# local static server of the repo (no Cloudflare flakiness, no production writes).
+# Set the base_url input (or a BASE_URL env) to run against a real deployment
+# (e.g. the #42 preview) so the auth-active tests exercise instead of skip.
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Target URL (blank = local static server of this checkout)'
+        required: false
+        default: ''
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: npm install --no-audit --no-fund
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Run Tester Zero suite
+        env:
+          CI: 'true'
+          BASE_URL: ${{ github.event.inputs.base_url }}
+        run: npx playwright test
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: tests/playwright-report
+          retention-days: 14
