@@ -1,0 +1,9 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/api/founding-crew-apply"
+  to = "/.netlify/functions/founding-crew-apply"
+  status = 200
+  force = true
