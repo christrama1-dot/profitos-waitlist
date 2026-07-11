@@ -1,8 +1,10 @@
 # #42 — Dashboard server-side auth (implementation notes)
 
 **Branch:** `feat/42-dashboard-server-auth` (NOT merged to main — no production deploy without Founder go, per the brief).
-**Status:** code complete + security core unit-tested locally. **NOT live, NOT end-to-end verified.** #42 stays OPEN.
+**Status:** code complete + security core unit-tested locally. Env vars set July 11, 2026. **NOT live, NOT end-to-end verified.** #42 stays OPEN.
 **Brief:** `workflows/CLAUDE-CODE-BRIEF-42-82-2026-07-07.md` (in profitos-hq-claude).
+
+**July 11, 2026 update:** Vercel 2FA lockout resolved (see hq_knowledge build-status). `SESSION_SECRET`, `DASH_ACCESS_HASH`, and `MEMBER_TOKEN_ENCRYPTION_KEY` (#64, separate item) all added to Vercel Production + Preview env vars. This commit triggers a fresh branch deploy so the new env vars actually take effect (Vercel does not hot-reload env vars into already-running deployments). Live end-to-end verification (section below) still needed before #42 can close.
 
 ## What changed (this branch)
 - **Removed** dashboard.html's client-side SHA-256 gate (hardcoded hash + `sessionStorage.pa`). It was bypassable in devtools and shipped all content to the browser regardless.
@@ -20,11 +22,7 @@
 - New: the browser holds only an httpOnly signed cookie it cannot read or forge (no `SESSION_SECRET` client-side). Sensitive data comes only from an endpoint that returns 401 without a valid session. Session expires (12h). Login is rate-limited and the code is scrypt-hashed server-side.
 
 ## 🔒 REQUIRED to go live — Founder-gated, cannot be done from this session
-1. **Add env vars to Vercel** (Production) — **BLOCKED on #64** (Founder is locked out of the Vercel dashboard; #1 critical-path blocker):
-   - `SESSION_SECRET` = `openssl rand -hex 32` (store in Bitwarden `DASH_SESSION_SECRET`).
-   - `DASH_ACCESS_HASH` = output of `node tools/gen-dash-access-hash.js` (store code in Bitwarden `DASH_ACCESS_CODE`).
-   - `KV_REST_API_URL` / `KV_REST_API_TOKEN` already auto-set (Vercel KV enabled).
-   - If either of the first two is missing at runtime, login **fails closed** (500 "Auth not configured") — it never grants access.
+1. ✅ **DONE July 11, 2026** — env vars added to Vercel (Production + Preview): `SESSION_SECRET` (Bitwarden `DASH_SESSION_SECRET`), `DASH_ACCESS_HASH` (Bitwarden `DASH_ACCESS_CODE` holds the plaintext code). `KV_REST_API_URL` / `KV_REST_API_TOKEN` already auto-set (Vercel KV enabled). If either of the first two were missing at runtime, login would fail closed (500 "Auth not configured") — never grants access on missing config.
 2. **Deploy the branch** (preview) and **merge to main** only after live verification. No auto-deploy of auth to prod unverified.
 3. **Live end-to-end verification** (must pass before #42 closes — this is the real gate, not the unit tests):
    - `curl -i https://<preview>/api/dashboard-data` -> **401** (no cookie).
