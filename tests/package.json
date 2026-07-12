@@ -1,0 +1,12 @@
+{
+  "name": "profitos-waitlist-tests",
+  "private": true,
+  "description": "Tester Zero (internal) — Playwright e2e suite for profitos-waitlist. Not deployed (see .vercelignore).",
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
