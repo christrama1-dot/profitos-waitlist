@@ -6,6 +6,8 @@
 
 **July 11, 2026 update:** Vercel 2FA lockout resolved (see hq_knowledge build-status). `SESSION_SECRET`, `DASH_ACCESS_HASH`, and `MEMBER_TOKEN_ENCRYPTION_KEY` (#64, separate item) all added to Vercel Production + Preview env vars. This commit triggers a fresh branch deploy so the new env vars actually take effect (Vercel does not hot-reload env vars into already-running deployments). Live end-to-end verification (section below) still needed before #42 can close.
 
+**July 12, 2026 update:** original `DASH_ACCESS_HASH` from July 11 did not match the plaintext code saved to Bitwarden (likely a typing mismatch between the hidden terminal prompt and the value later saved) — login attempts with the Bitwarden-stored code failed with 401 "Invalid access code". Founder generated a new code + hash pair, this time copy-pasting the code into the hidden prompt rather than retyping from memory. `DASH_ACCESS_HASH` updated in Vercel (Production + Preview) via direct browser action. This commit triggers the redeploy needed to pick up the corrected hash.
+
 ## What changed (this branch)
 - **Removed** dashboard.html's client-side SHA-256 gate (hardcoded hash + `sessionStorage.pa`). It was bypassable in devtools and shipped all content to the browser regardless.
 - **Added** real server-side session auth (zero-dependency Node core, matching the repo style):
