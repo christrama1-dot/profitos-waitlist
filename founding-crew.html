@@ -209,6 +209,17 @@
     .form-ok h3 { font-size: 1.1rem; font-weight: 800; color: var(--green); margin-bottom: 10px; }
     .form-ok p  { font-size: 0.88rem; color: var(--grey); line-height: 1.7; }
 
+    .field-checkbox { margin-bottom: 28px; }
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+      font-size: 0.85rem; color: var(--grey); line-height: 1.6;
+      text-transform: none; font-weight: 400; font-family: var(--font);
+    }
+    .checkbox-label input[type="checkbox"] {
+      width: 18px; height: 18px; margin-top: 2px;
+      accent-color: var(--blue); flex-shrink: 0; cursor: pointer;
+    }
+
     .capacity-note {
       margin-top: 24px;
       font-size: 0.82rem;
@@ -301,6 +312,18 @@
       <textarea id="fc-answer" placeholder="Be specific. The more you tell us, the better we can match your business to the right watchdogs."></textarea>
     </div>
 
+    <div class="field">
+      <label for="fc-phone">Phone Number <span style="opacity:.5;font-weight:400;">(optional)</span></label>
+      <input type="tel" id="fc-phone" placeholder="(555) 555-5555" autocomplete="tel" />
+    </div>
+
+    <div class="field field-checkbox">
+      <label class="checkbox-label">
+        <input type="checkbox" id="fc-founder-call" />
+        <span>I'd like a shot at a free weekly 1:1 call with the Founder if I'm accepted. First 8 spots each month — one month's membership fee waived if selected.</span>
+      </label>
+    </div>
+
     <button class="btn-apply" id="fc-btn" onclick="applyFC()">Apply for a Spot</button>
 
     <p class="form-note">
@@ -333,6 +356,8 @@ function applyFC() {
   var name   = document.getElementById('fc-name').value.trim();
   var email  = document.getElementById('fc-email').value.trim().toLowerCase();
   var answer = document.getElementById('fc-answer').value.trim();
+  var phone  = document.getElementById('fc-phone').value.trim();
+  var founderCallOptin = document.getElementById('fc-founder-call').checked;
   var btn    = document.getElementById('fc-btn');
 
   if (!name) {
@@ -357,7 +382,7 @@ function applyFC() {
   fetch('/api/founding-crew-apply', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ name, email, answer })
+    body:    JSON.stringify({ name, email, answer, phone, founder_call_optin: founderCallOptin })
   })
   .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
   .then(function() {
