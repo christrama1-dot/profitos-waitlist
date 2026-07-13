@@ -12,7 +12,18 @@
  *     claiming "n8n retries internally" was false and has been removed.
  *
  * POST /api/founding-crew-apply
- * Body: { name, email, answer, website? }
+ * Body: { name, email, answer, website?, phone?, founder_call_optin? }
+ *
+ * BUILD 04 changes (Founder-ruled July 13, 2026 — Founder Call Program):
+ *   - Optional `phone` field, loosely validated, forwarded to n8n as-is.
+ *     Canonical storage is the Supabase `members` table (see WF-04), NOT
+ *     Stripe — this handler only carries the value through to that record,
+ *     it does not write Supabase directly (no member_id exists pre-payment;
+ *     member_id = Stripe customer ID per the July 6, 2026 ruling in
+ *     workflows/WF-10-supabase-schema.md).
+ *   - Optional `founder_call_optin` boolean — first-8/month scarcity slot
+ *     for a weekly 1:1 with the Founder (1 month's fee waived). Forwarded
+ *     to n8n for logging; does not affect the application decision.
  *
  * Flow:
  *   1. Validate input (+ honeypot + rate limit)
@@ -105,6 +116,12 @@ module.exports = async function handler(req, res) {
   const email    = typeof body.email   === 'string' ? body.email.trim().toLowerCase() : '';
   const answer   = typeof body.answer  === 'string' ? body.answer.trim()              : '';
   const honeypot = typeof body.website === 'string' ? body.website.trim()             : '';
+  // Optional — Founder Call Program (July 13, 2026). Loose validation only:
+  // this is a lead-capture field, not a billing/SMS system, so we don't
+  // hard-reject on format. Length cap guards against garbage/abuse input.
+  const phoneRaw = typeof body.phone === 'string' ? body.phone.trim() : '';
+  const phone    = phoneRaw.length > 0 && phoneRaw.length <= 32 ? phoneRaw : '';
+  const founderCallOptin = body.founder_call_optin === true;
 
   // ── Honeypot: bots fill hidden fields. Pretend success, do nothing. ──
   if (honeypot) {
@@ -136,7 +153,11 @@ module.exports = async function handler(req, res) {
     const n8nRes = await fetch(N8N_FC_WEBHOOK, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ name, email, answer, submitted_at: timestamp })
+      body:    JSON.stringify({
+        name, email, answer, submitted_at: timestamp,
+        phone: phone || null,
+        founder_call_optin: founderCallOptin
+      })
     });
     n8nSuccess = n8nRes.ok;
     if (!n8nSuccess) {
@@ -155,10 +176,10 @@ module.exports = async function handler(req, res) {
   // (Vercel → profitos-waitlist → Logs → Functions) for manual recovery.
   if (!n8nSuccess) {
     console.error('[fc-apply][ALERT] APPLICATION NOT FORWARDED — MANUAL RECOVERY REQUIRED:', JSON.stringify({
-      name, email, answer, timestamp
+      name, email, answer, phone: phone || null, founder_call_optin: founderCallOptin, timestamp
     }));
   } else {
-    console.log('[fc-apply] Application received:', { name, email, timestamp, n8nForwarded: true });
+    console.log('[fc-apply] Application received:', { name, email, phone: phone || null, founder_call_optin: founderCallOptin, timestamp, n8nForwarded: true });
   }
 
   // Always return 200 — never block the applicant on n8n status
