@@ -160,6 +160,7 @@
         <button class="btn-main" id="wl-btn" onclick="wlSubscribe()">Join the Waitlist →</button>
       </div>
       <p class="wl-form-note">Unsubscribe anytime</p>
+      <div class="wl-form-err" id="wl-err" style="display:none;color:#F5A623;font-size:13px;line-height:1.5;margin-top:12px;">Something went wrong on our end. Please try again — or email support@profitosengine.com and we&rsquo;ll add you directly.</div>
       <div class="wl-form-ok" id="wl-ok">You&rsquo;re in. Check your inbox &mdash; confirmation on its way.</div>
     </div>
   </div>
@@ -187,8 +188,10 @@ function wlSubscribe() {
   var inp = document.getElementById('wl-email');
   var btn = document.getElementById('wl-btn');
   var ok  = document.getElementById('wl-ok');
+  var err = document.getElementById('wl-err');
   var hp  = document.getElementById('wl-hp');
   var em  = inp.value.trim();
+  err.style.display = 'none';
   if (!em || !em.includes('@') || !em.includes('.')) { inp.style.borderColor = '#D97706'; inp.focus(); return; }
   btn.disabled = true;
   btn.textContent = 'Joining…';
@@ -204,15 +207,21 @@ function wlSubscribe() {
     btn.style.display = 'none';
     ok.style.display  = 'block';
   })
-  .catch(function() {
+  .catch(function(status) {
     btn.disabled = false;
     btn.textContent = 'Join the Waitlist →';
     inp.disabled = false;
     inp.style.borderColor = '#D97706';
+    if (status === 429) {
+      err.textContent = 'Too many tries in a row — wait a few minutes and try again.';
+    } else {
+      err.innerHTML = 'Something went wrong on our end. Please try again \u2014 or email support@profitosengine.com and we\u2019ll add you directly.';
+    }
+    err.style.display = 'block';
   });
 }
 document.getElementById('wl-email').addEventListener('keydown', function(e) { if (e.key === 'Enter') wlSubscribe(); });
-document.getElementById('wl-email').addEventListener('input', function() { this.style.borderColor = ''; });
+document.getElementById('wl-email').addEventListener('input', function() { this.style.borderColor = ''; document.getElementById('wl-err').style.display = 'none'; });
 </script>
 </body>
 </html>
