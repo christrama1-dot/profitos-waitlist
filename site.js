@@ -3,7 +3,7 @@
   /* ---- watchdog ticker ---- */
   var track=document.getElementById('ticker');
   if(track){
-    var agents=[['MarginScout','g'],['GrantHound','c'],['SubscriptionGuard','o'],['TaxHound','g'],['EquipmentLeaseGuard','c'],['PriceMax','k'],['InvoiceChaser','o'],['ClaimBack','g'],['InsuranceGapFinder','c'],['DataPrivacyShield','o'],['CashFlowGuard','g'],['LoanScout','k'],['...and growing','g']];
+    var agents=[['MarginScout','g'],['GrantHound','c'],['SubscriptionGuard','o'],['TaxTerrier','g'],['EquipmentLeaseGuard','c'],['PriceMax','k'],['Payment Pointer','o'],['ClaimBack','g'],['InsuranceGapFinder','c'],['DataPrivacyShield','o'],['CashFlowGuard','g'],['LoanScout','k'],['...and growing','g']];
     var dot={g:'tk-g',o:'tk-o',c:'tk-c',k:'tk-k'};
     var full=agents.concat(agents,agents,agents);
     track.innerHTML=full.map(function(a){return '<div class="tk-chip"><span class="tk-dot '+dot[a[1]]+'"></span><span class="tk-name">'+a[0]+'</span></div>';}).join('');
