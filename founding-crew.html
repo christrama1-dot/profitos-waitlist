@@ -10,66 +10,111 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:     #0D0F1A;
-      --bg2:    #12141F;
-      --bg3:    #1A1D2E;
+      --bg:     #FFFFFF;
+      --bg2:    #FFF5EC;
       --green:  #009955;
       --blue:   #1A6CE8;
       --orange: #D97706;
       --amber:  #F5A623;
-      --white:  #E8E9F0;
-      --grey:   rgba(232,233,240,0.5);
-      --border: rgba(232,233,240,0.08);
+      --ink:    #0D0F1A;
+      --ink2:   rgba(13,15,26,0.72);
+      --border: rgba(13,15,26,0.1);
       --font:   'Inter', sans-serif;
       --mono:   'JetBrains Mono', monospace;
-      --grad:   linear-gradient(135deg,#F5A623 0%,#1A6CE8 50%,#D97706 100%);
+      --grad:   linear-gradient(135deg,#1A6CE8 0%,#D97706 60%,#009955 100%);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+    body {
+      background: linear-gradient(160deg,#FFFFFF 0%,#FFF8F0 45%,#EEF4FF 100%) fixed;
+      color: var(--ink);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
+    /* Dark accent band: header + hero (BRAND.md light-with-dark-bands treatment) */
+    .band {
+      background: linear-gradient(180deg, #0D0F1A 0%, #1A6CE8 100%);
+      color: #E8E9F0;
+    }
     nav {
       padding: 20px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(232,233,240,0.08);
     }
-    .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
+    .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.02em; text-decoration: none; color: #E8E9F0; }
     .logo em { font-style: normal; color: var(--green); }
 
-    .page {
+    .hero {
       max-width: 680px;
       margin: 0 auto;
-      padding: 72px 24px 96px;
+      padding: 72px 24px 64px;
     }
-
     .eyebrow {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.66rem;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: var(--amber);
       margin-bottom: 20px;
       display: block;
     }
-
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
       font-weight: 900;
-      line-height: 1.07;
-      letter-spacing: -0.025em;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
       margin-bottom: 20px;
     }
     h1 .hl { color: var(--green); }
-
     .sub {
       font-size: 1.1rem;
-      color: var(--grey);
-      line-height: 1.7;
+      color: rgba(232,233,240,0.75);
+      line-height: 1.75;
+      font-weight: 700;
+    }
+    .outcome {
+      margin-top: 16px;
+      font-size: 1rem;
+      color: #E8E9F0;
+      line-height: 1.75;
+      font-weight: 700;
+    }
+    .outcome .mv { color: var(--amber); }
+
+    /* Light page body */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    .founder-note {
+      background: rgba(0,153,85,0.06);
+      border: 1px solid rgba(0,153,85,0.25);
+      border-radius: 16px;
+      padding: 24px 26px;
       margin-bottom: 48px;
-      font-weight: 600;
+    }
+    .founder-note p {
+      font-size: 0.92rem;
+      color: var(--ink2);
+      line-height: 1.75;
+      font-weight: 700;
+    }
+    .founder-note .sig {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green);
     }
 
     .divider {
@@ -83,10 +128,14 @@
       display: flex;
       gap: 20px;
       align-items: flex-start;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 26px;
     }
     .info-num {
       font-family: var(--mono);
-      font-size: 0.65rem;
+      font-size: 0.66rem;
       font-weight: 700;
       color: var(--blue);
       letter-spacing: 0.15em;
@@ -97,21 +146,22 @@
     .info-text h3 {
       font-size: 0.95rem;
       font-weight: 700;
-      color: var(--white);
+      color: var(--ink);
       margin-bottom: 8px;
     }
     .info-text p {
       font-size: 0.9rem;
-      color: var(--grey);
-      line-height: 1.7;
+      color: var(--ink2);
+      line-height: 1.75;
+      font-weight: 700;
     }
-    .info-text p strong { color: var(--white); }
+    .info-text p strong { color: var(--ink); }
 
     .form-card {
       background: var(--bg2);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(217,119,6,.35);
       border-radius: 20px;
-      padding: 40px 36px;
+      padding: 48px 40px;
       position: relative;
       overflow: hidden;
     }
@@ -123,76 +173,87 @@
       background: var(--grad);
     }
     .form-card h2 {
-      font-size: 1.2rem;
-      font-weight: 800;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
       margin-bottom: 8px;
     }
     .form-card p.form-intro {
       font-size: 0.88rem;
-      color: var(--grey);
+      color: var(--ink2);
       margin-bottom: 28px;
-      line-height: 1.6;
+      line-height: 1.75;
+      font-weight: 700;
     }
 
     .field { margin-bottom: 20px; }
     .field label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--grey);
+      color: var(--ink2);
       margin-bottom: 8px;
       font-family: var(--mono);
     }
     .field input,
     .field textarea {
       width: 100%;
-      background: var(--bg3);
-      border: 1px solid var(--border);
+      background: #FFFFFF;
+      border: 2px solid rgba(13,15,26,0.25);
       border-radius: 12px;
-      color: var(--white);
+      color: var(--ink);
       font-family: var(--font);
       font-size: 0.95rem;
-      padding: 14px 18px;
+      padding: 15px 20px;
       outline: none;
-      transition: border-color .2s;
+      transition: border-color .2s, box-shadow .2s;
       resize: none;
     }
     .field input:focus,
-    .field textarea:focus { border-color: var(--blue); }
+    .field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,108,232,0.15); }
     .field input::placeholder,
-    .field textarea::placeholder { color: rgba(232,233,240,.25); }
+    .field textarea::placeholder { color: rgba(13,15,26,.35); }
     .field textarea { min-height: 120px; line-height: 1.65; }
 
     .btn-apply {
       width: 100%;
-      background: linear-gradient(135deg, #F5A623 0%, #D97706 55%, #B45F04 100%);
-      border: 1px solid rgba(255,255,255,0.25);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 55%, rgba(0,0,0,0.1) 100%),
+        linear-gradient(180deg, #F5A623 0%, #D97706 55%, #B86200 100%);
+      border: 1px solid rgba(255,255,255,0.22);
       color: #fff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.25);
       border-radius: 999px;
-      padding: 18px 28px;
+      padding: 16px 28px;
       font-family: var(--font);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
       box-shadow:
-        0 8px 24px rgba(217,119,6,0.4),
         inset 0 1px 0 rgba(255,255,255,0.45),
-        inset 0 -2px 4px rgba(0,0,0,0.15);
-      backdrop-filter: blur(6px);
-      transition: box-shadow .2s, transform .2s;
+        inset 0 -2px 4px rgba(0,0,0,0.15),
+        0 0 18px rgba(217,119,6,0.45),
+        0 8px 24px rgba(13,15,26,0.15);
+      transition: box-shadow .15s, transform .15s;
       margin-top: 8px;
     }
-    .btn-apply:hover   { box-shadow: 0 10px 28px rgba(217,119,6,0.5), inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -2px 4px rgba(0,0,0,0.1); transform: translateY(-1px); }
-    .btn-apply:active  { transform: scale(.98); }
-    .btn-apply:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+    .btn-apply:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        inset 0 -2px 4px rgba(0,0,0,0.1),
+        0 0 22px rgba(217,119,6,0.55),
+        0 10px 28px rgba(13,15,26,0.2);
+    }
+    .btn-apply:active { transform: scale(.98); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 0 12px rgba(217,119,6,0.35), 0 4px 12px rgba(13,15,26,0.12); }
+    .btn-apply:disabled { opacity: .55; cursor: not-allowed; transform: none; }
 
     .form-note {
       margin-top: 16px;
       font-size: 0.72rem;
-      color: rgba(232,233,240,.28);
+      color: rgba(13,15,26,.5);
       font-family: var(--mono);
       text-align: center;
       line-height: 1.7;
@@ -202,18 +263,19 @@
       display: none;
       background: rgba(0,153,85,.07);
       border: 1px solid rgba(0,153,85,.25);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 28px 24px;
       text-align: center;
     }
-    .form-ok h3 { font-size: 1.1rem; font-weight: 800; color: var(--green); margin-bottom: 10px; }
-    .form-ok p  { font-size: 0.88rem; color: var(--grey); line-height: 1.7; }
+    .form-ok h3 { font-size: 1.1rem; font-weight: 900; color: var(--green); margin-bottom: 10px; }
+    .form-ok p  { font-size: 0.88rem; color: var(--ink2); line-height: 1.75; font-weight: 700; }
 
     .field-checkbox { margin-bottom: 28px; }
     .checkbox-label {
       display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
-      font-size: 0.85rem; color: var(--grey); line-height: 1.6;
-      text-transform: none; font-weight: 400; font-family: var(--font);
+      font-size: 0.85rem; color: var(--ink2); line-height: 1.65;
+      text-transform: none; font-weight: 700; font-family: var(--font);
+      letter-spacing: normal;
     }
     .checkbox-label input[type="checkbox"] {
       width: 18px; height: 18px; margin-top: 2px;
@@ -223,14 +285,16 @@
     .capacity-note {
       margin-top: 24px;
       font-size: 0.82rem;
-      color: var(--grey);
+      color: var(--ink2);
       text-align: center;
       line-height: 1.65;
       font-style: italic;
+      font-weight: 700;
     }
 
     footer {
-      border-top: 1px solid var(--border);
+      background: #0D0F1A;
+      border-top: 1px solid rgba(232,233,240,0.08);
       padding: 24px 40px;
       text-align: center;
       display: flex;
@@ -240,31 +304,42 @@
     }
     .foot-links { display: flex; gap: 20px; }
     .foot-links a { font-size: 0.78rem; color: rgba(232,233,240,.5); text-decoration: none; }
-    .foot-links a:hover { color: var(--white); }
+    .foot-links a:hover { color: #E8E9F0; }
     .foot-copy { font-size: 0.7rem; color: rgba(232,233,240,.25); font-family: var(--mono); }
 
     @media (max-width: 600px) {
       nav  { padding: 16px 20px; }
-      .page { padding: 48px 16px 72px; }
+      .hero { padding: 48px 16px 48px; }
+      .page { padding: 40px 16px 72px; }
       .form-card { padding: 28px 20px; }
+      .info-block { padding: 22px 18px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">Profit<em>OS</em> Engine</a>
-</nav>
+<div class="band">
+  <nav>
+    <a href="/" class="logo">Profit<em>OS</em> Engine</a>
+  </nav>
+
+  <div class="hero">
+    <span class="eyebrow">Limited Access — 50 Spots Total</span>
+
+    <h1>The ProfitOS<br><span class="hl">Founding Crew</span></h1>
+
+    <p class="sub">50 spots. Cost only. You help us build it.</p>
+
+    <p class="outcome">By the end of beta, you&rsquo;ll know exactly where your money was <span class="mv">LEAKING</span> &mdash; and you&rsquo;ll have kept it.</p>
+  </div>
+</div>
 
 <div class="page">
 
-  <span class="eyebrow">Limited Access — 50 Spots Total</span>
-
-  <h1>The ProfitOS<br><span class="hl">Founding Crew</span></h1>
-
-  <p class="sub">50 spots. Cost only. You help us build it.</p>
-
-  <hr class="divider" />
+  <div class="founder-note">
+    <p>I'm Chris Trama. I run construction projects for a living as a superintendent, and I built ProfitOS because owners are always the last ones paid. Small charges walk out of a business every month while nobody's watching. The Founding Crew is the 50 businesses who help us get this right &mdash; you get the watchdogs at cost while we build.</p>
+    <p class="sig">&mdash; Chris Trama, Founder, ProfitOS Engine</p>
+  </div>
 
   <div class="info-blocks">
     <div class="info-block">
@@ -278,14 +353,14 @@
       <div class="info-num">02</div>
       <div class="info-text">
         <h3>What it costs</h3>
-        <p>There is no free tier here. <strong>Cost-only access is $29/month</strong> — enough to cover what we actually spend running the platform for you. When you convert to a full Charter Member at the end of beta, your rate locks at $197/month for life. No upgrade pricing. No surprises.</p>
+        <p>There is no free tier here. <strong>Cost-only access is $29/month</strong> &mdash; enough to cover what we actually spend running the platform for you. When you convert to a full Charter Member at the end of beta, your rate locks at $197/month for life. No upgrade pricing. No surprises. Cancel anytime.</p>
       </div>
     </div>
     <div class="info-block">
       <div class="info-num">03</div>
       <div class="info-text">
         <h3>What we ask from you</h3>
-        <p>One Slack channel. Honest reactions. When something is confusing or broken — tell us. When something works — tell us. We are not looking for cheerleaders. We are looking for operators who know their numbers and will say what they think. That is it.</p>
+        <p>One Slack channel. Honest reactions. When something is confusing or broken &mdash; tell us. When something works &mdash; tell us. We are not looking for cheerleaders. We are looking for operators who know their numbers and will say what they think. That is it.</p>
       </div>
     </div>
   </div>
@@ -295,7 +370,7 @@
   <!-- APPLICATION FORM -->
   <div class="form-card" id="form-card">
     <h2>Apply for a Spot</h2>
-    <p class="form-intro">Tell us a little about yourself and your business. We read every application personally. We select based on fit — not speed.</p>
+    <p class="form-intro">Tell us a little about yourself and your business. We read every application personally. We select based on fit &mdash; not speed.</p>
 
     <div class="field">
       <label for="fc-name">Full Name</label>
@@ -320,7 +395,7 @@
     <div class="field field-checkbox">
       <label class="checkbox-label">
         <input type="checkbox" id="fc-founder-call" />
-        <span>I'd like a shot at a free weekly 1:1 call with the Founder if I'm accepted. First 8 spots each month — one month's membership fee waived if selected.</span>
+        <span>I'd like a shot at a free weekly 1:1 call with the Founder if I'm accepted. First 8 spots each month &mdash; one month's membership fee waived if selected.</span>
       </label>
     </div>
 
