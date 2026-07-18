@@ -3,10 +3,31 @@
   /* ---- watchdog ticker ---- */
   var track=document.getElementById('ticker');
   if(track){
-    var agents=[['MarginScout','g'],['GrantHound','c'],['SubscriptionGuard','o'],['TaxTerrier','g'],['EquipmentLeaseGuard','c'],['PriceMax','k'],['Payment Pointer','o'],['ClaimBack','g'],['InsuranceGapFinder','c'],['DataPrivacyShield','o'],['CashFlowGuard','g'],['LoanScout','k'],['...and growing','g']];
-    var dot={g:'tk-g',o:'tk-o',c:'tk-c',k:'tk-k'};
-    var full=agents.concat(agents,agents,agents);
-    track.innerHTML=full.map(function(a){return '<div class="tk-chip"><span class="tk-dot '+dot[a[1]]+'"></span><span class="tk-name">'+a[0]+'</span></div>';}).join('');
+    var feed=[
+      ['a','09:41','SubscriptionGuard','renewal above agreed rate — flagged'],
+      ['g','09:52','WasteWatcher','unused seat on a paid tool — cancel steps sent'],
+      ['c','10:07','CashFlowGuard','invoice past due — follow-up drafted'],
+      ['a','10:31','Payment Pointer','possible duplicate charge — queued for review'],
+      ['g','10:48','SubscriptionGuard','zombie subscription — confirmed cancelled'],
+      ['r','11:15','WasteWatcher','vendor price drift — third increase in a row'],
+      ['c','11:29','CashFlowGuard','deposit return window closing — reminder sent'],
+      ['g','11:56','Payment Pointer','refund owed — claim steps delivered']
+    ];
+    var dot={g:'tk-g',a:'tk-k',c:'tk-c',r:'tk-r'};
+    var lbl='<div class="tk-chip tk-lbl"><span class="tk-text">SIMULATED FEED · LAUNCH CORE WATCHDOGS</span></div>';
+    var half=lbl+feed.map(function(f){return '<div class="tk-chip"><span class="tk-dot '+dot[f[0]]+'"></span><span class="tk-time">'+f[1]+'</span><span class="tk-name">'+f[2]+'</span><span class="tk-text">'+f[3]+'</span></div>';}).join('');
+    track.innerHTML=half+half;
+  }
+
+  /* ---- audience band: fit text to one justified line ---- */
+  var ab=document.querySelector('.audience-band');
+  if(ab){
+    var abFit=function(){
+      ab.style.fontSize='';
+      var fs=parseFloat(getComputedStyle(ab).fontSize),guard=0;
+      while(ab.scrollWidth>ab.clientWidth+1&&guard<40){fs*=0.96;ab.style.fontSize=fs+'px';guard++}
+    };
+    abFit();window.addEventListener('resize',abFit);
   }
 
   /* ---- OS logo fly animation ---- */
@@ -19,9 +40,9 @@
   if(!logoEm||!fly||!pWrap||!row)return;
 
   var phrases=[
-    '<span class="os-hl">O</span>perating\u00a0<span class="os-hl">S</span>ystem',
-    '<span class="os-hl">O</span>perational\u00a0<span class="os-hl">S</span>urveillance',
-    '<span class="os-hl">O</span>ver\u00a0<span class="os-hl">S</span>ight'
+    '<span class="os-hl">O</span>perating <span class="os-hl">S</span>ystem',
+    '<span class="os-hl">O</span>perational <span class="os-hl">S</span>urveillance',
+    '<span class="os-hl">O</span>ver <span class="os-hl">S</span>ight'
   ];
   var pIdx=0,busy=false;
 
