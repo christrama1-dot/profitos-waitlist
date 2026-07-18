@@ -452,7 +452,7 @@ function applyFC() {
   }
 
   btn.disabled    = true;
-  btn.textContent = 'Submitting\u{32}026'.replace('2026','u2026');
+  btn.textContent = 'Submitting…';
 
   fetch('/api/founding-crew-apply', {
     method:  'POST',
