@@ -8,6 +8,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* tweakable page rhythm (8px grid stops) */
+body[data-rhythm="dense"] section{padding:48px 0}
+body[data-rhythm="dense"] .hero{padding:32px 0 56px}
+body[data-rhythm="dense"] .grid2,body[data-rhythm="dense"] .grid3,body[data-rhythm="dense"] .grid4{gap:16px}
+body[data-rhythm="dense"] .card{padding:24px 24px}
+body[data-rhythm="dense"] .sec-head{margin-bottom:24px}
+body[data-rhythm="roomy"] section{padding:120px 0}
+body[data-rhythm="roomy"] .hero{padding:80px 0 120px}
+body[data-rhythm="roomy"] .grid2,body[data-rhythm="roomy"] .grid3,body[data-rhythm="roomy"] .grid4{gap:32px}
+body[data-rhythm="roomy"] .sec-head{margin-bottom:56px}
+</style>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body>
@@ -18,7 +30,7 @@
       <a class="logo" href="index.html">Profit<em id="logo-em">OS</em> Engine</a>
       <div id="os-fly" aria-hidden="true">OS</div>
       <div id="os-phrase-wrap" aria-hidden="true"></div>
-      <a class="btn-main" href="beta.html">Claim Your Founding Crew Spot</a>
+      <a class="btn-main" href="founding-crew.html">Claim Your Founding Crew Spot</a>
     </div>
     <nav class="navrow">
       <a href="index.html#how">How it works</a>
@@ -27,21 +39,53 @@
       <a href="security.html">Security</a>
       <a href="docs.html">Docs</a>
       <a href="team.html">The Team</a>
-      <a href="the-controller.html">The Controller</a>
     </nav>
-    <div class="ticker-wrap">
-      <div class="ticker-rail"><div class="ticker-track" id="ticker"></div></div>
-    </div>
-    <div class="audience-band">
-      <span>TOO BIG TO VET EVERY CHARGE</span><span>·</span><span>TOO SMALL TO HIRE A CONTROLLER</span>
-    </div>
     <div class="hero">
-      <span class="eyebrow">INTEGRATIONS</span>
+      <div class="hero-grid">
+        <div>
+      <span class="hero-pill"><span class="fdot"></span><span class="eyebrow">INTEGRATIONS</span></span>
       <h1>3 connections.<br>Minutes to set up.</h1>
       <p class="lead">We plug into the places your money already moves. No new software to learn, no workflow to change. Connect once, and the watchdogs start reading — read-only, always.</p>
       <div class="cta-row">
-        <a class="btn-main" href="beta.html">Claim 1 of 50 Founding Crew Spots →</a>
+        <a class="btn-main" href="founding-crew.html">Claim 1 of 50 Founding Crew Spots →</a>
         <a class="btn-ghost" href="security.html">How connections are secured</a>
+      </div>
+        </div>
+        <div class="hero-sw">
+<div class="sw" id="sww">
+        <div class="sw-head">
+          <div>
+            <div class="sw-title">ProfitOS Engine</div>
+            <div class="sw-sub"><span class="sw-on"></span> Over 50 watchdogs on duty around the clock.</div>
+          </div>
+          <div class="sw-badge" id="swl">ILLUSTRATIVE</div>
+        </div>
+        <div class="sw-cols">
+          <div class="sw-side">
+            <div class="sw-ws"><span>P</span>ProfitOS</div>
+            <div class="sw-grp">Channels</div>
+            <div class="sw-ch" data-ch="#ops"># ops</div>
+            <div class="sw-ch" data-ch="#accounting"># accounting</div>
+            <div class="sw-ch" data-ch="#finance"># finance</div>
+            <div class="sw-ch" data-ch="#general"># general</div>
+            <div class="sw-grp">Direct messages</div>
+            <div class="sw-ch dm" data-dm="Sam"><span class="sw-pres"></span>Sam</div>
+            <div class="sw-ch dm" data-dm="Marcus"><span class="sw-pres"></span>Marcus</div>
+          </div>
+          <div class="sw-mainc">
+            <div class="sw-chhead"><b id="swch">#ops</b><span class="sw-topic" id="swtp"></span></div>
+            <div class="sw-body" id="swb"></div>
+            <div class="sw-composer">Message <span id="swcm">#ops</span></div>
+          </div>
+        </div>
+        <div class="sw-foot">
+          <button class="sw-btn" id="swp" aria-label="Previous conversation">←</button>
+          <div class="sw-count" id="swc">1 / 25</div>
+          <button class="sw-btn" id="swn" aria-label="Next conversation">→</button>
+        </div>
+        <div class="sw-dis">ILLUSTRATIVE CONVERSATIONS — NOT REAL CUSTOMERS</div>
+      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -73,7 +117,7 @@
       </div>
       <div class="card">
         <div class="card-top-row">
-          <span class="chip orange">BANK FEEDS</span>
+          <span class="chip amber">BANK FEEDS</span>
           <div class="brandmark" style="color:#0D0F1A">PLAID</div>
         </div>
         <h3>Bank accounts via Plaid</h3>
@@ -83,41 +127,13 @@
   </div>
 </section>
 
-<!-- SETUP CHATTER WIDGET -->
-<section class="dark-band">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" style="color:var(--amber)">SETUP CHATTER</span>
-      <h2>Heard around the office.</h2>
-      <p class="lead">What connecting ProfitOS actually sounds like — no manuals, no migrations, no lost weekends.</p>
-    </div>
-    <div class="sw-wrap">
-      <div class="sw" id="sww">
-        <div class="sw-head">
-          <div>
-            <div class="sw-title">ProfitOS Engine</div>
-            <div class="sw-sub"><span class="sw-on"></span> Over 50 watchdogs on duty around the clock.</div>
-          </div>
-          <div class="sw-badge" id="swl">loading…</div>
-        </div>
-        <div class="sw-body" id="swb"></div>
-        <div class="sw-foot">
-          <button class="sw-btn" id="swp" aria-label="Previous conversation">←</button>
-          <div class="sw-count" id="swc">1 / 25</div>
-          <button class="sw-btn" id="swn" aria-label="Next conversation">→</button>
-        </div>
-        <div class="sw-dis">ILLUSTRATIVE CONVERSATIONS</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="cta-band">
   <div class="wrap">
-    <span class="eyebrow" style="color:var(--orange)">MORE CONNECTIONS COMING</span>
+    <span class="eyebrow" style="color:var(--green)">MORE CONNECTIONS COMING</span>
     <h2>Use a tool we don't cover yet?</h2>
     <p class="lead">Members drive our integration roadmap. Tell us where your money moves and we build toward it.</p>
-    <a class="btn-main" href="beta.html">Claim 1 of 50 Founding Crew Spots →</a>
+    <a class="btn-main" href="founding-crew.html">Claim 1 of 50 Founding Crew Spots →</a>
   </div>
 </section>
 
@@ -140,42 +156,51 @@
 <script src="site.js" defer></script>
 <script>
 var CHATS=[
-{lbl:'#ops — 9:14 AM',m:[{n:'Owner',i:'O',c:'#D97706',t:'How long did the ProfitOS setup take?'},{n:'Dana',i:'D',c:'#009955',t:'Eleven minutes. I timed it.'},{n:'Owner',i:'O',c:'#D97706',t:'All three connections?'},{n:'Dana',i:'D',c:'#009955',t:'All three. Watchdogs were reading before my coffee went cold.'}]},
-{lbl:'Text Message — 7:02 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Finally connected ProfitOS today.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'How bad was it?'},{n:'You',i:'Y',c:'#D97706',t:'That\'s the thing. It wasn\'t. Sign in, click allow, done.'}]},
-{lbl:'#accounting — 10:30 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'QuickBooks connected on the first try.'},{n:'Owner',i:'O',c:'#D97706',t:'No exports? No spreadsheets?'},{n:'Rita',i:'R',c:'#009955',t:'None. It reads the books. We don\'t change a thing.'}]},
-{lbl:'Text Message — 8:44 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Do I need IT for this?'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'I did mine solo. If you can log into your bank, you can do this.'}]},
-{lbl:'#ops — 2:12 PM',m:[{n:'Owner',i:'O',c:'#D97706',t:'What did the team have to learn?'},{n:'Dana',i:'D',c:'#009955',t:'Nothing. Zero new software. It watches the tools we already use.'}]},
-{lbl:'#finance — 11:05 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'New systems usually take a week to roll out.'},{n:'Owner',i:'O',c:'#D97706',t:'This wasn\'t a rollout. It plugged into what we already run.'}]},
-{lbl:'Text Message — 6:58 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'I put off connecting for two weeks.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'And?'},{n:'You',i:'Y',c:'#D97706',t:'Took less time than school pickup. Should\'ve done it day one.'}]},
-{lbl:'#accounting — 9:41 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Bank feed connected through Plaid. I signed in with the bank directly.'},{n:'Owner',i:'O',c:'#D97706',t:'So they never got our login?'},{n:'Rita',i:'R',c:'#009955',t:'Never touched it.'}]},
-{lbl:'#ops — 3:20 PM',m:[{n:'Dana',i:'D',c:'#009955',t:'Stripe took one click. It\'s already reading charges and fees.'},{n:'Owner',i:'O',c:'#D97706',t:'That fast?'},{n:'Dana',i:'D',c:'#009955',t:'That fast.'}]},
-{lbl:'Text Message — 9:12 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Set it up tonight after the kids went down.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'On a Sunday?'},{n:'You',i:'Y',c:'#D97706',t:'It watches my books while I sleep. Felt right.'}]},
-{lbl:'#general — 1:15 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'Do we need to change how we invoice?'},{n:'Owner',i:'O',c:'#D97706',t:'Nope. Nothing changes. It watches, we work.'}]},
-{lbl:'#finance — 4:02 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'No migration. No downtime. No retraining.'},{n:'Owner',i:'O',c:'#D97706',t:'That\'s why I said yes.'}]},
-{lbl:'Text Message — 5:37 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'My accountant asked what she has to do differently.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'What\'d you say?'},{n:'You',i:'Y',c:'#D97706',t:'Nothing. That\'s the whole point.'}]},
-{lbl:'#ops — 8:50 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'First findings landed the same day we connected.'},{n:'Owner',i:'O',c:'#D97706',t:'Same day?'},{n:'Dana',i:'D',c:'#009955',t:'Watchdogs don\'t warm up. They just start.'}]},
-{lbl:'#accounting — 12:22 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'I connected one account to test it.'},{n:'Owner',i:'O',c:'#D97706',t:'And?'},{n:'Rita',i:'R',c:'#009955',t:'Adding the rest this afternoon.'}]},
-{lbl:'Text Message — 7:45 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Three connections. QuickBooks, Stripe, the bank.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'Total time?'},{n:'You',i:'Y',c:'#D97706',t:'Under fifteen. All of it.'}]},
-{lbl:'#general — 10:08 AM',m:[{n:'Priya',i:'P',c:'#009955',t:'Does anyone else on the team need a login?'},{n:'Owner',i:'O',c:'#D97706',t:'No. Nothing new to manage.'}]},
-{lbl:'#finance — 2:47 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'The setup checklist had three items.'},{n:'Owner',i:'O',c:'#D97706',t:'That\'s not a checklist. That\'s a sticky note.'}]},
-{lbl:'Text Message — 8:15 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'You know how software setup always eats a weekend?'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Yeah?'},{n:'You',i:'Y',c:'#D97706',t:'Not this one. Done before dinner.'}]},
-{lbl:'#ops — 11:33 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'It reads the tools we already pay for.'},{n:'Owner',i:'O',c:'#D97706',t:'So no new tool to babysit?'},{n:'Dana',i:'D',c:'#009955',t:'None. This one watches for us.'}]},
-{lbl:'#accounting — 3:58 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Reconnecting after the bank changed passwords took one minute.'},{n:'Owner',i:'O',c:'#D97706',t:'Good. Keep it connected.'}]},
-{lbl:'Text Message — 6:20 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Honestly thought this would be an all-day thing.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'It never is. That\'s the part nobody believes.'}]},
-{lbl:'#general — 9:26 AM',m:[{n:'Priya',i:'P',c:'#009955',t:'Any workflow changes for the crew?'},{n:'Owner',i:'O',c:'#D97706',t:'Zero. They won\'t even know it\'s there. The books will.'}]},
-{lbl:'#finance — 1:41 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Easiest connect I\'ve done since we set up payroll.'},{n:'Owner',i:'O',c:'#D97706',t:'Lower bar than I\'d like. But agreed.'}]},
-{lbl:'Text Message — 9:55 PM',m:[{n:'You',i:'Y',c:'#D97706',t:'Just hit connect on the last account.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Now what?'},{n:'You',i:'Y',c:'#D97706',t:'Now it watches. And we get our evenings back.'}]}
+{lbl:'#ops — 9:14 AM',m:[{n:'Owner',i:'O',c:'#F5A623',t:'How long did the ProfitOS setup take?'},{n:'Dana',i:'D',c:'#009955',t:'Eleven minutes. I timed it.'},{n:'Owner',i:'O',c:'#F5A623',t:'All three connections?'},{n:'Dana',i:'D',c:'#009955',t:'All three. Watchdogs were reading before my coffee went cold.'}]},
+{lbl:'Text Message — 7:02 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'Finally connected ProfitOS today.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'How bad was it?'},{n:'You',i:'Y',c:'#F5A623',t:'That\'s the thing. It wasn\'t. Sign in, click allow, done.'}]},
+{lbl:'#accounting — 10:30 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'QuickBooks connected on the first try.'},{n:'Owner',i:'O',c:'#F5A623',t:'No exports? No spreadsheets?'},{n:'Rita',i:'R',c:'#009955',t:'None. It reads the books. We don\'t change a thing.'}]},
+{lbl:'Text Message — 8:44 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'Do I need IT for this?'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'I did mine solo. If you can log into your bank, you can do this.'}]},
+{lbl:'#ops — 2:12 PM',m:[{n:'Owner',i:'O',c:'#F5A623',t:'What did the team have to learn?'},{n:'Dana',i:'D',c:'#009955',t:'Nothing. Zero new software. It watches the tools we already use.'}]},
+{lbl:'#finance — 11:05 AM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'New systems usually take a week to roll out.'},{n:'Owner',i:'O',c:'#F5A623',t:'This wasn\'t a rollout. It plugged into what we already run.'}]},
+{lbl:'Text Message — 6:58 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'I put off connecting for two weeks.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'And?'},{n:'You',i:'Y',c:'#F5A623',t:'Took less time than school pickup. Should\'ve done it day one.'}]},
+{lbl:'#accounting — 9:41 AM',m:[{n:'Rita',i:'R',c:'#009955',t:'Bank feed connected through Plaid. I signed in with the bank directly.'},{n:'Owner',i:'O',c:'#F5A623',t:'So they never got our login?'},{n:'Rita',i:'R',c:'#009955',t:'Never touched it.'}]},
+{lbl:'#ops — 3:20 PM',m:[{n:'Dana',i:'D',c:'#009955',t:'Stripe took one click. It\'s already reading charges and fees.'},{n:'Owner',i:'O',c:'#F5A623',t:'That fast?'},{n:'Dana',i:'D',c:'#009955',t:'That fast.'}]},
+{lbl:'Text Message — 9:12 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'Set it up tonight after the kids went down.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'On a Sunday?'},{n:'You',i:'Y',c:'#F5A623',t:'It watches my books while I sleep. Felt right.'}]},
+{lbl:'#general — 1:15 PM',m:[{n:'Priya',i:'P',c:'#009955',t:'Do we need to change how we invoice?'},{n:'Owner',i:'O',c:'#F5A623',t:'Nope. Nothing changes. It watches, we work.'}]},
+{lbl:'#finance — 4:02 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'No migration. No downtime. No retraining.'},{n:'Owner',i:'O',c:'#F5A623',t:'That\'s why I said yes.'}]},
+{lbl:'Text Message — 5:37 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'My accountant asked what she has to do differently.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'What\'d you say?'},{n:'You',i:'Y',c:'#F5A623',t:'Nothing. That\'s the whole point.'}]},
+{lbl:'#ops — 8:50 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'First findings landed the same day we connected.'},{n:'Owner',i:'O',c:'#F5A623',t:'Same day?'},{n:'Dana',i:'D',c:'#009955',t:'Watchdogs don\'t warm up. They just start.'}]},
+{lbl:'#accounting — 12:22 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'I connected one account to test it.'},{n:'Owner',i:'O',c:'#F5A623',t:'And?'},{n:'Rita',i:'R',c:'#009955',t:'Adding the rest this afternoon.'}]},
+{lbl:'Text Message — 7:45 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'Three connections. QuickBooks, Stripe, the bank.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'Total time?'},{n:'You',i:'Y',c:'#F5A623',t:'Under fifteen. All of it.'}]},
+{lbl:'#general — 10:08 AM',m:[{n:'Priya',i:'P',c:'#009955',t:'Does anyone else on the team need a login?'},{n:'Owner',i:'O',c:'#F5A623',t:'No. Nothing new to manage.'}]},
+{lbl:'#finance — 2:47 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'The setup checklist had three items.'},{n:'Owner',i:'O',c:'#F5A623',t:'That\'s not a checklist. That\'s a sticky note.'}]},
+{lbl:'Text Message — 8:15 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'You know how software setup always eats a weekend?'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Yeah?'},{n:'You',i:'Y',c:'#F5A623',t:'Not this one. Done before dinner.'}]},
+{lbl:'#ops — 11:33 AM',m:[{n:'Dana',i:'D',c:'#009955',t:'It reads the tools we already pay for.'},{n:'Owner',i:'O',c:'#F5A623',t:'So no new tool to babysit?'},{n:'Dana',i:'D',c:'#009955',t:'None. This one watches for us.'}]},
+{lbl:'#accounting — 3:58 PM',m:[{n:'Rita',i:'R',c:'#009955',t:'Reconnecting after the bank changed passwords took one minute.'},{n:'Owner',i:'O',c:'#F5A623',t:'Good. Keep it connected.'}]},
+{lbl:'Text Message — 6:20 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'Honestly thought this would be an all-day thing.'},{n:'Marcus',i:'M',c:'#1A6CE8',t:'It never is. That\'s the part nobody believes.'}]},
+{lbl:'#general — 9:26 AM',m:[{n:'Priya',i:'P',c:'#009955',t:'Any workflow changes for the crew?'},{n:'Owner',i:'O',c:'#F5A623',t:'Zero. They won\'t even know it\'s there. The books will.'}]},
+{lbl:'#finance — 1:41 PM',m:[{n:'CFO',i:'C',c:'#F5A623',t:'Easiest connect I\'ve done since we set up payroll.'},{n:'Owner',i:'O',c:'#F5A623',t:'Lower bar than I\'d like. But agreed.'}]},
+{lbl:'Text Message — 9:55 PM',m:[{n:'You',i:'Y',c:'#F5A623',t:'Just hit connect on the last account.'},{n:'Sam',i:'S',c:'#1A6CE8',t:'Now what?'},{n:'You',i:'Y',c:'#F5A623',t:'Now it watches. And we get our evenings back.'}]}
 ];
-var i=0,T1=null,T2=null,P=false,S=false;
+var i=0,T1=null,T2=null,P=false,S=false,CT='';
 var B=document.getElementById('swb'),L=document.getElementById('swl'),C=document.getElementById('swc');
-function dly(t){return Math.min(Math.max(t.length*40,700),2600)}
+function spd(){return window.__swSpeed||1}
+function dly(t){return Math.min(Math.max(t.length*40,700),2600)/spd()}
 function typing(m){var e=document.createElement('div');e.id='swt';e.className='sw-msg';e.innerHTML='<div class="sw-av" style="background:'+m.c+'">'+m.i+'</div><div><div class="sw-name">'+m.n+'</div><div class="sw-dots"><span></span><span></span><span></span></div></div>';B.appendChild(e);B.scrollTop=B.scrollHeight}
 function rmt(){var e=document.getElementById('swt');if(e)e.remove()}
-function add(m){var e=document.createElement('div');e.className='sw-msg';e.innerHTML='<div class="sw-av" style="background:'+m.c+'">'+m.i+'</div><div><div class="sw-name">'+m.n+'</div><div class="sw-text">'+m.t+'</div></div>';B.appendChild(e);B.scrollTop=B.scrollHeight}
-function run(x){S=false;var ch=CHATS[x];L.textContent=ch.lbl;C.textContent=(x+1)+' / '+CHATS.length;B.innerHTML='';var q=ch.m.slice(),k=0;
-function adv(){function a(){if(S)return;if(P){T1=setTimeout(a,500);return}T1=setTimeout(function(){if(!S)go(i+1)},1300)}T1=setTimeout(a,4200)}
-function nx(){if(S)return;if(k>=q.length){rmt();adv();return}var m=q[k];typing(m);T2=setTimeout(function(){if(S)return;rmt();add(m);k++;T2=setTimeout(nx,300)},dly(m.t))}
-T2=setTimeout(nx,400)}
+function add(m){var e=document.createElement('div');e.className='sw-msg';e.innerHTML='<div class="sw-av" style="background:'+m.c+'">'+m.i+'</div><div><div class="sw-name">'+m.n+'<span class="sw-tm">'+CT+'</span></div><div class="sw-text">'+m.t+'</div></div>';B.appendChild(e);B.scrollTop=B.scrollHeight}
+function run(x){S=false;var ch=CHATS[x];C.textContent=(x+1)+' / '+CHATS.length;CT=ch.lbl.indexOf(' — ')>-1?ch.lbl.split(' — ')[1]:'';
+var chn=ch.lbl.charAt(0)==='#'?ch.lbl.split(' — ')[0]:null;
+var dmn=null;if(!chn){for(var z=0;z<ch.m.length;z++){if(ch.m[z].n!=='You'){dmn=ch.m[z].n;break}}}
+var side=document.querySelectorAll('.sw-ch');
+for(var y=0;y<side.length;y++){var e=side[y];var hit=chn?e.getAttribute('data-ch')===chn:e.getAttribute('data-dm')===dmn;e.classList[hit?'add':'remove']('on')}
+var cm=document.getElementById('swcm');if(cm)cm.textContent=chn||dmn||'';
+var hh=document.getElementById('swch');if(hh)hh.textContent=chn||dmn||'';
+var tp=document.getElementById('swtp');if(tp)tp.textContent=CT;
+B.innerHTML='';var q=ch.m.slice(),k=0;
+function adv(){function a(){if(S)return;if(P){T1=setTimeout(a,500);return}T1=setTimeout(function(){if(!S)go(i+1)},1300/spd())}T1=setTimeout(a,4200/spd())}
+function nx(){if(S)return;if(k>=q.length){rmt();adv();return}var m=q[k];typing(m);T2=setTimeout(function(){if(S)return;rmt();add(m);k++;T2=setTimeout(nx,300/spd())},dly(m.t))}
+T2=setTimeout(nx,400/spd())}
 function go(x){clearTimeout(T1);clearTimeout(T2);S=true;B.classList.add('fading');setTimeout(function(){i=((x%CHATS.length)+CHATS.length)%CHATS.length;B.classList.remove('fading');run(i)},300)}
 run(0);
 var w=document.getElementById('sww');
@@ -184,6 +209,17 @@ w.addEventListener('mouseleave',function(){P=false});
 w.addEventListener('touchstart',function(){P=true;setTimeout(function(){P=false},4000)},{passive:true});
 document.getElementById('swp').addEventListener('click',function(){go(i-1)});
 document.getElementById('swn').addEventListener('click',function(){go(i+1)});
+var ALLCHATS=CHATS.slice(),CURMODE='mixed';
+window.__swSpeed=1;
+window.__setChatSource=function(mode){
+  if(mode===CURMODE)return;CURMODE=mode;
+  var f;
+  if(mode==='channels'){f=ALLCHATS.filter(function(c){return c.lbl.charAt(0)==='#'});}
+  else if(mode==='texts'){f=ALLCHATS.filter(function(c){return c.lbl.charAt(0)!=='#'});}
+  else{f=ALLCHATS.slice();}
+  if(!f.length)f=ALLCHATS.slice();
+  CHATS=f;go(0);
+};
 </script>
 </body>
 </html>
