@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The ProfitOS Founding Crew</title>
-  <meta name="description" content="50 spots. Cost only. Help us build the platform while we find your profit leaks." />
+  <meta name="description" content="The ProfitOS Founding Crew. Applications are temporarily paused." />
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -81,14 +81,6 @@
       line-height: 1.75;
       font-weight: 700;
     }
-    .outcome {
-      margin-top: 16px;
-      font-size: 1rem;
-      color: #E8E9F0;
-      line-height: 1.75;
-      font-weight: 700;
-    }
-    .outcome .mv { color: var(--amber); }
 
     /* Light page body */
     .page {
@@ -117,46 +109,6 @@
       color: var(--green);
     }
 
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 40px 0;
-    }
-
-    .info-blocks { display: flex; flex-direction: column; gap: 28px; margin-bottom: 48px; }
-    .info-block {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 26px;
-    }
-    .info-num {
-      font-family: var(--mono);
-      font-size: 0.66rem;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: 0.15em;
-      padding-top: 3px;
-      flex-shrink: 0;
-      width: 28px;
-    }
-    .info-text h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-    .info-text p {
-      font-size: 0.9rem;
-      color: var(--ink2);
-      line-height: 1.75;
-      font-weight: 700;
-    }
-    .info-text p strong { color: var(--ink); }
-
     .form-card {
       background: var(--bg2);
       border: 1px solid rgba(217,119,6,.35);
@@ -181,116 +133,12 @@
     .form-card p.form-intro {
       font-size: 0.88rem;
       color: var(--ink2);
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       line-height: 1.75;
       font-weight: 700;
     }
-
-    .field { margin-bottom: 20px; }
-    .field label {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink2);
-      margin-bottom: 8px;
-      font-family: var(--mono);
-    }
-    .field input,
-    .field textarea {
-      width: 100%;
-      background: #FFFFFF;
-      border: 2px solid rgba(13,15,26,0.25);
-      border-radius: 12px;
-      color: var(--ink);
-      font-family: var(--font);
-      font-size: 0.95rem;
-      padding: 15px 20px;
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-      resize: none;
-    }
-    .field input:focus,
-    .field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,108,232,0.15); }
-    .field input::placeholder,
-    .field textarea::placeholder { color: rgba(13,15,26,.35); }
-    .field textarea { min-height: 120px; line-height: 1.65; }
-
-    .btn-apply {
-      width: 100%;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 55%, rgba(0,0,0,0.1) 100%),
-        linear-gradient(180deg, #F5A623 0%, #D97706 55%, #B86200 100%);
-      border: 1px solid rgba(255,255,255,0.22);
-      color: #fff;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.25);
-      border-radius: 999px;
-      padding: 16px 28px;
-      font-family: var(--font);
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.45),
-        inset 0 -2px 4px rgba(0,0,0,0.15),
-        0 0 18px rgba(217,119,6,0.45),
-        0 8px 24px rgba(13,15,26,0.15);
-      transition: box-shadow .15s, transform .15s;
-      margin-top: 8px;
-    }
-    .btn-apply:hover {
-      transform: translateY(-1px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.55),
-        inset 0 -2px 4px rgba(0,0,0,0.1),
-        0 0 22px rgba(217,119,6,0.55),
-        0 10px 28px rgba(13,15,26,0.2);
-    }
-    .btn-apply:active { transform: scale(.98); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 0 12px rgba(217,119,6,0.35), 0 4px 12px rgba(13,15,26,0.12); }
-    .btn-apply:disabled { opacity: .55; cursor: not-allowed; transform: none; }
-
-    .form-note {
-      margin-top: 16px;
-      font-size: 0.72rem;
-      color: rgba(13,15,26,.5);
-      font-family: var(--mono);
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    .form-ok {
-      display: none;
-      background: rgba(0,153,85,.07);
-      border: 1px solid rgba(0,153,85,.25);
-      border-radius: 16px;
-      padding: 28px 24px;
-      text-align: center;
-    }
-    .form-ok h3 { font-size: 1.1rem; font-weight: 900; color: var(--green); margin-bottom: 10px; }
-    .form-ok p  { font-size: 0.88rem; color: var(--ink2); line-height: 1.75; font-weight: 700; }
-
-    .field-checkbox { margin-bottom: 28px; }
-    .checkbox-label {
-      display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
-      font-size: 0.85rem; color: var(--ink2); line-height: 1.65;
-      text-transform: none; font-weight: 700; font-family: var(--font);
-      letter-spacing: normal;
-    }
-    .checkbox-label input[type="checkbox"] {
-      width: 18px; height: 18px; margin-top: 2px;
-      accent-color: var(--blue); flex-shrink: 0; cursor: pointer;
-    }
-
-    .capacity-note {
-      margin-top: 24px;
-      font-size: 0.82rem;
-      color: var(--ink2);
-      text-align: center;
-      line-height: 1.65;
-      font-style: italic;
-      font-weight: 700;
-    }
+    .form-card p.form-intro:last-child { margin-bottom: 0; }
+    .form-card a { color: var(--blue); font-weight: 700; }
 
     footer {
       background: #0D0F1A;
@@ -312,7 +160,6 @@
       .hero { padding: 48px 16px 48px; }
       .page { padding: 40px 16px 72px; }
       .form-card { padding: 28px 20px; }
-      .info-block { padding: 22px 18px; }
     }
   </style>
 </head>
@@ -324,96 +171,27 @@
   </nav>
 
   <div class="hero">
-    <span class="eyebrow">Limited Access — 50 Spots Total</span>
+    <span class="eyebrow">Program Status &mdash; Paused</span>
 
     <h1>The ProfitOS<br><span class="hl">Founding Crew</span></h1>
 
-    <p class="sub">50 spots. Cost only. You help us build it.</p>
-
-    <p class="outcome">By the end of beta, you&rsquo;ll know exactly where your money was <span class="mv">LEAKING</span> &mdash; and you&rsquo;ll have kept it.</p>
+    <p class="sub">Applications are temporarily closed.</p>
   </div>
 </div>
 
 <div class="page">
 
   <div class="founder-note">
-    <p>I'm Chris Trama. I run construction projects for a living as a superintendent, and I built ProfitOS because owners are always the last ones paid. Small charges walk out of a business every month while nobody's watching. The Founding Crew is the 50 businesses who help us get this right &mdash; you get the watchdogs at cost while we build.</p>
+    <p>I'm Chris Trama. I run construction projects for a living as a superintendent, and I built ProfitOS because owners are always the last ones paid. Small charges walk out of a business every month while nobody's watching. The Founding Crew is the group of businesses who will help us get this right &mdash; and we've paused new applications while we get the platform where it needs to be before opening the doors.</p>
     <p class="sig">&mdash; Chris Trama, Founder, ProfitOS Engine</p>
   </div>
 
-  <div class="info-blocks">
-    <div class="info-block">
-      <div class="info-num">01</div>
-      <div class="info-text">
-        <h3>What this is</h3>
-        <p>The Founding Crew is a private beta. You get direct access to ProfitOS before public launch. Our watchdogs run on your business. You tell us what works, what is missing, and what matters most to you. Your feedback shapes the product before it goes live.</p>
-      </div>
-    </div>
-    <div class="info-block">
-      <div class="info-num">02</div>
-      <div class="info-text">
-        <h3>What it costs</h3>
-        <p>There is no free tier here. <strong>Cost-only access is $29/month</strong> &mdash; enough to cover what we actually spend running the platform for you. When you convert to a full Charter Member at the end of beta, your rate locks at $197/month for life. No upgrade pricing. No surprises. Cancel anytime.</p>
-      </div>
-    </div>
-    <div class="info-block">
-      <div class="info-num">03</div>
-      <div class="info-text">
-        <h3>What we ask from you</h3>
-        <p>One Slack channel. Honest reactions. When something is confusing or broken &mdash; tell us. When something works &mdash; tell us. We are not looking for cheerleaders. We are looking for operators who know their numbers and will say what they think. That is it.</p>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider" />
-
-  <!-- APPLICATION FORM -->
+  <!-- PAUSED NOTICE (replaces application form — Founder ruling Aug 18, 2026) -->
   <div class="form-card" id="form-card">
-    <h2>Apply for a Spot</h2>
-    <p class="form-intro">Tell us a little about yourself and your business. We read every application personally. We select based on fit &mdash; not speed.</p>
-
-    <div class="field">
-      <label for="fc-name">Full Name</label>
-      <input type="text" id="fc-name" placeholder="Your name" autocomplete="name" />
-    </div>
-
-    <div class="field">
-      <label for="fc-email">Business Email</label>
-      <input type="email" id="fc-email" placeholder="you@yourbusiness.com" autocomplete="email" />
-    </div>
-
-    <div class="field">
-      <label for="fc-answer">What is the biggest profit leak in your business right now?</label>
-      <textarea id="fc-answer" placeholder="Be specific. The more you tell us, the better we can match your business to the right watchdogs."></textarea>
-    </div>
-
-    <div class="field">
-      <label for="fc-phone">Phone Number <span style="opacity:.5;font-weight:400;">(optional)</span></label>
-      <input type="tel" id="fc-phone" placeholder="(555) 555-5555" autocomplete="tel" />
-    </div>
-
-    <div class="field field-checkbox">
-      <label class="checkbox-label">
-        <input type="checkbox" id="fc-founder-call" />
-        <span>I'd like a shot at a free weekly 1:1 call with the Founder if I'm accepted. First 8 spots each month &mdash; one month's membership fee waived if selected.</span>
-      </label>
-    </div>
-
-    <button class="btn-apply" id="fc-btn" onclick="applyFC()">Apply for a Spot</button>
-
-    <p class="form-note">
-      No credit card required to apply.<br>
-      If selected, you will receive payment instructions by email within 48 hours.
-    </p>
+    <h2>Applications Are Paused</h2>
+    <p class="form-intro">The Founding Crew beta launch has been postponed until further notice. We are not accepting new applications right now, and no payments are being collected. When doors reopen, this page comes back online.</p>
+    <p class="form-intro">Questions, or want to be told when we're back? Email <a href="mailto:support@profitosengine.com">support@profitosengine.com</a>.</p>
   </div>
-
-  <!-- SUCCESS STATE -->
-  <div class="form-ok" id="form-ok">
-    <h3>Application received.</h3>
-    <p>We review every application personally. You will hear from us within 48 hours. If you are selected, we will send payment instructions and your access details by email.</p>
-  </div>
-
-  <p class="capacity-note">Spots are limited. Not everyone who applies gets in.<br>We select based on fit.</p>
 
 </div>
 
@@ -426,58 +204,5 @@
   <div class="foot-copy">&copy; 2026 ProfitOS Engine &nbsp;&middot;&nbsp; profitosengine.com</div>
 </footer>
 
-<script>
-function applyFC() {
-  var name   = document.getElementById('fc-name').value.trim();
-  var email  = document.getElementById('fc-email').value.trim().toLowerCase();
-  var answer = document.getElementById('fc-answer').value.trim();
-  var phone  = document.getElementById('fc-phone').value.trim();
-  var founderCallOptin = document.getElementById('fc-founder-call').checked;
-  var btn    = document.getElementById('fc-btn');
-
-  if (!name) {
-    alert('Please enter your full name.');
-    document.getElementById('fc-name').focus();
-    return;
-  }
-  if (!email || !email.includes('@') || !email.includes('.')) {
-    alert('Please enter a valid business email.');
-    document.getElementById('fc-email').focus();
-    return;
-  }
-  if (!answer || answer.length < 10) {
-    alert('Please answer the profit leak question.');
-    document.getElementById('fc-answer').focus();
-    return;
-  }
-
-  btn.disabled    = true;
-  btn.textContent = 'Submitting\u2026';
-
-  fetch('/api/founding-crew-apply', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ name, email, answer, phone, founder_call_optin: founderCallOptin })
-  })
-  .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
-  .then(function() {
-    document.getElementById('form-card').style.display = 'none';
-    document.getElementById('form-ok').style.display   = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  })
-  .catch(function(err) {
-    btn.disabled    = false;
-    btn.textContent = 'Apply for a Spot';
-    alert('Something went wrong. Please try again or email us at support@profitosengine.com.');
-    console.error('FC apply error:', err);
-  });
-}
-
-document.getElementById('fc-answer').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    // Allow normal Enter in textarea — do not submit
-  }
-});
-</script>
 </body>
 </html>
