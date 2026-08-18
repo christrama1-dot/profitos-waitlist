@@ -1,6 +1,12 @@
 /**
- * api/founding-crew-apply.js — BUILD 03 (hardened — July 5, 2026, Fable 5 audit)
+ * api/founding-crew-apply.js — BUILD 05 (PAUSED — Aug 18, 2026, Founder ruling)
  * Founding Crew application handler
+ *
+ * BUILD 05 changes (Founder ruling Aug 18, 2026):
+ *   - APPLICATIONS_PAUSED gate at the top of the handler. Beta + waitlist
+ *     launch postponed until further notice. Intake closed at the server so
+ *     direct POSTs cannot create Kit tags, sheet rows, or sequence fires.
+ *     Flip APPLICATIONS_PAUSED to false to reopen. Nothing else changed.
  *
  * BUILD 03 changes (Founder-approved Pick 7):
  *   - CORS locked to production origins (was wildcard '*')
@@ -32,6 +38,8 @@
  *   3. Return 200 to user regardless of n8n status (application is preserved
  *      in Vercel logs via [ALERT] entry if the forward fails)
  */
+
+const APPLICATIONS_PAUSED = true; // Founder ruling Aug 18, 2026 — flip to false to reopen intake
 
 const N8N_FC_WEBHOOK = 'https://profitos.app.n8n.cloud/webhook/founding-crew-apply';
 
@@ -108,6 +116,17 @@ module.exports = async function handler(req, res) {
   if (!corsOk) {
     console.warn(`[fc-apply] Blocked origin: ${req.headers.origin}`);
     return res.status(403).json({ error: 'Forbidden' });
+  }
+
+  // ── PAUSE GATE (BUILD 05, Aug 18, 2026) ───────────────────────
+  // Beta + waitlist postponed until further notice (Founder ruling).
+  // Closing intake here — not just on the page — so direct POSTs to this
+  // endpoint cannot trigger WF-FC-01 (Kit tag, sheet row, sequence fire).
+  if (APPLICATIONS_PAUSED) {
+    console.warn(`[fc-apply] Application blocked — intake paused: ip=${clientIp(req)}`);
+    return res.status(503).json({
+      error: 'Founding Crew applications are temporarily paused. Email support@profitosengine.com with any questions.'
+    });
   }
 
   // ── Input validation ──────────────────────────────────────────
