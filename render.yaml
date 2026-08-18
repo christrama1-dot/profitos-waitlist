@@ -1,0 +1,73 @@
+# Render Blueprint for the ProfitOS Audit Engine (WF-08).
+# In Render: New → Blueprint → connect this repo. Render reads this file,
+# builds the Docker image in ./engine, and provisions the service.
+# After the first deploy, fill in the secret values under Environment in the
+# Render dashboard (they are intentionally left blank here — never commit keys).
+services:
+  - type: web
+    name: profitos-audit-engine
+    runtime: docker
+    rootDir: engine
+    dockerfilePath: ./Dockerfile
+    plan: starter # has enough memory for headless Chromium; free tier may OOM on PDF
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "8080"
+      - key: PUPPETEER_SKIP_DOWNLOAD
+        value: "true"
+      - key: PUPPETEER_EXECUTABLE_PATH
+        value: /usr/bin/chromium
+      # Engine tuning (safe defaults; override if needed).
+      - key: ENRICHMENT_DEADLINE_MS
+        value: "90000"
+      - key: PDF_RENDERER
+        value: puppeteer
+      - key: LOG_LEVEL
+        value: info
+      # ---- Secrets: set these in the Render dashboard, NOT here ----
+      - key: WF06_AUDIT_SECRET
+        sync: false
+      - key: APOLLO_API_KEY
+        sync: false
+      - key: LUSHA_API_KEY
+        sync: false
+      - key: SEMRUSH_API_KEY
+        sync: false
+      - key: SEMRUSH_DATABASE
+        value: us
+      - key: CLAY_API_KEY
+        sync: false
+      - key: CLAY_WEBHOOK_URL
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON_BASE64
+        sync: false
+      - key: GDRIVE_REPORTS_FOLDER_ID
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: EMAIL_FROM_NAME
+        value: ProfitOS Engine
+      - key: EMAIL_FROM_ADDRESS
+        sync: false
+      - key: EMAIL_BCC
+        sync: false
+      - key: KIT_API_KEY
+        sync: false
+      - key: KIT_API_SECRET
+        sync: false
+      - key: KIT_BASE_URL
+        value: https://api.kit.com/v4
+      - key: KIT_AUDIT_COMPLETED_TAG_ID
+        sync: false
